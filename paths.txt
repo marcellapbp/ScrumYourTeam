@@ -1,0 +1,16 @@
+src
+	br.com.scrumyourteam.bean
+	br.com.scrumyourteam.controller
+	br.com.scrumyourteam.dao
+	br.com.scrumyourteam.persistence
+	br.com.scrumyourteam.util - files that does not fit ina any layer
+
+webcontent
+	META-INF
+	WEB-INF
+	includes - files to avoid repeting code
+	pages
+	resources
+		css
+		js
+	templates - files that models the web site
