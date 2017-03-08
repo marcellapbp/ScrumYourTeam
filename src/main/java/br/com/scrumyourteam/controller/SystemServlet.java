@@ -29,7 +29,7 @@ public class SystemServlet extends HttpServlet {
             UserAdd userAdd = new UserAdd();
             userAdd.execute(request, response);
             
-            request.getRequestDispatcher("/index.html").forward(request,response);;
+            request.getRequestDispatcher("/index.html").forward(request,response);
         }
     }
 
