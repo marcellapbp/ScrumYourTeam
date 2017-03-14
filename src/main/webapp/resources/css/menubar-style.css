@@ -1,0 +1,14 @@
+/* 
+    Created on : 14/03/2017, 17:45:54
+    Author     : marcella.pereira.a1
+*/
+
+.ui-layout-north {
+    z-index: 20 !important;
+    overflow: visible !important;
+}
+
+.ui-layout-unit-content {
+    overflow: visible !important;
+}
+
