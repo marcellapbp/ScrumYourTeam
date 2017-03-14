@@ -1,6 +1,6 @@
 package br.com.scrumyourteam.controller;
 
-import br.com.scrumyourteam.bean.User;
+import br.com.scrumyourteam.domain.User;
 import br.com.scrumyourteam.dao.UserDAO;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;

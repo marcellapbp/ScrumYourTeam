@@ -1,4 +1,4 @@
-package br.com.scrumyourteam.bean;
+package br.com.scrumyourteam.domain;
 
 /**
  *

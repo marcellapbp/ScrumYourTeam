@@ -1,6 +1,6 @@
 package br.com.scrumyourteam.dao;
 
-import br.com.scrumyourteam.bean.User;
+import br.com.scrumyourteam.domain.User;
 import br.com.scrumyourteam.persistence.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
