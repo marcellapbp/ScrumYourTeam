@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>  
+            <p:menubar>
+                <p:submenu label="Nosso Produto">
+                    <p:menuitem value="O que é Scrum?"></p:menuitem>
+                    <p:menuitem value="Vantagens do Scrum"></p:menuitem>
+                    <p:menuitem value="Como usar ScrumYourTeam"></p:menuitem>
+                </p:submenu>
+
+                <p:submenu label="Suporte">
+                    <p:menuitem value="Por onde começar"></p:menuitem>
+                    <p:menuitem value="FAQ"></p:menuitem>
+                </p:submenu>
+
+                <p:submenu label="Contato">
+                    <p:menuitem value="Tire suas dúvidas"></p:menuitem>
+                    <p:menuitem value="Se junte a nós"></p:menuitem>
+                </p:submenu>
+                
+                <f:facet name="options">
+                    <p:inputText style="margin-right:10px" placeholder="Pesquisar"/>
+                    <p:commandButton type="button" value="Entrar"/>
+                    <p:commandButton type="button" value="Cadastrar-se"/>
+                </f:facet>
+                
+                
+            </p:menubar>
+        </h:form>
+    </h:body>
+</html>
+
