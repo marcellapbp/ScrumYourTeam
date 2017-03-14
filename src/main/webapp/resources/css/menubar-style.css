@@ -12,3 +12,7 @@
     overflow: visible !important;
 }
 
+.ui-widget, .ui-widget .ui-widget {
+    font-size: 90% !important;
+    font-family: cursive;
+}
