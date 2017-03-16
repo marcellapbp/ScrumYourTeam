@@ -19,6 +19,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
+   
+    
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -51,15 +53,7 @@
             <version>2.1</version>
         </dependency>
         
-        <!--ver multiplos repositórios-->
-        <!--https://maven.apache.org/guides/mini/guide-multiple-repositories.html-->
-        <!--Primefaces Cupertino Theme Dependency-->
-        <!-- https://repository.primefaces.org/org/primefaces/themes/ --> 
-        <dependency>  
-            <groupId>org.primefaces.themes</groupId>  
-            <artifactId>all-themes</artifactId>  
-            <version>1.0.9</version>
-        </dependency>  
+        
 
     </dependencies>
 
