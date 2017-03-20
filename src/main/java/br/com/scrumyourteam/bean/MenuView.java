@@ -1,5 +1,7 @@
 package br.com.scrumyourteam.bean;
 
+import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
@@ -16,9 +18,10 @@ import javax.faces.context.FacesContext;
 @Dependent
 @ManagedBean
 public class MenuView {
-
-    public void save() {
-        addMessage("Success", "Data saved");
+    
+    public void login() throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+        
     }
      
     public void update() {
