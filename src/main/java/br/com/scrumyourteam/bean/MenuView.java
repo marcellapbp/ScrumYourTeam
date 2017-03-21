@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
@@ -27,11 +28,15 @@ public class MenuView
     public void register() throws IOException 
     {
         FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/pages/user/user-add.xhtml");
-    }
-    
-    public void goHome() throws IOException 
-    {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/index.xhtml");
+        //ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        //context.redirect(context.getRequestContextPath() +"/faces/pages/user/user-add.xhtml");///ScrumYourTeam/faces/user/
+        
+
+
+//context.redirect("/ScrumYourTeam/faces/user/user-add.xhtml");
+        
+        //FacesContext.getCurrentInstance().getExternalContext().dispatch("/ScrumYourTeam/faces/user/user-add.xhtml");
     }
      
+
  }
