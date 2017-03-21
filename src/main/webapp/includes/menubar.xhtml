@@ -25,10 +25,11 @@
                 <p:menuitem value="Se junte a nós"></p:menuitem>
             </p:submenu>
 
+            
             <f:facet name="options">
                 <p:inputText style="margin-right:10px" placeholder="Pesquisar"/>
-                <p:commandButton value="Entrar" actionListener="#{menuView.login}"  ajax="false"/>
-                <p:commandButton type="button" value="Cadastrar-se" />
+                <p:commandButton value="Entrar" actionListener="#{menuView.login}" ajax="false"/>
+                <p:commandButton value="Cadastrar-se" actionListener="#{menuView.register}"  ajax="false"/>
             </f:facet>
 
 

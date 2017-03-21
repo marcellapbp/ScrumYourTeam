@@ -1,11 +1,12 @@
 package br.com.scrumyourteam.bean;
 
+//keep actionlistener for xhtml pages
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
@@ -17,24 +18,16 @@ import javax.faces.context.FacesContext;
 @Named(value = "menuView")
 @Dependent
 @ManagedBean
-public class MenuView {
-    
-    public void login() throws IOException {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
-        
+public class MenuView 
+{
+    public void login() throws IOException 
+    {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/login.xhtml");
     }
      
-    public void update() {
-        addMessage("Success", "Data updated");
+    public void register() throws IOException 
+    {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/pages/user/user-add.xhtml");
     }
      
-    public void delete() {
-        addMessage("Success", "Data deleted");
-    }
-     
-    public void addMessage(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-    
-}
+ }
