@@ -9,6 +9,7 @@
 
     <h:form>  
         <p:menubar>
+            <p:menuitem value="ScrumYourTeam" actionListener="#{menuView.goHome}" ajax="false"/>
             <p:submenu label="Nosso Produto">
                 <p:menuitem value="O que é Scrum?"></p:menuitem>
                 <p:menuitem value="Vantagens do Scrum"></p:menuitem>
@@ -31,7 +32,6 @@
                 <p:commandButton value="Entrar" actionListener="#{menuView.login}" ajax="false"/>
                 <p:commandButton value="Cadastrar-se" actionListener="#{menuView.register}"  ajax="false"/>
             </f:facet>
-
 
         </p:menubar>
     </h:form>

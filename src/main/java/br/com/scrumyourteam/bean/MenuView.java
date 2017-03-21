@@ -6,12 +6,11 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 /**
  *
- * @author marcella.pereira.a1
+ * @author marcella
  * Date: 03/13/2017
  * Objective: Creating menu
  */
@@ -28,6 +27,11 @@ public class MenuView
     public void register() throws IOException 
     {
         FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/pages/user/user-add.xhtml");
+    }
+    
+    public void goHome() throws IOException 
+    {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/index.xhtml");
     }
      
  }
