@@ -136,4 +136,30 @@ public class UserDAO
         }
     }
     
+    public boolean loginExists (String login, String password) throws SQLException
+    {
+        try {
+            
+            String sql = "select * from User where login = ? and password = ?;";
+            
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setString(1, login);
+            psmt.setString(2, password);
+            ResultSet rs = psmt.executeQuery();
+            
+            User user = new User();
+            while(rs.next())
+            {
+                user.setIdUser(rs.getInt("id_user"));
+                user.setNameUser(rs.getString("name_user"));
+                user.setLogin(rs.getString("login"));
+                return true;
+            }
+            return false;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute loginExists in UserDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+    }
 }

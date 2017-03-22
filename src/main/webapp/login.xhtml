@@ -14,11 +14,11 @@
         </ui:define>
         
         <ui:define name="content">
-            <h:form>
+            <h:form id="loginForm">
                 
-                <br/><p:inputText type="text" id="login" placeholder="UserName"/><br/>
-                <br/><p:inputText type="password" id="password" placeholder="Your Password"/><br/>
-                <br/><p:commandButton type="submit" value="Enviar" actionListener="#{userlogin.login}">
+                <br/><p:inputText binding="#{login}" type="text" id="login" placeholder="UserName"/><br/>
+                <br/><p:inputText binding="#{password}" type="password" id="password" placeholder="Your Password"/><br/>
+                <br/><p:commandButton type="submit" value="Enviar" actionListener="#{userBean.login}" ajax="false">
                     
                 </p:commandButton><br/>
                 
