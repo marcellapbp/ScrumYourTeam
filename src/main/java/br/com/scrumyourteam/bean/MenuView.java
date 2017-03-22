@@ -28,14 +28,6 @@ public class MenuView
     public void register() throws IOException 
     {
         FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/pages/user/user-add.xhtml");
-        //ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        //context.redirect(context.getRequestContextPath() +"/faces/pages/user/user-add.xhtml");///ScrumYourTeam/faces/user/
-        
-
-
-//context.redirect("/ScrumYourTeam/faces/user/user-add.xhtml");
-        
-        //FacesContext.getCurrentInstance().getExternalContext().dispatch("/ScrumYourTeam/faces/user/user-add.xhtml");
     }
      
 
