@@ -1,6 +1,7 @@
 package br.com.scrumyourteam.controller;
 
 import br.com.scrumyourteam.dao.UserDAO;
+import br.com.scrumyourteam.domain.User;
 import java.sql.SQLException;
 
 /**
@@ -22,4 +23,11 @@ public class UserController
         }
         return false;
     }
+    
+    public void userAdd(User user) throws SQLException
+    {
+        UserDAO dao = new UserDAO();
+        dao.addUser(user);
+    }
+    
 }

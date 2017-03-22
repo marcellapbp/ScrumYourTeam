@@ -20,6 +20,11 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 public class MenuView 
 {
+    public void goHome() throws IOException 
+    {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/index.xhtml");
+    }
+    
     public void login() throws IOException 
     {
         FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/login.xhtml");
@@ -31,4 +36,4 @@ public class MenuView
     }
      
 
- }
+}

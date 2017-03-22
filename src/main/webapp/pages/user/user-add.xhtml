@@ -14,15 +14,15 @@
     
     <ui:define name="content">
     
-        <h:form>
+        <h:form id="registerForm">
             <label>Name</label>
             <br/><p:inputText type="text" id="nameUser"/><br/>
             <label>Login</label>
             <br/><p:inputText type="text" id="login"/><br/>
             <label>Password</label>
             <br/><p:inputText type="password" id="password"/><br/>
-            <p:commandButton type="submit" value="Cadastrar"/>
-            <!--/ScrumYourTeam/System?request=UserAdd-->
+            <p:commandButton type="submit" actionListener="#{userBean.userAdd}" value="Cadastrar"/>
+            
         </h:form>
     </ui:define>
 </ui:composition>
