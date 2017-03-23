@@ -34,7 +34,7 @@ public class UserBean
         
         if (control.loginExists(login, password)) 
         {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/index.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/workspace.xhtml");
         }else{
             FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/login.xhtml");
         }

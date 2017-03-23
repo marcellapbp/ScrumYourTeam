@@ -7,21 +7,22 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
-        <title>ScrumYourTeam - Home Page</title>
+        <title>ScrumYourTeam - Workspace</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <h:outputStylesheet library="css" name="menubar-style.css"></h:outputStylesheet>
+       <h:outputStylesheet library="css" name="panelmenu-style.css"></h:outputStylesheet>
+       <h:outputStylesheet library="css" name="template-style.css"></h:outputStylesheet>
     </h:head>
     <h:body>
         <p:layout fullPage="true">
 
             <p:layoutUnit position="north">
-                <ui:insert name="menu"/>
             </p:layoutUnit>
 
             <p:layoutUnit position="south">
             </p:layoutUnit>
             
             <p:layoutUnit position="west">
+                <ui:insert name="westMenu"/>
             </p:layoutUnit>
 
             <p:layoutUnit position="east">

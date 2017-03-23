@@ -141,7 +141,6 @@ public class UserDAO
         try {
             //call user_check_login(<login>, md5(<password>));
             String sql = "call user_check_login(?,?);";
-            //String sql = "select * from User where login = ? and password = ?;";
             
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setString(1, login);

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:form>
+        <p:panelMenu>
+            <p:submenu label="Projeto Atual: projeto" style="width:150px">
+                <p:menuitem value="Gráfico de Burndown"/>
+                <p:menuitem value="Kanban"/>
+                <p:menuitem value="Tarefas"/>
+                <p:menuitem value="Sprints"/>   
+                <p:menuitem value="Sobre"/>   
+            </p:submenu>
+
+            <p:submenu label="Projetos">
+                <p:menuitem value="Meus Projetos"/>
+                <p:menuitem value="Pesquisar"/>
+                <p:menuitem value="Novo"/>
+            </p:submenu>
+
+            <p:submenu label="Configurações">
+                <p:menuitem value="Papéis"/>
+                <p:menuitem value="Membros"/>
+                <p:menuitem value="Reuniões"/>
+                <p:menuitem value="Estimativas"/>
+                <p:menuitem value="Prioridades"/>
+            </p:submenu>
+        </p:panelMenu>
+    </h:form>
+</ui:composition>

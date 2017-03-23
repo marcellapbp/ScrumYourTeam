@@ -13,12 +13,12 @@ import javax.faces.context.FacesContext;
  *
  * @author marcella
  * Date: 03/13/2017
- * Objective: Creating menu
+ * Objective: Menu for Index
  */
-@Named(value = "menuView")
+@Named(value = "menuBarIndex")
 @Dependent
 @ManagedBean
-public class MenuView 
+public class MenuBarIndex 
 {
     public void goHome() throws IOException 
     {
