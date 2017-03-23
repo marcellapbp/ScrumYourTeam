@@ -17,11 +17,7 @@ public class UserController
     {
         UserDAO dao = new UserDAO();
         
-        if(dao.loginExists(login, password))
-        {
-            return true;
-        }
-        return false;
+        return dao.loginExists(login, password);
     }
     
     public void userAdd(User user) throws SQLException

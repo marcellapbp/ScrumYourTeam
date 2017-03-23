@@ -139,8 +139,9 @@ public class UserDAO
     public boolean loginExists (String login, String password) throws SQLException
     {
         try {
-            
-            String sql = "select * from User where login = ? and password = ?;";
+            //call user_check_login(<login>, md5(<password>));
+            String sql = "call user_check_login(?,?);";
+            //String sql = "select * from User where login = ? and password = ?;";
             
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setString(1, login);
