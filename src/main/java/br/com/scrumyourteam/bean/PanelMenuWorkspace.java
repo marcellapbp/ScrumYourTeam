@@ -1,7 +1,9 @@
 package br.com.scrumyourteam.bean;
 
+import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -11,7 +13,13 @@ import javax.enterprise.context.Dependent;
  */
 @Named(value = "panelMenuWorkspace")
 @Dependent
-public class PanelMenuWorkspace {
+public class PanelMenuWorkspace 
+{
+    public void goMyProjects() throws IOException 
+    {
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect("/ScrumYourTeam/faces/pages/project/myprojects.xhtml");
+    }
 
     
 }
