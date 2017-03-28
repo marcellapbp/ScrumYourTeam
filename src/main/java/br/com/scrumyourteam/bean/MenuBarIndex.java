@@ -29,11 +29,20 @@ public class MenuBarIndex
     {
         FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/login.xhtml");
     }
+    
+    public void logout() throws IOException
+    {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/index.xhtml");
+    }
      
     public void register() throws IOException 
     {
         FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/pages/user/user-add.xhtml");
     }
      
+    public void goWorkspace() throws IOException
+    {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/workspace.xhtml");
+    }
 
 }

@@ -1,6 +1,12 @@
 .ui-widget-content 
 {
-    border-style: solid;
-    border-color: #DCDCDC;
+    border-style: none;
     
+}
+
+
+.ui-layout-pane-west{
+    border-style: solid;
+    border-color: #D3D3D3;
+    padding: 0px;
 }

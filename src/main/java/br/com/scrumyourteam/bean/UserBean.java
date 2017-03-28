@@ -41,7 +41,9 @@ public class UserBean
 
         
     }
-
+    
+  
+    
     public void userAdd() throws SQLException, IOException 
     {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();

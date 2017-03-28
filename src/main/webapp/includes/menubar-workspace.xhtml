@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:form>  
+        <p:menubar>
+            <p:menuitem value="Workspace" actionListener="#{menuView.goWorkspace}" ajax="false"/>
+            
+            <f:facet name="options">
+                
+                <p:commandButton value="Sair" actionListener="#{menuBarIndex.logout}" ajax="false"/>
+                
+            </f:facet>
+
+        </p:menubar>
+    </h:form>
+</ui:composition>
