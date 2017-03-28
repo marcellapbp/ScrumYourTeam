@@ -3,7 +3,10 @@
 <!DOCTYPE html>
 <ui:composition 
     xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:p="http://primefaces.org/ui"
     template="/templates/workspace-model.xhtml">
    
         <ui:define name="westMenu">
@@ -12,5 +15,21 @@
     
         <ui:define name="menuBar">
             <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+        </ui:define>
+    
+        <ui:define name="content">
+            <div style="height:500px">
+                <h:form>
+                    <p:dashboard id="board" model="#{dashboardView.init()}">
+                         
+                       <c:forEach var="i" items="#{dashboardView.getMemberProjects()}">
+                            
+                            <p:panel header="${i.nameProject}">
+                                <h:outputText value="${i.nameProject}" />
+                            </p:panel>
+                        </c:forEach>
+                    </p:dashboard>
+                </h:form>
+            </div>
         </ui:define>
 </ui:composition>

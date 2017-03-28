@@ -17,8 +17,7 @@ public class PanelMenuWorkspace
 {
     public void goMyProjects() throws IOException 
     {
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("/ScrumYourTeam/faces/pages/project/myprojects.xhtml");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/pages/project/myprojects.xhtml");
     }
 
     

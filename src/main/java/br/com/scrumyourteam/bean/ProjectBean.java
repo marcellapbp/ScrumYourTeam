@@ -1,5 +1,9 @@
 package br.com.scrumyourteam.bean;
 
+import br.com.scrumyourteam.controller.ProjectController;
+import br.com.scrumyourteam.domain.Project;
+import java.sql.SQLException;
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 
@@ -13,9 +17,13 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class ProjectBean 
 {
-    public void getProject()
+    public List<Project> getMemberProjects() throws SQLException
     {
         
+        ProjectController project = new ProjectController();
+        
+        project.getMemberProjects(2);
+        return null;
     }
 
     
