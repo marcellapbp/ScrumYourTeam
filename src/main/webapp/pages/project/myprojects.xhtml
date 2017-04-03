@@ -18,18 +18,8 @@
         </ui:define>
     
         <ui:define name="content">
-            <div style="height:500px">
-                <h:form>
-                    <p:dashboard id="board" model="#{dashboardView.init()}">
-                         
-                       <c:forEach var="i" items="#{dashboardView.getMemberProjects()}">
-                            
-                            <p:panel header="${i.nameProject}">
-                                <h:outputText value="${i.nameProject}" />
-                            </p:panel>
-                        </c:forEach>
-                    </p:dashboard>
-                </h:form>
-            </div>
+            <p:dataTable emptyMessage="Nenhum projeto encontrado." value="#{projectBean.projectList}">
+                <p:column headerText="Projeto"></p:column>
+            </p:dataTable>
         </ui:define>
 </ui:composition>

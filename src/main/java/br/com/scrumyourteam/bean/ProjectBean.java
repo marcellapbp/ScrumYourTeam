@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.model.ListDataModel;
 
 /**
  *
@@ -13,10 +16,15 @@ import javax.enterprise.context.Dependent;
  * Date: 03/20/2017
  * Objective: Project CRUD
  */
-@Named(value = "projectBean")
+//@Named(value = "projectBean"
 @Dependent
+@ManagedBean (name = "projectBean")
+@ViewScoped
 public class ProjectBean 
 {
+    private ListDataModel<Project> projectList;
+    
+    
     public List<Project> getMemberProjects() throws SQLException
     {
         
@@ -24,6 +32,14 @@ public class ProjectBean
         
         project.getMemberProjects(2);
         return null;
+    }
+
+    public ListDataModel<Project> getProjectList() {
+        return projectList;
+    }
+
+    public void setProjectList(ListDataModel<Project> projectList) {
+        this.projectList = projectList;
     }
 
     
