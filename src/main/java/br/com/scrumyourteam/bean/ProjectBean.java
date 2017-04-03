@@ -3,8 +3,8 @@ package br.com.scrumyourteam.bean;
 import br.com.scrumyourteam.controller.ProjectController;
 import br.com.scrumyourteam.domain.Project;
 import java.sql.SQLException;
-import java.util.List;
-import javax.inject.Named;
+import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -24,14 +24,17 @@ public class ProjectBean
 {
     private ListDataModel<Project> projectList;
     
-    
-    public List<Project> getMemberProjects() throws SQLException
+    @PostConstruct
+    public void getMemberProjects()
     {
         
-        ProjectController project = new ProjectController();
-        
-        project.getMemberProjects(2);
-        return null;
+        try {
+            ProjectController project = new ProjectController();
+            projectList = new ListDataModel<>(project.getMemberProjects(8));
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute getMemberProjects in Project Bean: " + ex);
+        }
+       
     }
 
     public ListDataModel<Project> getProjectList() {

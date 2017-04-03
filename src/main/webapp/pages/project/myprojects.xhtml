@@ -18,8 +18,12 @@
         </ui:define>
     
         <ui:define name="content">
-            <p:dataTable emptyMessage="Nenhum projeto encontrado." value="#{projectBean.projectList}">
-                <p:column headerText="Projeto"></p:column>
+            <p:dataTable emptyMessage="Nenhum projeto encontrado." 
+                         value="#{projectBean.projectList}" 
+                         var="project">
+                <p:column headerText="Projeto">
+                    <h:outputText value="#{project.nameProject}"/>  
+                </p:column>
             </p:dataTable>
         </ui:define>
 </ui:composition>
