@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -19,27 +19,28 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Dependent
 @ManagedBean (name = "userBean")
-@ViewScoped
+@SessionScoped
 public class UserBean 
 {
     private HttpServletRequest request;
+    private SessionContext context;
+    
     public void login() throws SQLException, IOException
     {
-        request = (HttpServletRequest)FacesContext.getCurrentInstance()
-                .getExternalContext().getRequest();
+        context = new SessionContext();
+        request = (HttpServletRequest)context.currentExternalContext().getRequest();
         
         String login = request.getParameter("loginForm:login");
         String password = request.getParameter("loginForm:password");
 
         UserController control = new UserController();
-        
-        if (control.loginExists(login, password)) 
-        {
-            FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect("/ScrumYourTeam/faces/workspace.xhtml");
+        int idUser = control.loginExists(login, password);
+        if ( idUser != -1) 
+        { 
+            context.currentExternalContext().getSessionMap().put("idUser", idUser);
+            context.currentExternalContext().redirect("/ScrumYourTeam/faces/workspace.xhtml");
         }else{
-            FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect("/ScrumYourTeam/faces/login.xhtml");
+            context.currentExternalContext().redirect("/ScrumYourTeam/faces/login.xhtml");
         }
 
         

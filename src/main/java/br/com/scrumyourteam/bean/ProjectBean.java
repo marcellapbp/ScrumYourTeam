@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
@@ -17,18 +18,21 @@ import javax.faces.model.ListDataModel;
  */
 @Dependent
 @ManagedBean (name = "projectBean")
-@ViewScoped
+@SessionScoped
 public class ProjectBean 
 {
     private ListDataModel<Project> projectList;
+    private SessionContext context;
     
     @PostConstruct
     public void getMemberProjects()
     {
         try 
         {
+            context = new SessionContext();
+            int idUser = (int) context.currentExternalContext().getSessionMap().get("idUser");
             ProjectController project = new ProjectController();
-            projectList = new ListDataModel<>(project.getMemberProjects(3));
+            projectList = new ListDataModel<>(project.getMemberProjects(idUser));//3
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute getMemberProjects in Project Bean: " + ex);
         }

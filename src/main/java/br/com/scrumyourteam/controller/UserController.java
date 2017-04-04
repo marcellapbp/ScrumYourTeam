@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class UserController
 {
-    public boolean loginExists(String login, String password) throws SQLException
+    public int loginExists(String login, String password) throws SQLException
     {
         UserDAO dao = new UserDAO();
         

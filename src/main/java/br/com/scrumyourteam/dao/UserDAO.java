@@ -116,8 +116,8 @@ public class UserDAO
             while(rs.next())
             {
                 User user = new User();
-                user.setIdUser(rs.getInt("idUser"));
-                user.setNameUser(rs.getString("nameUser"));
+                user.setIdUser(rs.getInt("id_user"));
+                user.setNameUser(rs.getString("name_user"));
                 user.setLogin(rs.getString("login"));
                 user.setPassword(rs.getString("password"));
                 userList.add(user);
@@ -130,7 +130,7 @@ public class UserDAO
         }
     }
     
-    public boolean loginExists (String login, String password) throws SQLException
+    public int loginExists (String login, String password) throws SQLException
     {
        
         //call user_check_login(<login>, md5(<password>));
@@ -142,15 +142,11 @@ public class UserDAO
             psmt.setString(2, password);
             ResultSet rs = psmt.executeQuery();
 
-            User user = new User();
             while(rs.next())
             {
-                user.setIdUser(rs.getInt("id_user"));
-                user.setNameUser(rs.getString("name_user"));
-                user.setLogin(rs.getString("login"));
-                return true;
+                return rs.getInt("id_user");
             }
-            return false;
+            return -1;
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute loginExists in UserDAO: " + ex);
         }finally{
