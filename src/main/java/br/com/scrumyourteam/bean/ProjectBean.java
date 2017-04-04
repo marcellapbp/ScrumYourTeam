@@ -29,11 +29,14 @@ public class ProjectBean
         this.context = new SessionContext();
     }
     
+    //go to page with a user's projects list 
     public void goMyProjects() throws IOException 
     {
         context.currentExternalContext()
                 .redirect("/ScrumYourTeam/faces/pages/project/myprojects.xhtml");
     }
+    
+    //this method create the user's projects list based on his/her id
     @PostConstruct
     public void getMemberProjects()
     {
@@ -47,6 +50,7 @@ public class ProjectBean
         }
     }
     
+    //after seeing the project list, when user choose one will be redirect to workspace
     public void goToProjectChoosen(int idProject) throws IOException
     {
         //throw new RuntimeException("Erro: " + idProject);
@@ -57,6 +61,13 @@ public class ProjectBean
         context.currentExternalContext().redirect("/ScrumYourTeam/faces/workspace.xhtml");
     }
 
+    public void currentProject() throws IOException 
+    {
+        context.currentExternalContext()
+                .redirect("/ScrumYourTeam/faces/pages/project/about.xhtml");
+    }
+    
+    //getters setters
     public ListDataModel<Project> getProjectList() {
         return projectList;
     }
@@ -64,6 +75,8 @@ public class ProjectBean
     public void setProjectList(ListDataModel<Project> projectList) {
         this.projectList = projectList;
     }
+    
+    
     
     
 }
