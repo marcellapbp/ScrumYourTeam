@@ -18,33 +18,34 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class MenuBarIndex 
 {
+    private SessionContext context;
+    
+    public MenuBarIndex()
+    {
+        this.context = new SessionContext();
+    }
+    
     public void goHome() throws IOException 
     {
-        FacesContext.getCurrentInstance().getExternalContext()
+        context.currentExternalContext()
                 .redirect("/ScrumYourTeam/faces/index.xhtml");
     }
     
     public void login() throws IOException 
     {
-        FacesContext.getCurrentInstance().getExternalContext()
+        context.currentExternalContext()
                 .redirect("/ScrumYourTeam/faces/login.xhtml");
     }
     
-    public void logout() throws IOException
-    {
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("/ScrumYourTeam/faces/index.xhtml");
-    }
-     
     public void register() throws IOException 
     {
-        FacesContext.getCurrentInstance().getExternalContext()
+        context.currentExternalContext()
                 .redirect("/ScrumYourTeam/faces/pages/user/user-add.xhtml");
     }
      
     public void goWorkspace() throws IOException
     {
-        FacesContext.getCurrentInstance().getExternalContext()
+        context.currentExternalContext()
                 .redirect("/ScrumYourTeam/faces/workspace.xhtml");
     }
 

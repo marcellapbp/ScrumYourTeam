@@ -25,25 +25,10 @@ public class UserBean
     private HttpServletRequest request;
     private SessionContext context;
     
-    public void login() throws SQLException, IOException
+    public UserBean()
     {
-        context = new SessionContext();
-        request = (HttpServletRequest)context.currentExternalContext().getRequest();
-        
-        String login = request.getParameter("loginForm:login");
-        String password = request.getParameter("loginForm:password");
-
-        UserController control = new UserController();
-        int idUser = control.loginExists(login, password);
-        if ( idUser != -1) 
-        { 
-            context.currentExternalContext().getSessionMap().put("idUser", idUser);
-            context.currentExternalContext().redirect("/ScrumYourTeam/faces/workspace.xhtml");
-        }else{
-            context.currentExternalContext().redirect("/ScrumYourTeam/faces/login.xhtml");
-        }
+        this.context = new SessionContext();
     }
-  
     
     public void userAdd() throws SQLException, IOException 
     {
@@ -64,5 +49,37 @@ public class UserBean
          control.userAdd(user);
          
          context.currentExternalContext().redirect("/ScrumYourTeam/faces/index.xhtml");
+    }
+    
+    public void login() throws SQLException, IOException
+    {
+        context = new SessionContext();
+        request = (HttpServletRequest)context.currentExternalContext().getRequest();
+        
+        String login = request.getParameter("loginForm:login");
+        String password = request.getParameter("loginForm:password");
+
+        UserController control = new UserController();
+        int idUser = control.loginExists(login, password);
+        if ( idUser != -1) 
+        { 
+            context.currentExternalContext()
+                    .getSessionMap().put("idUser", idUser);
+            context.currentExternalContext()
+                    .redirect("/ScrumYourTeam/faces/workspace.xhtml");
+        }else{
+            context.currentExternalContext()
+                    .redirect("/ScrumYourTeam/faces/login.xhtml");
+        }
+    }
+  
+    public void logout() throws IOException
+    {
+        context.currentExternalContext()
+                    .getSessionMap().put("idUser", null);
+        context.currentExternalContext()
+                    .getSessionMap().put("idProject", null);
+        context.currentExternalContext()
+                .redirect("/ScrumYourTeam/faces/index.xhtml");
     }
 }

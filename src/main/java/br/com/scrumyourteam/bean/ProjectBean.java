@@ -8,7 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 import javax.servlet.http.HttpServletRequest;
 
