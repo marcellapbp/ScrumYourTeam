@@ -42,16 +42,13 @@ public class UserBean
         }else{
             context.currentExternalContext().redirect("/ScrumYourTeam/faces/login.xhtml");
         }
-
-        
     }
-    
   
     
     public void userAdd() throws SQLException, IOException 
     {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        request = (HttpServletRequest) context.getRequest();
+        context = new SessionContext();
+        request = (HttpServletRequest)context.currentExternalContext().getRequest();
         
         User user = new User();
         
@@ -66,10 +63,6 @@ public class UserBean
          UserController control = new UserController();
          control.userAdd(user);
          
-         context.redirect("/ScrumYourTeam/faces/index.xhtml");
-         
-        
+         context.currentExternalContext().redirect("/ScrumYourTeam/faces/index.xhtml");
     }
-    
-    
 }

@@ -18,12 +18,13 @@
         </ui:define>
     
         <ui:define name="content">
-            <h:form>
+            <h:form id="chooseProjectForm">
                 <p:dataTable emptyMessage="Nenhum projeto encontrado." 
                              value="#{projectBean.projectList}" 
                              var="project">
                     <p:column headerText="Projeto">
-                        <h:commandLink actionListener="#{projectBean.goToProjectChoosen()}" value="#{project.nameProject}"/>
+                        <h:commandLink actionListener="#{projectBean.goToProjectChoosen(project.idProject)}" value="#{project.nameProject}"/>
+                        
                     </p:column>
                 </p:dataTable>
             </h:form>
