@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author marcella.pereira.a1
+ * @author marcella
+ * Date: 04/03/2017
  */
+
 public class ProjectDAO 
 {
     private Connection conn;
@@ -24,11 +25,11 @@ public class ProjectDAO
     
     public List<Project> getProjectMemberList (int idUser) throws SQLException
     {
-        try {
-            //call project_select_member_list(<id_user>);
-            String sql = "call project_select_member_list(?);";
-            
-            PreparedStatement psmt = conn.prepareStatement(sql);
+        //call project_select_member_list(<id_user>);
+        String sql = "call project_select_member_list(?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
             psmt.setInt(1, idUser);
             ResultSet rs = psmt.executeQuery();
             

@@ -5,10 +5,8 @@ import br.com.scrumyourteam.domain.User;
 import java.sql.SQLException;
 
 /**
- *
  * @author marcella
  * Date: 03/02/2017
- * Objective: Create a Controller to add User after a request from the Servlet system
  */
 
 public class UserController

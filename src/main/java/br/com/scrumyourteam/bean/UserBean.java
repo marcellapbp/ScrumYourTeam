@@ -6,26 +6,27 @@ import br.com.scrumyourteam.domain.User;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
  * @author marcella.pereira.a1
  * Date: 03/20/2017
- * Objective: Validate login
  */
-@Named(value = "userBean")
 @Dependent
+@ManagedBean (name = "userBean")
+@ViewScoped
 public class UserBean 
 {
     private HttpServletRequest request;
     public void login() throws SQLException, IOException
     {
-        request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        request = (HttpServletRequest)FacesContext.getCurrentInstance()
+                .getExternalContext().getRequest();
         
         String login = request.getParameter("loginForm:login");
         String password = request.getParameter("loginForm:password");
@@ -34,9 +35,11 @@ public class UserBean
         
         if (control.loginExists(login, password)) 
         {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/workspace.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect("/ScrumYourTeam/faces/workspace.xhtml");
         }else{
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/ScrumYourTeam/faces/login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect("/ScrumYourTeam/faces/login.xhtml");
         }
 
         

@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- *
- * @author marcella.pereira.a1
+ * @author marcella
+ * Date: 04/03/2017
  */
 public class ProjectController 
 {

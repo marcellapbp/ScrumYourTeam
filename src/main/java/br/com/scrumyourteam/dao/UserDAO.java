@@ -10,10 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author marcella
  * Date: 03/02/2017
- * Objective: Create a Crud for a User
  */
 
 public class UserDAO
@@ -27,17 +25,16 @@ public class UserDAO
     
     public void addUser(User user) throws SQLException 
     {
-        try {
-            //call user_insert(<name_user>, <login>, <password>)
-            String sql = "call user_insert(?,?,?);";
-            
-            PreparedStatement psmt = conn.prepareStatement(sql);
+        //call user_insert(<name_user>, <login>, <password>)
+        String sql = "call user_insert(?,?,?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
             psmt.setString(1, user.getNameUser());
             psmt.setString(2, user.getLogin());
             psmt.setString(3, user.getPassword());
-            
+
             psmt.execute();
-            psmt.close();
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute addUser in UserDAO: " + ex);
         }finally{
@@ -47,18 +44,17 @@ public class UserDAO
     
     public void updateUser(User user) throws SQLException 
     {
-        try {
-            //call user_update(<id_user>, <name_user>, <login>, <password>)
-            String sql = "call user_update(?,?,?,?);";
-            
-            PreparedStatement psmt = conn.prepareStatement(sql);
+        //call user_update(<id_user>, <name_user>, <login>, <password>)
+        String sql = "call user_update(?,?,?,?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
             psmt.setInt(1, user.getIdUser());
             psmt.setString(2, user.getNameUser());
             psmt.setString(3, user.getLogin());
             psmt.setString(4, user.getPassword());
-            
+
             psmt.execute();
-            psmt.close();
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute updateUser in UserDAO: " + ex);
         }finally{
@@ -68,15 +64,14 @@ public class UserDAO
     
     public void removeUser(int idUser) throws SQLException 
     {
-        try {
-            //call user_delete(<id_user>)
-            String sql = "call user_delete(?);";
-            
-            PreparedStatement psmt = conn.prepareStatement(sql);
+        //call user_delete(<id_user>)
+        String sql = "call user_delete(?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
             psmt.setInt(1, idUser);
-            
+
             psmt.execute();
-            psmt.close();
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute removeUser in UserDAO: " + ex);
         }finally{
@@ -86,11 +81,10 @@ public class UserDAO
     
     public User getUser (int idUser) throws SQLException
     {
-        try {
-            //call user_select(<id_user>)
-            String sql = "call user_select(?);";
-            
-            PreparedStatement psmt = conn.prepareStatement(sql);
+        //call user_select(<id_user>)
+        String sql = "call user_select(?);";
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
             ResultSet rs = psmt.executeQuery();
             
             User user = new User();
@@ -111,11 +105,11 @@ public class UserDAO
     
     public List<User> getUserList (int idUser) throws SQLException
     {
-        try {
-            //call user_select_list();
-            String sql = "call user_select_list();";
+        //call user_select_list();
+        String sql = "call user_select_list();";
             
-            PreparedStatement psmt = conn.prepareStatement(sql);
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {            
             ResultSet rs = psmt.executeQuery();
             
             ArrayList<User> userList = new ArrayList<>();
@@ -138,15 +132,16 @@ public class UserDAO
     
     public boolean loginExists (String login, String password) throws SQLException
     {
-        try {
-            //call user_check_login(<login>, md5(<password>));
-            String sql = "call user_check_login(?,?);";
-            
-            PreparedStatement psmt = conn.prepareStatement(sql);
+       
+        //call user_check_login(<login>, md5(<password>));
+        String sql = "call user_check_login(?,?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
             psmt.setString(1, login);
             psmt.setString(2, password);
             ResultSet rs = psmt.executeQuery();
-            
+
             User user = new User();
             while(rs.next())
             {
