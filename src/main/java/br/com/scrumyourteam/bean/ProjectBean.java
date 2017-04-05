@@ -67,6 +67,7 @@ public class ProjectBean
                 .redirect("/ScrumYourTeam/faces/pages/project/about.xhtml");
     }
     
+    
     //getters setters
     public ListDataModel<Project> getProjectList() {
         return projectList;
@@ -75,6 +76,13 @@ public class ProjectBean
     public void setProjectList(ListDataModel<Project> projectList) {
         this.projectList = projectList;
     }
+
+    public boolean isProjectSelected() {
+        Integer proj = (Integer) context.currentExternalContext().getSessionMap().get("idProject");
+        return (proj == null);
+    }
+
+    
     
     
     

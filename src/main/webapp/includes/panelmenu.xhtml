@@ -9,11 +9,11 @@
     <h:form>
         <p:panelMenu>
             <p:submenu label="Projeto Atual: projeto" style="width:150px">
-                <p:menuitem value="Gráfico de Burndown"/>
-                <p:menuitem value="Kanban"/>
-                <p:menuitem value="Tarefas"/>
-                <p:menuitem value="Sprints"/>   
-                <p:menuitem value="Sobre" actionListener="#{projectBean.currentProject}"/>   
+                <p:menuitem value="Gráfico de Burndown" disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Kanban" disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Tarefas" disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Sprints" disabled="#{projectBean.projectSelected}"/>   
+                <p:menuitem value="Sobre" actionListener="#{projectBean.currentProject}" disabled="#{projectBean.projectSelected}"/>   
             </p:submenu>
 
             <p:submenu label="Projetos">
