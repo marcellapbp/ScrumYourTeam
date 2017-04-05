@@ -64,7 +64,7 @@ public class UserBean
             context.currentExternalContext()
                     .getSessionMap().put("idUser", idUser);
             context.currentExternalContext()
-                    .redirect("/ScrumYourTeam/faces/workspace.xhtml");
+                    .redirect("/ScrumYourTeam/faces/pages/project/myprojects.xhtml");
         }else{
             context.currentExternalContext()
                     .redirect("/ScrumYourTeam/faces/login.xhtml");

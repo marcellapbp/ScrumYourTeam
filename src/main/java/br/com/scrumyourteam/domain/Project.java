@@ -1,6 +1,7 @@
 package br.com.scrumyourteam.domain;
 
-import java.util.Calendar;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -11,9 +12,11 @@ public class Project
     private int IdProject;
     private String NameProject;
     private String Description;
-    private Calendar StartingDate;
+    private Date StartingDate;
     private int LengthInSprint;
     private int SprintLength;
+    private String ProjectStatus;
+    private String WeekdaySprint;
 
     public int getIdProject() {
         return IdProject;
@@ -39,11 +42,13 @@ public class Project
         this.Description = Description;
     }
 
-    public Calendar getStartingDate() {
-        return StartingDate;
+    public String getStartingDate() {
+        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+        
+        return date.format(StartingDate);
     }
 
-    public void setStartingDate(Calendar StartingDate) {
+    public void setStartingDate(Date StartingDate) {
         this.StartingDate = StartingDate;
     }
 
@@ -61,6 +66,22 @@ public class Project
 
     public void setSprintLength(int SprintLength) {
         this.SprintLength = SprintLength;
+    }
+
+    public String getProjectStatus() {
+        return ProjectStatus;
+    }
+
+    public void setProjectStatus(String ProjectStatus) {
+        this.ProjectStatus = ProjectStatus;
+    }
+
+    public String getWeekdaySprint() {
+        return WeekdaySprint;
+    }
+
+    public void setWeekdaySprint(String WeekdaySprint) {
+        this.WeekdaySprint = WeekdaySprint;
     }
     
 }

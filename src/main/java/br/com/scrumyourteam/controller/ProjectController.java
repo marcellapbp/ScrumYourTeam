@@ -11,11 +11,24 @@ import java.util.List;
  */
 public class ProjectController 
 {
+    private ProjectDAO dao;
+    
      public List<Project> getMemberProjects(int idUser) throws SQLException
     {
-        ProjectDAO dao = new ProjectDAO();
-
+        dao = new ProjectDAO();
         return dao.getProjectMemberList(idUser);
+    }
+
+    public Project getProject(int idProject) throws SQLException 
+    {
+        dao = new ProjectDAO();
+        return dao.getProject(idProject);
+    }
+
+    public void updateProject(Project project) throws SQLException 
+    {
+        dao = new ProjectDAO();
+        dao.updateProject(project);
     }
     
 }

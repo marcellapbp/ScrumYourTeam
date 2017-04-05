@@ -23,6 +23,8 @@ public class ProjectBean
     private ListDataModel<Project> projectList;
     private SessionContext context;
     private HttpServletRequest request;
+    private ProjectController projectCont;
+    private Project project;
     
     public ProjectBean()
     {
@@ -36,7 +38,7 @@ public class ProjectBean
                 .redirect("/ScrumYourTeam/faces/pages/project/myprojects.xhtml");
     }
     
-    //this method create the user's projects list based on his/her id
+    //create the user's projects list based on his/her id on myprojects load 
     @PostConstruct
     public void getMemberProjects()
     {
@@ -44,7 +46,8 @@ public class ProjectBean
         {
             int idUser = (int) context.currentExternalContext().getSessionMap().get("idUser");
             ProjectController project = new ProjectController();
-            projectList = new ListDataModel<>(project.getMemberProjects(idUser));
+            //projectList = new ListDataModel<>(project.getMemberProjects(idUser));
+            this.setProjectList(new ListDataModel<>(project.getMemberProjects(idUser)));
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute getMemberProjects in Project Bean: " + ex);
         }
@@ -53,20 +56,43 @@ public class ProjectBean
     //after seeing the project list, when user choose one will be redirect to workspace
     public void goToProjectChoosen(int idProject) throws IOException
     {
-        //throw new RuntimeException("Erro: " + idProject);
-        request = (HttpServletRequest) context.currentExternalContext().getRequest();
-        //int idProject = Integer.parseInt(request.getParameter("chooseProjectForm:<#####>"));
-        
         context.currentExternalContext().getSessionMap().put("idProject", idProject);
         context.currentExternalContext().redirect("/ScrumYourTeam/faces/workspace.xhtml");
     }
-
+    
+    //go to about page with project information
     public void currentProject() throws IOException 
     {
         context.currentExternalContext()
                 .redirect("/ScrumYourTeam/faces/pages/project/about.xhtml");
     }
     
+    public Project getProject() throws SQLException
+    {
+        int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
+        projectCont = new ProjectController();
+        return projectCont.getProject(idProject);
+    }
+    
+    public void updateProject() throws IOException, SQLException
+    {
+        request = (HttpServletRequest) context.currentExternalContext().getRequest();
+        
+        project = new Project();
+        project.setIdProject((int)context.currentExternalContext().getSessionMap().get("idProject"));
+        project.setNameProject(request.getParameter("currentProject:nameProject"));
+        project.setDescription(request.getParameter("currentProject:nameProject"));
+        project.setLengthInSprint(Integer.parseInt(request.getParameter("currentProject:nameProject")));
+        project.setSprintLength(Integer.parseInt(request.getParameter("currentProject:nameProject")));
+        //project.setStartingDate(request.getParameter("currentProject:nameProject"));
+        project.setProjectStatus(request.getParameter("currentProject:nameProject"));
+        project.setWeekdaySprint(request.getParameter("currentProject:nameProject"));
+        
+        projectCont = new ProjectController();
+        projectCont.updateProject(project);
+        
+        context.currentExternalContext().redirect("/ScrumYourTeam/faces/workspace.xhtml");
+    }
     
     //getters setters
     public ListDataModel<Project> getProjectList() {
@@ -77,7 +103,9 @@ public class ProjectBean
         this.projectList = projectList;
     }
 
+    //set disable equals true on panelmenu if user didn't choose a project
     public boolean isProjectSelected() {
+        //before idProject to be setted is null, after is int, then below used Integer
         Integer proj = (Integer) context.currentExternalContext().getSessionMap().get("idProject");
         return (proj == null);
     }

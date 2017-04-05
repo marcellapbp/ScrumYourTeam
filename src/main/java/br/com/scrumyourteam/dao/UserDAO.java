@@ -85,6 +85,7 @@ public class UserDAO
         String sql = "call user_select(?);";
         try (PreparedStatement psmt = conn.prepareStatement(sql)) 
         {
+            psmt.setInt(1, idUser);
             ResultSet rs = psmt.executeQuery();
             
             User user = new User();

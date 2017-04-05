@@ -19,19 +19,19 @@
         <ui:define name="content">
             <h:form id="currentProject">
                 <label>Projeto</label>
-                <br/><p:inputText type="text" id="nameProject"/><br/>
+                <br/><p:inputText type="text" id="nameProject" value="#{projectBean.project.nameProject}"/><br/>
                 <label>Descrição</label>
-                <br/><p:inputText type="text" id="description"/><br/>
+                <br/><p:inputText type="text" id="description" value="#{projectBean.project.description}"/><br/>
                 <label>Início do Projeto</label>
-                <br/><p:inputText type="text" id="startingDate"/><br/>
+                <br/><p:inputText type="text" id="startingDate" value="#{projectBean.project.startingDate}"/><br/>
                 <label>Estimativa Quantidade de Sprints</label>
-                <br/><p:inputText type="text" id="projectLengthInSprint"/><br/>
+                <br/><p:inputText type="text" id="projectLengthInSprint" value="#{projectBean.project.lengthInSprint}"/><br/>
                 <label>Tamanho da Sprint</label>
-                <br/><p:inputText type="text" id="sprintLength"/><br/>
+                <br/><p:inputText type="text" id="sprintLength" value="#{projectBean.project.sprintLength}"/><br/>
                 <label>Status do Projeto</label>
-                <br/><p:inputText type="text" id="projectStatus"/><br/>
+                <br/><p:inputText type="text" id="projectStatus" value="#{projectBean.project.projectStatus}"/><br/>
                 <label>Início Sprint</label>
-                <br/><p:inputText type="text" id="weekdaySprint"/><br/>
+                <br/><p:inputText type="text" id="weekdaySprint" value="#{projectBean.project.weekdaySprint}"/><br/>
                 <p:commandButton type="submit" value="Salvar" ajax="false"/>
             </h:form>
         </ui:define>
