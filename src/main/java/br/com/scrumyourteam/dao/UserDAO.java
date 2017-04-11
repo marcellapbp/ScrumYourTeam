@@ -12,17 +12,20 @@ import java.util.List;
 /**
  * @author marcella
  * Date: 03/02/2017
+ * Objective: To create User CRUD
  */
 
 public class UserDAO
 {
     private Connection conn;
     
+    //set a connection every UserDAO instance
     public UserDAO()
     {
         this.conn = new ConnectionFactory().getConnection();
     }
     
+    //it inserts a register to User table
     public void addUser(User user) throws SQLException 
     {
         //call user_insert(<name_user>, <login>, <password>)
@@ -42,6 +45,7 @@ public class UserDAO
         }
     }
     
+    //it updates a existent register to User table
     public void updateUser(User user) throws SQLException 
     {
         //call user_update(<id_user>, <name_user>, <login>, <password>)
@@ -62,6 +66,7 @@ public class UserDAO
         }
     }
     
+    //it deletes a register from User table
     public void removeUser(int idUser) throws SQLException 
     {
         //call user_delete(<id_user>)
@@ -79,6 +84,7 @@ public class UserDAO
         }
     }
     
+    //it selects a single register in the User table
     public User getUser (int idUser) throws SQLException
     {
         //call user_select(<id_user>)
@@ -104,6 +110,7 @@ public class UserDAO
         }
     }
     
+    //it selects a list full of registers in the User table
     public List<User> getUserList (int idUser) throws SQLException
     {
         //call user_select_list();
@@ -131,6 +138,8 @@ public class UserDAO
         }
     }
     
+    //it checks if there is the login and password informed by the user
+    //returns the id if exists or -1 if doesn't
     public int loginExists (String login, String password) throws SQLException
     {
        

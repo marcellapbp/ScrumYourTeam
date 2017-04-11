@@ -32,7 +32,7 @@
                 <br/><p:inputText type="text" id="projectStatus" value="#{projectBean.project.projectStatus}"/><br/>
                 <label>Início Sprint</label>
                 <br/><p:inputText type="text" id="weekdaySprint" value="#{projectBean.project.weekdaySprint}"/><br/>
-                <p:commandButton type="submit" value="Salvar" ajax="false"/>
+                <p:commandButton type="submit" actionListener="#{projectBean.updateProject()}" value="Salvar" ajax="false"/>
             </h:form>
         </ui:define>
 </ui:composition>

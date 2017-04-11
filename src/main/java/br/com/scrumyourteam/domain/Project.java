@@ -4,8 +4,9 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 /**
- *
+ * Date: 11/04/2017
  * @author marcella.pereira.a1
+ * Objective: Create a Bean to a Project(getters and setters)
  */
 public class Project 
 {

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author marcella.pereira.a1
  * Date: 03/20/2017
+ * Objective: To Intermediate comunication between View and Controller layers
  */
 @Dependent
 @ManagedBean (name = "userBean")
@@ -22,18 +23,23 @@ public class UserBean
 {
     private HttpServletRequest request;
     private SessionContext context;
+    private User user;
+    private UserController control;
     
+    //it takes the session if there is
     public UserBean()
     {
         this.context = new SessionContext();
     }
     
+    //it takes data from user-add.xhtml using the session
+    //it sends to UserController and last redirect to index
     public void userAdd() throws SQLException, IOException 
     {
         context = new SessionContext();
         request = (HttpServletRequest)context.currentExternalContext().getRequest();
         
-        User user = new User();
+        user = new User();
         
         String nameUser = request.getParameter("registerForm:nameUser");
         String login = request.getParameter("registerForm:login");
@@ -43,12 +49,14 @@ public class UserBean
         user.setLogin(login);
         user.setPassword(password);
         
-         UserController control = new UserController();
+         control = new UserController();
          control.userAdd(user);
          
          context.currentExternalContext().redirect("/ScrumYourTeam/faces/index.xhtml");
     }
     
+    //it takes data from login.xhtml, checks if login exists
+    //creates a session putting the id on it and redirect to workspace.xhtml
     public void login() throws SQLException, IOException
     {
         context = new SessionContext();
@@ -57,7 +65,7 @@ public class UserBean
         String login = request.getParameter("loginForm:login");
         String password = request.getParameter("loginForm:password");
 
-        UserController control = new UserController();
+        control = new UserController();
         int idUser = control.loginExists(login, password);
         if ( idUser != -1) 
         { 
@@ -71,6 +79,8 @@ public class UserBean
         }
     }
   
+    //it replace project and user id saved on the session to null
+    //and redirects to index.xhtml
     public void logout() throws IOException
     {
         context.currentExternalContext()

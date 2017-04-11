@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 /**
  * @author marcella
  * Date: 03/13/2017
+ * Objective: To redirect request from menubar
  */
 
 @Dependent

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author marcella.pereira.a1
  * Date: 03/20/2017
+ * Objective: To Intermediate comunication between View and Controller layers
  */
 @Dependent
 @ManagedBean (name = "projectBean")
@@ -25,6 +26,7 @@ public class ProjectBean
     private HttpServletRequest request;
     private ProjectController projectCont;
     private Project project;
+    private ProjectController control;
     
     public ProjectBean()
     {
@@ -45,9 +47,9 @@ public class ProjectBean
         try 
         {
             int idUser = (int) context.currentExternalContext().getSessionMap().get("idUser");
-            ProjectController project = new ProjectController();
+            control = new ProjectController();
             //projectList = new ListDataModel<>(project.getMemberProjects(idUser));
-            this.setProjectList(new ListDataModel<>(project.getMemberProjects(idUser)));
+            this.setProjectList(new ListDataModel<>(control.getMemberProjects(idUser)));
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute getMemberProjects in Project Bean: " + ex);
         }
@@ -67,6 +69,7 @@ public class ProjectBean
                 .redirect("/ScrumYourTeam/faces/pages/project/about.xhtml");
     }
     
+    //it takes project when about.xhtml page was loaded
     public Project getProject() throws SQLException
     {
         int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
@@ -74,6 +77,8 @@ public class ProjectBean
         return projectCont.getProject(idProject);
     }
     
+    //it updates the project register on current project 
+    //if user press button on about.xhtml page
     public void updateProject() throws IOException, SQLException
     {
         request = (HttpServletRequest) context.currentExternalContext().getRequest();
@@ -103,7 +108,7 @@ public class ProjectBean
         this.projectList = projectList;
     }
 
-    //set disable equals true on panelmenu if user didn't choose a project
+    //set disable equals true on panelmenu items if user didn't choose a project
     public boolean isProjectSelected() {
         //before idProject to be setted is null, after is int, then below used Integer
         Integer proj = (Integer) context.currentExternalContext().getSessionMap().get("idProject");

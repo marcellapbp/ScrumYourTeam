@@ -1,10 +1,9 @@
 package br.com.scrumyourteam.domain;
 
 /**
- *
  * @author marcella
  * Date: 03/02/2017
- * Objective: Create a Bean to a User
+ * Objective: Create a Bean to a User (getters and setters)
  */
 
 public class User 

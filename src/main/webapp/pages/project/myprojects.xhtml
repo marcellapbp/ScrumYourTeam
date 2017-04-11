@@ -18,6 +18,7 @@
     
         <ui:define name="content">
             <h:form id="chooseProjectForm">
+                <!--it loads content from getMemberProjects in ProjectBean-->
                 <p:dataTable emptyMessage="Nenhum projeto encontrado." 
                              value="#{projectBean.projectList}" 
                              var="project">

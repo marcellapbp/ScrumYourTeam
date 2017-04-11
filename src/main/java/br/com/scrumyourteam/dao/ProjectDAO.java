@@ -1,7 +1,6 @@
 package br.com.scrumyourteam.dao;
 
 import br.com.scrumyourteam.domain.Project;
-import br.com.scrumyourteam.domain.User;
 import br.com.scrumyourteam.persistence.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,17 +12,20 @@ import java.util.List;
 /**
  * @author marcella
  * Date: 04/03/2017
+ * Objective: To create Project CRUD
  */
 
 public class ProjectDAO 
 {
     private Connection conn;
     
+    //set a connection every UserDAO instance
     public ProjectDAO()
     {
         this.conn = new ConnectionFactory().getConnection();
     }
     
+    //it selects all projects associated to the user searching by user id informed
     public List<Project> getProjectMemberList (int idUser) throws SQLException
     {
         //call project_select_member_list(<id_user>);
@@ -41,9 +43,6 @@ public class ProjectDAO
                 project.setIdProject(rs.getInt("id_project"));
                 project.setNameProject(rs.getString("name_project"));
                 project.setDescription(rs.getString("description"));
-                //project.setStartingDate(rs.getString("starting_date"));
-                project.setLengthInSprint(rs.getInt("project_length_in_sprint"));
-                project.setSprintLength(rs.getInt("sprint_length"));
                 projectList.add(project);
             }
             return projectList;
@@ -54,6 +53,7 @@ public class ProjectDAO
         }
     }
 
+    //it selects a single register in the Project table
     public Project getProject(int idProject) throws SQLException 
     {
         //call project_select(<id_project>)
@@ -85,6 +85,7 @@ public class ProjectDAO
         }
     }
 
+    //it updates a existent register to Project table
     public void updateProject(Project project) throws SQLException 
     {
         //call project_update(<id_project>, <name_project>, <description>, 
@@ -97,7 +98,7 @@ public class ProjectDAO
             psmt.setInt(1, project.getIdProject());
             psmt.setString(2, project.getNameProject());
             psmt.setString(3, project.getDescription());
-            psmt.setString(4, project.getStartingDate());
+            //psmt.setString(4, project.getStartingDate());
             psmt.setInt(5, project.getLengthInSprint());
             psmt.setInt(6, project.getSprintLength());
             psmt.setString(7, project.getProjectStatus());

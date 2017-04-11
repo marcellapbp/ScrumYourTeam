@@ -7,6 +7,8 @@ import javax.faces.context.FacesContext;
 
 /**
  * @author marcella.pereira.a1
+ * data: 04/11/2017
+ * Objective: To centralize the way of getting session in one method
  */
 @Named(value = "sessionContext")
 @Dependent
