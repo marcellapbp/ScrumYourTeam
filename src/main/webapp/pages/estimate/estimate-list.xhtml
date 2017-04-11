@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    template="/templates/workspace-model.xhtml">
+   
+        <ui:define name="westMenu">
+            <ui:include src="/includes/panelmenu.xhtml"></ui:include>
+        </ui:define>
+    
+        <ui:define name="menuBar">
+            <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+        </ui:define>
+    
+        <ui:define name="content">
+            <h:form id="chooseProjectForm">
+                <!--it loads content from getMemberProjects in ProjectBean-->
+                <p:dataTable emptyMessage="Nenhum projeto encontrado." 
+                             value="#{projectBean.projectList}" 
+                             var="project">
+                    <p:column headerText="Projeto">
+                        <h:commandLink actionListener="#{projectBean.goToProjectChoosen(project.idProject)}" value="#{project.nameProject}"/>
+                        
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+</ui:composition>

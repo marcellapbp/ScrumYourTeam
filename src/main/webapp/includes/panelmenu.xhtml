@@ -26,8 +26,8 @@
                 <p:menuitem value="Papéis"/>
                 <p:menuitem value="Membros"/>
                 <p:menuitem value="Reuniões"/>
-                <p:menuitem value="Estimativas"/>
-                <p:menuitem value="Prioridades"/>
+                <p:menuitem value="Estimativas" actionListener="#{estimateBean.goEstimateList}" ajax="false"/>
+                <p:menuitem value="Prioridades" actionListener="#{priorityBean.goPriorityList}" ajax="false"/>
             </p:submenu>
         </p:panelMenu>
     </h:form>
