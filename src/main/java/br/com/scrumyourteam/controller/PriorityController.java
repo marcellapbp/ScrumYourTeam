@@ -1,4 +1,11 @@
 package br.com.scrumyourteam.controller;
+
+import br.com.scrumyourteam.dao.PriorityDAO;
+import br.com.scrumyourteam.domain.Estimate;
+import br.com.scrumyourteam.domain.Priority;
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  * @author marcella
  * Date: 04/11/2017
@@ -6,5 +13,12 @@ package br.com.scrumyourteam.controller;
  */
 public class PriorityController
 {
+    private PriorityDAO dao;
     
+    //it selects estimate list
+    public List<Priority> getPriorityList () throws SQLException 
+    {
+        dao = new PriorityDAO();
+        return dao.getPriorityList();
+    }
 }

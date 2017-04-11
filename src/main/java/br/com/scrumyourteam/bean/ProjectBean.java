@@ -48,7 +48,6 @@ public class ProjectBean
         {
             int idUser = (int) context.currentExternalContext().getSessionMap().get("idUser");
             control = new ProjectController();
-            //projectList = new ListDataModel<>(project.getMemberProjects(idUser));
             this.setProjectList(new ListDataModel<>(control.getMemberProjects(idUser)));
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute getMemberProjects in Project Bean: " + ex);

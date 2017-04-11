@@ -17,14 +17,16 @@
         </ui:define>
     
         <ui:define name="content">
-            <h:form id="chooseProjectForm">
-                <!--it loads content from getMemberProjects in ProjectBean-->
-                <p:dataTable emptyMessage="Nenhum projeto encontrado." 
-                             value="#{projectBean.projectList}" 
-                             var="project">
-                    <p:column headerText="Projeto">
-                        <h:commandLink actionListener="#{projectBean.goToProjectChoosen(project.idProject)}" value="#{project.nameProject}"/>
-                        
+            <h:form id="estimateListForm">
+                <!--it loads content from getEstimateList in EstimateBean-->
+                <p:dataTable emptyMessage="Nenhuma estimativa encontrada." 
+                             value="#{estimateBean.estimateList}" 
+                             var="estimate">
+                    <p:column headerText="Nome Estimativa">
+                        <h:commandLink value="#{estimate.nameEstimate}"/>
+                    </p:column>
+                     <p:column headerText="Valor">
+                        <h:commandLink value="#{estimate.estimateValue}"/>
                     </p:column>
                 </p:dataTable>
             </h:form>
