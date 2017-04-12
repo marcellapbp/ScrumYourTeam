@@ -21,11 +21,17 @@
                 <!--it loads content from getPriorityList in PriorityBean-->
                 <p:dataTable emptyMessage="Nenhuma estimativa encontrada." 
                              value="#{priorityBean.priorityList}" 
-                             var="priority">
-                    <p:column headerText="Nome Prioridade">
+                             var="priority"
+                             paginator="true"
+                             rows="20">
+                    <p:column sortBy="#{priority.namePriority}"
+                              filterBy="#{priority.namePriority}"
+                              headerText="Nome Prioridade">
                         <h:commandLink value="#{priority.namePriority}"/>
                     </p:column>
-                     <p:column headerText="Valor">
+                     <p:column sortBy="#{priority.priorityValue}"
+                              filterBy="#{priority.priorityValue}"
+                              headerText="Valor">
                         <h:commandLink value="#{priority.priorityValue}"/>
                     </p:column>
                 </p:dataTable>

@@ -21,11 +21,17 @@
                 <!--it loads content from getEstimateList in EstimateBean-->
                 <p:dataTable emptyMessage="Nenhuma estimativa encontrada." 
                              value="#{estimateBean.estimateList}" 
-                             var="estimate">
-                    <p:column headerText="Nome Estimativa">
+                             var="estimate"
+                             paginator="true"
+                             rows="20">
+                    <p:column sortBy="#{estimate.nameEstimate}" 
+                              filterBy="#{estimate.nameEstimate}"
+                              headerText="Nome Estimativa">
                         <h:commandLink value="#{estimate.nameEstimate}"/>
                     </p:column>
-                     <p:column headerText="Valor">
+                    <p:column sortBy="#{estimate.estimateValue}"
+                              filterBy="#{estimate.estimateValue}"
+                              headerText="Valor">
                         <h:commandLink value="#{estimate.estimateValue}"/>
                     </p:column>
                 </p:dataTable>
