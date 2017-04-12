@@ -21,7 +21,8 @@
         <ui:define name="content">
             <h:form id="priorityListForm">
                 <!--it loads content from getPriorityList in PriorityBean-->
-                <p:dataTable emptyMessage="Nenhuma estimativa encontrada." 
+                <p:dataTable id="dataTable"
+                             emptyMessage="Nenhuma estimativa encontrada." 
                              value="#{priorityBean.priorityList}" 
                              var="priority"
                              paginator="true"
@@ -57,7 +58,8 @@
                     <h:panelGrid columns="2">
                         <p:commandButton value="Salvar"
                                          actionListener="#{priorityBean.priorityAdd()}" 
-                                         onclick="PF('dialogNewPriority').hide();"/>
+                                         onclick="PF('dialogNewPriority').hide();"
+                                         update=":priorityListForm:dataTable"/>
                         <p:commandButton value="Cancelar" onclick="PF('dialogNewPriority').hide();"/>
                     </h:panelGrid>
                 </h:form>

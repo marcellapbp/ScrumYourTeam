@@ -20,7 +20,8 @@
         <ui:define name="content">
             <h:form id="estimateListForm">
                 <!--it loads content from getEstimateList in EstimateBean-->
-                <p:dataTable emptyMessage="Nenhuma estimativa encontrada." 
+                <p:dataTable id="dataTable"
+                             emptyMessage="Nenhuma estimativa encontrada." 
                              value="#{estimateBean.estimateList}" 
                              var="estimate"
                              paginator="true"
@@ -56,7 +57,8 @@
                     <h:panelGrid columns="2">
                         <p:commandButton value="Salvar" 
                                          actionListener="#{estimateBean.estimateAdd()}" 
-                                         onclick="PF('dialogNewEstimate').hide();"/>
+                                         onclick="PF('dialogNewEstimate').hide();"
+                                         update=":estimateListForm:dataTable"/>
                         <p:commandButton value="Cancelar" onclick="PF('dialogNewEstimate').hide();"/>
                     </h:panelGrid>
                 </h:form>

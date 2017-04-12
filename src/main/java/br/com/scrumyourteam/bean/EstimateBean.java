@@ -75,6 +75,9 @@ public class EstimateBean
         
          control = new EstimateController();
          control.estimateAdd(estimate);
+         
+         control = new EstimateController();
+        this.setEstimateList(new ListDataModel<>(control.getEstimateList(estimate.getProject().getIdProject())));
     }
     
     

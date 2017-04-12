@@ -74,6 +74,9 @@ public class PriorityBean
         
          control = new PriorityController();
          control.priorityAdd(priority);
+         
+         control = new PriorityController();
+         this.setPriorityList(new ListDataModel<>(control.getPriorityList(priority.getProject().getIdProject())));
     }
     
     //getters and setters
