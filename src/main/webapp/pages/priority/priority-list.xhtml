@@ -6,7 +6,9 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
-    template="/templates/workspace-model.xhtml">
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/templates/workspace-model.xhtml"
+    >
    
         <ui:define name="westMenu">
             <ui:include src="/includes/panelmenu.xhtml"></ui:include>
@@ -24,17 +26,40 @@
                              var="priority"
                              paginator="true"
                              rows="20">
+                     <f:facet name="header">
+                         <h:outputLabel value="Prioridades"/>
+                    </f:facet>
                     <p:column sortBy="#{priority.namePriority}"
                               filterBy="#{priority.namePriority}"
                               headerText="Nome Prioridade">
-                        <h:commandLink value="#{priority.namePriority}"/>
+                        <h:outputLabel value="#{priority.namePriority}"/>
                     </p:column>
                      <p:column sortBy="#{priority.priorityValue}"
                               filterBy="#{priority.priorityValue}"
                               headerText="Valor">
-                        <h:commandLink value="#{priority.priorityValue}"/>
+                        <h:outputLabel value="#{priority.priorityValue}"/>
+                        
                     </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton value="Novo" onclick="PF('dialogNewPriority').show();" />
+                    </f:facet>
                 </p:dataTable>
             </h:form>
+            
+            <p:dialog  widgetVar="dialogNewPriority" closable="false"
+                       resizable="false" draggable="false" modal="true" appendTo="@(body)"  >
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Nome Prioridade:"/>
+                        <p:inputText type="text" id="namePriority"/>
+                        <h:outputLabel value="Valor Prioridade:"/>
+                        <p:inputText type="text" id="PriorityValue"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <p:commandButton value="Salvar"/>
+                        <p:commandButton value="Cancelar" onclick="PF('dialogNewPriority').hide();"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:dialog>
         </ui:define>
 </ui:composition>

@@ -6,6 +6,7 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
     template="/templates/workspace-model.xhtml">
    
         <ui:define name="westMenu">
@@ -24,6 +25,9 @@
                              var="estimate"
                              paginator="true"
                              rows="20">
+                    <f:facet name="header">
+                         <h:outputLabel value="Estimativas"/>
+                    </f:facet>
                     <p:column sortBy="#{estimate.nameEstimate}" 
                               filterBy="#{estimate.nameEstimate}"
                               headerText="Nome Estimativa">
@@ -34,7 +38,26 @@
                               headerText="Valor">
                         <h:commandLink value="#{estimate.estimateValue}"/>
                     </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton value="Novo" onclick="PF('dialogNewEstimate').show();" />
+                    </f:facet>
                 </p:dataTable>
             </h:form>
+            
+            <p:dialog  widgetVar="dialogNewEstimate" closable="false"
+                       resizable="false" draggable="false" modal="true" appendTo="@(body)" >
+                <h:form> 
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Nome Estimativa:"/>
+                        <p:inputText type="text" id="nameEstimate"/>
+                        <h:outputLabel value="Valor Estimativa"/>
+                        <p:inputText type="text" id="EstimateValue"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <p:commandButton value="Salvar"/>
+                        <p:commandButton value="Cancelar" onclick="PF('dialogNewEstimate').hide();"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:dialog>
         </ui:define>
 </ui:composition>
