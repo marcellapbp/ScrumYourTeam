@@ -31,12 +31,12 @@
                     <p:column sortBy="#{estimate.nameEstimate}" 
                               filterBy="#{estimate.nameEstimate}"
                               headerText="Nome Estimativa">
-                        <h:commandLink value="#{estimate.nameEstimate}"/>
+                        <h:outputLabel value="#{estimate.nameEstimate}"/>
                     </p:column>
                     <p:column sortBy="#{estimate.estimateValue}"
                               filterBy="#{estimate.estimateValue}"
                               headerText="Valor">
-                        <h:commandLink value="#{estimate.estimateValue}"/>
+                        <h:outputLabel value="#{estimate.estimateValue}"/>
                     </p:column>
                     <f:facet name="footer">
                         <p:commandButton value="Novo" onclick="PF('dialogNewEstimate').show();" />
@@ -46,15 +46,17 @@
             
             <p:dialog  widgetVar="dialogNewEstimate" closable="false"
                        resizable="false" draggable="false" modal="true" appendTo="@(body)" >
-                <h:form> 
+                <h:form id="newEstimateForm"> 
                     <h:panelGrid columns="2">
                         <h:outputLabel value="Nome Estimativa:"/>
                         <p:inputText type="text" id="nameEstimate"/>
                         <h:outputLabel value="Valor Estimativa"/>
-                        <p:inputText type="text" id="EstimateValue"/>
+                        <p:inputText type="text" id="estimateValue"/>
                     </h:panelGrid>
                     <h:panelGrid columns="2">
-                        <p:commandButton value="Salvar"/>
+                        <p:commandButton value="Salvar" 
+                                         actionListener="#{estimateBean.estimateAdd()}" 
+                                         onclick="PF('dialogNewEstimate').hide();"/>
                         <p:commandButton value="Cancelar" onclick="PF('dialogNewEstimate').hide();"/>
                     </h:panelGrid>
                 </h:form>

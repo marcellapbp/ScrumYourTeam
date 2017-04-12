@@ -28,13 +28,14 @@ public class EstimateDAO
     //it inserts a register to Estimate table
     public void addEstimate(Estimate estimate) throws SQLException 
     {
-        //call estimate_insert(<name_estimate>, <estimate_value>)
-        String sql = "call estimate_insert(?,?);";
+        //call estimate_insert(<name_estimate>, <estimate_value>, <project_id_project>)
+        String sql = "call estimate_insert(?,?,?);";
 
         try (PreparedStatement psmt = conn.prepareStatement(sql)) 
         {
             psmt.setString(1, estimate.getNameEstimate());
             psmt.setInt(2, estimate.getEstimateValue());
+            psmt.setInt(3, estimate.getProject().getIdProject());
 
             psmt.execute();
         } catch (SQLException ex) {

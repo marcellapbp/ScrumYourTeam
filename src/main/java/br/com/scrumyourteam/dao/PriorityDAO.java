@@ -28,13 +28,14 @@ public class PriorityDAO
     //it inserts a register to Priority table
     public void addPriority(Priority priority) throws SQLException 
     {
-        //call priority_insert(<name_priority>, <estimate_priority>)
-        String sql = "call priority_insert(?,?);";
+        //call priority_insert(<name_priority>, <priority_value>,<project_id_project>)
+        String sql = "call priority_insert(?,?,?);";
 
         try (PreparedStatement psmt = conn.prepareStatement(sql)) 
         {
             psmt.setString(1, priority.getNamePriority());
             psmt.setInt(2, priority.getPriorityValue());
+            psmt.setInt(3, priority.getProject().getIdProject());
 
             psmt.execute();
         } catch (SQLException ex) {

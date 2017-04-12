@@ -10,6 +10,7 @@ public class Estimate
     private int IdEstimate;
     private String NameEstimate;
     private int EstimateValue;
+    private Project project;
 
     public int getIdEstimate() {
         return IdEstimate;
@@ -33,5 +34,13 @@ public class Estimate
 
     public void setEstimateValue(int EstimateValue) {
         this.EstimateValue = EstimateValue;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

@@ -20,4 +20,11 @@ public class EstimateController
         dao = new EstimateDAO();
         return dao.getEstimateList(idProject);
     }
+
+    public void estimateAdd(Estimate estimate) throws SQLException 
+    {
+        dao = new EstimateDAO();
+        dao.addEstimate(estimate);
+
+    }
 }

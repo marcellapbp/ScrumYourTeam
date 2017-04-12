@@ -1,7 +1,6 @@
 package br.com.scrumyourteam.controller;
 
 import br.com.scrumyourteam.dao.PriorityDAO;
-import br.com.scrumyourteam.domain.Estimate;
 import br.com.scrumyourteam.domain.Priority;
 import java.sql.SQLException;
 import java.util.List;
@@ -20,5 +19,11 @@ public class PriorityController
     {
         dao = new PriorityDAO();
         return dao.getPriorityList(idProject);
+    }
+
+    public void priorityAdd(Priority priority) throws SQLException 
+    {
+        dao = new PriorityDAO();
+        dao.addPriority(priority);
     }
 }

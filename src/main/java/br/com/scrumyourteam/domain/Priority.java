@@ -10,6 +10,7 @@ public class Priority
     private int IdPriority;
     private String NamePriority;
     private int PriorityValue;
+    private Project project;
 
     public int getIdPriority() {
         return IdPriority;
@@ -33,5 +34,13 @@ public class Priority
 
     public void setPriorityValue(int PriorityValue) {
         this.PriorityValue = PriorityValue;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

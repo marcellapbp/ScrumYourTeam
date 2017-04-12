@@ -2,6 +2,7 @@ package br.com.scrumyourteam.bean;
 
 import br.com.scrumyourteam.controller.PriorityController;
 import br.com.scrumyourteam.domain.Priority;
+import br.com.scrumyourteam.domain.Project;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.ListDataModel;
+import javax.servlet.http.HttpServletRequest;
 /**
  * @author marcella.pereira.a1
  * Date: 04/11/2017
@@ -19,9 +21,11 @@ import javax.faces.model.ListDataModel;
 @SessionScoped
 public class PriorityBean 
 {
+    private HttpServletRequest request;
     private SessionContext context;
     private PriorityController control;
     private ListDataModel<Priority> priorityList;
+    private Priority priority;
 
     public PriorityBean() 
     {
@@ -50,6 +54,29 @@ public class PriorityBean
         }
     }
 
+    //it takes data from priority-list.xhtml dialog using the session
+    //it sends to PriorityController
+    public void priorityAdd() throws SQLException, IOException 
+    {
+        context = new SessionContext();
+        request = (HttpServletRequest)context.currentExternalContext().getRequest();
+        
+        priority = new Priority();
+        
+        String namePriority = request.getParameter("newPriorityForm:namePriority");
+        int priorityValue = Integer.parseInt(request.getParameter("newPriorityForm:priorityValue"));
+        
+        priority.setNamePriority(namePriority);
+        priority.setPriorityValue(priorityValue);
+        priority.setProject(new Project());
+        priority.getProject().setIdProject((int) context.currentExternalContext().getSessionMap().get("idProject"));
+        
+        
+         control = new PriorityController();
+         control.priorityAdd(priority);
+    }
+    
+    //getters and setters
     public void setPriorityList(ListDataModel<Priority> priorityList) {
         this.priorityList = priorityList;
     }
