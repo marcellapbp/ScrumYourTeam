@@ -46,13 +46,14 @@ public class EstimateDAO
     }
     
     //it selects estimate list
-    public List<Estimate> getEstimateList () throws SQLException
+    public List<Estimate> getEstimateList (int idProject) throws SQLException
     {
         //call estimate_select_list();
-        String sql = "call estimate_select_list();";
+        String sql = "call estimate_select_list(?);";
 
         try (PreparedStatement psmt = conn.prepareStatement(sql)) 
         {
+            psmt.setInt(1, idProject);
             ResultSet rs = psmt.executeQuery();
             
             ArrayList<Estimate> estimateList = new ArrayList<>();

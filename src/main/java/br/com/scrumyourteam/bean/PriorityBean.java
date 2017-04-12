@@ -42,8 +42,9 @@ public class PriorityBean
     {
         try 
         {
+            int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
             control = new PriorityController();
-            this.setPriorityList(new ListDataModel<>(control.getPriorityList()));
+            this.setPriorityList(new ListDataModel<>(control.getPriorityList(idProject)));
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute getPriorityList in PriorityBean: " + ex);
         }

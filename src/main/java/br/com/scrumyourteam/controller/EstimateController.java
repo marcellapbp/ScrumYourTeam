@@ -15,9 +15,9 @@ public class EstimateController
     private EstimateDAO dao;
     
     //it selects estimate list
-    public List<Estimate> getEstimateList () throws SQLException 
+    public List<Estimate> getEstimateList (int idProject) throws SQLException 
     {
         dao = new EstimateDAO();
-        return dao.getEstimateList();
+        return dao.getEstimateList(idProject);
     }
 }

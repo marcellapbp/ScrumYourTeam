@@ -45,13 +45,14 @@ public class PriorityDAO
     }
     
     //it selects Priority list
-    public List<Priority> getPriorityList () throws SQLException
+    public List<Priority> getPriorityList (int idProject) throws SQLException
     {
         //call priority_select_list();
-        String sql = "call priority_select_list();";
+        String sql = "call priority_select_list(?);";
 
         try (PreparedStatement psmt = conn.prepareStatement(sql)) 
         {
+            psmt.setInt(1, idProject);
             ResultSet rs = psmt.executeQuery();
             
             ArrayList<Priority> priorityList = new ArrayList<>();

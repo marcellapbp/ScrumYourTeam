@@ -43,8 +43,9 @@ public class EstimateBean
     {
         try 
         {
+            int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
             control = new EstimateController();
-            this.setEstimateList(new ListDataModel<>(control.getEstimateList()));
+            this.setEstimateList(new ListDataModel<>(control.getEstimateList(idProject)));
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute getEstimateList in EstimateBean: " + ex);
         }

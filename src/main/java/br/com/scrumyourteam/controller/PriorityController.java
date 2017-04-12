@@ -16,9 +16,9 @@ public class PriorityController
     private PriorityDAO dao;
     
     //it selects estimate list
-    public List<Priority> getPriorityList () throws SQLException 
+    public List<Priority> getPriorityList (int idProject) throws SQLException 
     {
         dao = new PriorityDAO();
-        return dao.getPriorityList();
+        return dao.getPriorityList(idProject);
     }
 }
