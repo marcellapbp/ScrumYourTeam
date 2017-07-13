@@ -5,7 +5,6 @@ import br.com.scrumyourteam.domain.Priority;
 import br.com.scrumyourteam.domain.Project;
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,7 +23,6 @@ public class PriorityBean
     private HttpServletRequest request;
     private SessionContext context;
     private PriorityController control;
-    private ListDataModel<Priority> priorityList;
     private Priority priority;
 
     public PriorityBean() 
@@ -41,14 +39,13 @@ public class PriorityBean
     }
     
     //create Priority list 
-    @PostConstruct
-    public void getPriorityListFromBase()
+    public ListDataModel<br.com.scrumyourteam.domain.Priority> getPriorityListFromBase()
     {
         try 
         {
             int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
             control = new PriorityController();
-            this.setPriorityList(new ListDataModel<>(control.getPriorityList(idProject)));
+            return new ListDataModel<>(control.getPriorityList(idProject));
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute getPriorityList in PriorityBean: " + ex);
         }
@@ -75,16 +72,11 @@ public class PriorityBean
          control = new PriorityController();
          control.priorityAdd(priority);
          
-         control = new PriorityController();
-         this.setPriorityList(new ListDataModel<>(control.getPriorityList(priority.getProject().getIdProject())));
+         getPriorityListFromBase();
     }
     
-    //getters and setters
-    public void setPriorityList(ListDataModel<Priority> priorityList) {
-        this.priorityList = priorityList;
-    }
 
     public ListDataModel<Priority> getPriorityList() {
-        return priorityList;
+        return getPriorityListFromBase();
     }
 }

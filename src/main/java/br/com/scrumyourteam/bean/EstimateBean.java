@@ -5,7 +5,6 @@ import br.com.scrumyourteam.domain.Estimate;
 import br.com.scrumyourteam.domain.Project;
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,7 +23,6 @@ public class EstimateBean
 {
     private HttpServletRequest request;
     private SessionContext context;
-    private ListDataModel<Estimate> estimateList;
     private EstimateController control;
     private Estimate estimate;
 
@@ -42,14 +40,17 @@ public class EstimateBean
     
     
     //create Estimate list 
-    @PostConstruct
-    public void getEstimateListFromBase()
+    /**
+     *
+     * @return
+     */
+    public ListDataModel<br.com.scrumyourteam.domain.Estimate> getEstimateListFromBase()
     {
         try 
         {
             int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
             control = new EstimateController();
-            this.setEstimateList(new ListDataModel<>(control.getEstimateList(idProject)));
+            return new ListDataModel<>(control.getEstimateList(idProject));
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute getEstimateList in EstimateBean: " + ex);
         }
@@ -76,17 +77,14 @@ public class EstimateBean
          control = new EstimateController();
          control.estimateAdd(estimate);
          
-         control = new EstimateController();
-        this.setEstimateList(new ListDataModel<>(control.getEstimateList(estimate.getProject().getIdProject())));
+         getEstimateList();
     }
     
     
-    //getters and setters
-    public void setEstimateList(ListDataModel<Estimate> estimateList) {
-        this.estimateList = estimateList;
-    }
-
+    //It was need to every time create a new class
+    //this way will not get information from others project
+    //because there is no more objects in the memory
     public ListDataModel<Estimate> getEstimateList() {
-        return estimateList;
+        return getEstimateListFromBase();
     }
 }
