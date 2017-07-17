@@ -10,9 +10,9 @@
         <p:panelMenu>
             <p:submenu label="Projeto Atual: projeto" style="width:150px">
                 <p:menuitem value="Gráfico de Burndown" disabled="#{projectBean.projectSelected}"/>
-                <p:menuitem value="Kanban" disabled="#{projectBean.projectSelected}"/>
-                <p:menuitem value="Tarefas" disabled="#{projectBean.projectSelected}"/>
-                <p:menuitem value="Sprints" disabled="#{projectBean.projectSelected}"/>   
+                <p:menuitem value="Kanban"              disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Tarefas"             disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Sprints"             disabled="#{projectBean.projectSelected}"/>   
                 <p:menuitem value="Sobre" actionListener="#{projectBean.currentProject}" disabled="#{projectBean.projectSelected}"/>   
             </p:submenu>
 
@@ -23,11 +23,11 @@
             </p:submenu>
 
             <p:submenu label="Configurações">
-                <p:menuitem value="Papéis"/>
-                <p:menuitem value="Membros"/>
-                <p:menuitem value="Reuniões"/>
-                <p:menuitem value="Estimativas" actionListener="#{estimateBean.goEstimateList}" ajax="false"/>
-                <p:menuitem value="Prioridades" actionListener="#{priorityBean.goPriorityList}" ajax="false"/>
+                <p:menuitem value="Papéis"      actionListener="#{roleBean.goRoleList}"         ajax="false" disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Membros"     actionListener="#{memberBean.goMemberList}"     ajax="false" disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Reuniões"    actionListener="#{meetingBean.goMeetingList}"   ajax="false" disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Estimativas" actionListener="#{estimateBean.goEstimateList}" ajax="false" disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Prioridades" actionListener="#{priorityBean.goPriorityList}" ajax="false" disabled="#{projectBean.projectSelected}"/>
             </p:submenu>
         </p:panelMenu>
     </h:form>

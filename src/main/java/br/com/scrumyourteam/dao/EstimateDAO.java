@@ -49,7 +49,7 @@ public class EstimateDAO
     //it selects estimate list
     public List<Estimate> getEstimateList (int idProject) throws SQLException
     {
-        //call estimate_select_list();
+        //call estimate_select_list(<id_project>);
         String sql = "call estimate_select_list(?);";
 
         try (PreparedStatement psmt = conn.prepareStatement(sql)) 

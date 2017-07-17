@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/templates/workspace-model.xhtml">
+   
+        <ui:define name="westMenu">
+            <ui:include src="/includes/panelmenu.xhtml"></ui:include>
+        </ui:define>
+    
+        <ui:define name="menuBar">
+            <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+        </ui:define>
+    
+        <ui:define name="content">
+            <h:form id="roleListForm">
+                <!--it loads content from getRoleList in RoleBean-->
+                <p:dataTable id="dataTable"
+                             emptyMessage="Nenhum Papel encontrado." 
+                             value="#{roleBean.roleList}" 
+                             var="role"
+                             paginator="true"
+                             rows="20">
+                    <f:facet name="header">
+                         <h:outputLabel value="Papéis"/>
+                    </f:facet>
+                    <p:column sortBy="#{role.nameRole}" 
+                              filterBy="#{role.nameRole}"
+                              headerText="Papel">
+                        <h:outputLabel value="#{role.nameRole}"/>
+                    </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton value="Novo" onclick="PF('dialogNewRole').show();" />
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+            
+            <p:dialog  widgetVar="dialogNewRole" closable="false"
+                       resizable="false" draggable="false" modal="true" appendTo="@(body)" >
+                <h:form id="newRoleForm"> 
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Papel:"/>
+                        <p:inputText type="text" id="nameRole"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <p:commandButton value="Salvar" 
+                                         actionListener="#{roleBean.roleAdd()}" 
+                                         onclick="PF('dialogNewRole').hide();"
+                                         update=":roleListForm:dataTable"/>
+                        <p:commandButton value="Cancelar" onclick="PF('dialogNewRole').hide();"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+</ui:composition>

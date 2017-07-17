@@ -31,7 +31,7 @@ public class PriorityBean
     }
     
     
-    //go to page with a estimate list 
+    //go to page with a priority list 
     public void goPriorityList() throws IOException 
     {
         context.currentExternalContext()
