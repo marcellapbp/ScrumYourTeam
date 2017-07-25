@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/templates/workspace-model.xhtml"
+    >
+   
+        <ui:define name="westMenu">
+            <ui:include src="/includes/panelmenu.xhtml"></ui:include>
+        </ui:define>
+    
+        <ui:define name="menuBar">
+            <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+        </ui:define>
+    
+        <ui:define name="content">
+            <h:form id="MeetingListForm">
+                <!--it loads content from getMeetingList in MeetingBean-->
+                <p:dataTable id="dataTable"
+                             emptyMessage="Nenhuma Reunião encontrada." 
+                             value="#{meetingBean.meetingList}" 
+                             var="meeting"
+                             paginator="true"
+                             rows="20">
+                    <f:facet name="header">
+                         <h:outputLabel value="Reuniões"/>
+                    </f:facet>
+                    <p:column 
+                              filterBy="#{meeting.nameMeeting}"
+                              sortBy="#{meeting.nameMeeting}"
+                              headerText="Nome Reunião">
+                        <h:outputLabel value="#{meeting.nameMeeting}"/>
+                    </p:column>
+                  
+                    <f:facet name=  "footer">
+                        <p:commandButton value="Novo" onclick="PF('dialogNewMeeting').show();" />
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+            
+            <p:dialog  widgetVar="dialogNewMeeting" closable="false"
+                       resizable="false" draggable="false" modal="true" appendTo="@(body)"  >
+                <h:form id="newMeetingForm">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Nome Reunião:"/>
+                        <p:inputText type="text" id="nameMeeting"/>
+                        <h:outputLabel value="Notificação:"/>
+                        <p:inputText type="text" id="flagNotification"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">
+                        <p:commandButton value="Salvar"
+                                         actionListener="#{meetingBean.meetingAdd()}" 
+                                         onclick="PF('dialogNewMeeting').hide();"
+                                         update=":MeetingListForm:dataTable"/>
+                        <p:commandButton value="Cancelar" onclick="PF('dialogNewMeeting').hide();"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+</ui:composition>

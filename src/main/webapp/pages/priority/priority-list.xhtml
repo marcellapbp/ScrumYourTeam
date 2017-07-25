@@ -22,7 +22,7 @@
             <h:form id="priorityListForm">
                 <!--it loads content from getPriorityList in PriorityBean-->
                 <p:dataTable id="dataTable"
-                             emptyMessage="Nenhuma estimativa encontrada." 
+                             emptyMessage="Nenhuma prioridade encontrada." 
                              value="#{priorityBean.priorityList}" 
                              var="priority"
                              paginator="true"
@@ -30,17 +30,19 @@
                     <f:facet name="header">
                          <h:outputLabel value="Prioridades"/>
                     </f:facet>
-                    <p:column sortBy="#{priority.namePriority}"
+                    <p:column 
                               filterBy="#{priority.namePriority}"
+                              sortBy="#{priority.namePriority}"
                               headerText="Nome Prioridade">
                         <h:outputLabel value="#{priority.namePriority}"/>
                     </p:column>
-                    <p:column sortBy="#{priority.priorityValue}"
+                    <p:column 
                               filterBy="#{priority.priorityValue}"
+                              sortBy="#{priority.priorityValue}"
                               headerText="Valor">
                         <h:outputLabel value="#{priority.priorityValue}"/>
                     </p:column>
-                    <f:facet name="footer">
+                    <f:facet name=  "footer">
                         <p:commandButton value="Novo" onclick="PF('dialogNewPriority').show();" />
                     </f:facet>
                 </p:dataTable>

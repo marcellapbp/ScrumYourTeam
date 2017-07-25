@@ -24,7 +24,8 @@ public class PriorityBean
     private SessionContext context;
     private PriorityController control;
     private Priority priority;
-
+    private ListDataModel<Priority> PriorityList;
+    
     public PriorityBean() 
     {
         this.context = new SessionContext();
@@ -77,6 +78,7 @@ public class PriorityBean
     
 
     public ListDataModel<Priority> getPriorityList() {
-        return getPriorityListFromBase();
+        this.PriorityList= getPriorityListFromBase();
+        return this.PriorityList;
     }
 }

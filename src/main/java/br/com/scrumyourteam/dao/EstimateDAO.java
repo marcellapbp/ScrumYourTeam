@@ -18,7 +18,7 @@ public class EstimateDAO
 {
     private Connection conn;
     
-    //set a connection every PriorityDAO instance
+    //set a connection every EstimateDAO instance
     public EstimateDAO()
     {
         this.conn = new ConnectionFactory().getConnection();
