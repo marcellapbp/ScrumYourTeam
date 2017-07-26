@@ -29,4 +29,11 @@ public class UserController
         dao.addUser(user);
     }
     
+    //it selects a User
+    public User getUser (int idUser) throws SQLException 
+    {
+        dao = new UserDAO(); 
+        return dao.getUser(idUser);
+    }
+    
 }

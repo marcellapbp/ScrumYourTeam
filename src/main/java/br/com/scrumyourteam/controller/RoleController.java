@@ -15,11 +15,18 @@ public class RoleController
 {
     private RoleDAO dao;
     
-    //it selects estimate list
+    //it selects role list
     public List<Role> getRoleList (int idProject) throws SQLException 
     {
         dao = new RoleDAO(); 
         return dao.getRoleList(idProject);
+    }
+    
+    //it selects a role
+    public Role getRole (int idRole,int idProject) throws SQLException 
+    {
+        dao = new RoleDAO(); 
+        return dao.getRole(idRole,idProject);
     }
 
     public void roleAdd(Role role) throws SQLException 

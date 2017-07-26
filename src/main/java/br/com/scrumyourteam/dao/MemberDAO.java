@@ -43,12 +43,26 @@ public class MemberDAO
             while(rs.next())
             {
                 Member member = new Member();
+                
                 member.setProject(new Project());
-                member.setUser(new User());
-                member.setRole(new Role());
                 member.getProject().setIdProject(rs.getInt("project_id_project"));
+                member.getProject().setNameProject(rs.getString("name_project"));
+                member.getProject().setDescription(rs.getString("description"));
+                member.getProject().setStartingDate(rs.getDate("starting_date"));
+                member.getProject().setLengthInSprint(rs.getInt("project_length_in_sprint"));
+                member.getProject().setSprintLength(rs.getInt("sprint_length"));
+                member.getProject().setProjectStatus(rs.getString("project_status"));
+                member.getProject().setWeekdaySprint(rs.getString("weekday_sprint"));
+                
+                member.setUser(new User());
                 member.getUser().setIdUser(rs.getInt("user_id_user"));
+                member.getUser().setNameUser(rs.getString("name_user"));
+                member.getUser().setLogin(rs.getString("login"));
+                
+                member.setRole(new Role());
                 member.getRole().setIdRole(rs.getInt("role_id_role"));
+                member.getRole().setNameRole(rs.getString("name_role"));
+                
                 memberList.add(member);
             }
             return memberList;
@@ -59,7 +73,7 @@ public class MemberDAO
         }
     }
 
-
+    
     
     
 }

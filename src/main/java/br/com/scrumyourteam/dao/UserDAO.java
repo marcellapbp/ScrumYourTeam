@@ -100,7 +100,6 @@ public class UserDAO
                 user.setIdUser(rs.getInt("id_user"));
                 user.setNameUser(rs.getString("name_user"));
                 user.setLogin(rs.getString("login"));
-                user.setPassword(rs.getString("password"));
             }
             return user;
         } catch (SQLException ex) {
@@ -163,4 +162,5 @@ public class UserDAO
             conn.close();
         }
     }
+    
 }

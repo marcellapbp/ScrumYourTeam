@@ -71,5 +71,30 @@ public class RoleDAO
             conn.close();
         }
     }
+    
+        //it selects a Role 
+    public Role getRole (int idRole,int idProject) throws SQLException
+    {
+        //call Role_select(<id_role>,<id_project>);
+        String sql = "call role_select(?,?);";
 
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
+            psmt.setInt(1, idRole);
+            psmt.setInt(2, idProject);
+            ResultSet rs = psmt.executeQuery();
+            
+            Role role = new Role();
+            while(rs.next())
+            {
+                role.setIdRole(rs.getInt("id_role"));
+                role.setNameRole(rs.getString("name_role"));
+            }
+            return role;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute getRole in RoleDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+    }
 }
