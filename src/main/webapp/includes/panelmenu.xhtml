@@ -8,12 +8,13 @@
 
     <h:form>
         <p:panelMenu>
-            <p:submenu label="Projeto Atual: projeto" style="width:150px">
+            <p:submenu label="Projeto Atual" style="width:150px">
                 <p:menuitem value="Gráfico de Burndown" disabled="#{projectBean.projectSelected}"/>
                 <p:menuitem value="Kanban"              disabled="#{projectBean.projectSelected}"/>
-                <p:menuitem value="Tarefas"             disabled="#{projectBean.projectSelected}"/>
-                <p:menuitem value="Sprints"             disabled="#{projectBean.projectSelected}"/>   
-                <p:menuitem value="Sobre" actionListener="#{projectBean.currentProject}" disabled="#{projectBean.projectSelected}"/>   
+                <p:menuitem value="Product Backlog"     disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Sprint Backlog"      disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Atas de Reunião"     disabled="#{projectBean.projectSelected}"/>   
+                <p:menuitem value="Detalhes Projeto" actionListener="#{projectBean.currentProject}" disabled="#{projectBean.projectSelected}"/>   
             </p:submenu>
 
             <p:submenu label="Projetos">
@@ -23,6 +24,7 @@
             </p:submenu>
 
             <p:submenu label="Configurações">
+                <p:menuitem value="Sprints"     actionListener="#{sprintBean.goSprintList}"     ajax="false" disabled="#{projectBean.projectSelected}"/>   
                 <p:menuitem value="Papéis"      actionListener="#{roleBean.goRoleList}"         ajax="false" disabled="#{projectBean.projectSelected}"/>
                 <p:menuitem value="Membros"     actionListener="#{memberBean.goMemberList}"     ajax="false" disabled="#{projectBean.projectSelected}"/>
                 <p:menuitem value="Reuniões"    actionListener="#{meetingBean.goMeetingList}"   ajax="false" disabled="#{projectBean.projectSelected}"/>

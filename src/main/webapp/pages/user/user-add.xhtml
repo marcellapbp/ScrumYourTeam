@@ -13,7 +13,7 @@
     </ui:define>
     
     <ui:define name="content">
-    
+        <center>
         <h:form id="registerForm">
             <label>Name</label>
             <br/><p:inputText type="text" id="nameUser"/><br/>
@@ -21,8 +21,10 @@
             <br/><p:inputText type="text" id="login"/><br/>
             <label>Password</label>
             <br/><p:inputText type="password" id="password"/><br/>
+            <br/>
             <p:commandButton type="submit" actionListener="#{userBean.userAdd}" value="Cadastrar" ajax="false"/>
             
         </h:form>
+        </center>
     </ui:define>
 </ui:composition>
