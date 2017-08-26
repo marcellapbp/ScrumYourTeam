@@ -3,6 +3,7 @@ package br.com.scrumyourteam.dao;
 import br.com.scrumyourteam.domain.Project;
 import br.com.scrumyourteam.persistence.ConnectionFactory;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -70,7 +71,7 @@ public class ProjectDAO
                 project.setIdProject(rs.getInt("id_project"));
                 project.setNameProject(rs.getString("name_project"));
                 project.setDescription(rs.getString("description"));
-                project.setStartingDate(rs.getDate("starting_date"));
+                project.setStartingDate(rs.getDate("starting_date").toLocalDate());
                 project.setLengthInSprint(rs.getInt("project_length_in_sprint"));
                 project.setSprintLength(rs.getInt("sprint_length"));
                 project.setProjectStatus(rs.getString("project_status"));
@@ -98,7 +99,7 @@ public class ProjectDAO
             psmt.setInt(1, project.getIdProject());
             psmt.setString(2, project.getNameProject());
             psmt.setString(3, project.getDescription());
-            //psmt.setString(4, project.getStartingDate());
+            psmt.setDate(4, Date.valueOf(project.getStartingDateLocalDate()));
             psmt.setInt(5, project.getLengthInSprint());
             psmt.setInt(6, project.getSprintLength());
             psmt.setString(7, project.getProjectStatus());

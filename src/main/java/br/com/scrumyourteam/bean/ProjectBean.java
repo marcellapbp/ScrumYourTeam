@@ -4,6 +4,8 @@ import br.com.scrumyourteam.controller.ProjectController;
 import br.com.scrumyourteam.domain.Project;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
@@ -81,16 +83,16 @@ public class ProjectBean
     public void updateProject() throws IOException, SQLException
     {
         request = (HttpServletRequest) context.currentExternalContext().getRequest();
-        
+
         project = new Project();
         project.setIdProject((int)context.currentExternalContext().getSessionMap().get("idProject"));
         project.setNameProject(request.getParameter("currentProject:nameProject"));
-        project.setDescription(request.getParameter("currentProject:nameProject"));
-        project.setLengthInSprint(Integer.parseInt(request.getParameter("currentProject:nameProject")));
-        project.setSprintLength(Integer.parseInt(request.getParameter("currentProject:nameProject")));
-        //project.setStartingDate(request.getParameter("currentProject:nameProject"));
-        project.setProjectStatus(request.getParameter("currentProject:nameProject"));
-        project.setWeekdaySprint(request.getParameter("currentProject:nameProject"));
+        project.setDescription(request.getParameter("currentProject:description"));
+        project.setLengthInSprint(Integer.parseInt(request.getParameter("currentProject:projectLengthInSprint")));
+        project.setSprintLength(Integer.parseInt(request.getParameter("currentProject:sprintLength")));
+        project.setStartingDate(LocalDate.parse(request.getParameter("currentProject:button"),DateTimeFormatter.ISO_DATE));
+        project.setProjectStatus(request.getParameter("currentProject:projectStatus"));
+        project.setWeekdaySprint(request.getParameter("currentProject:weekdaySprint"));
         
         projectCont = new ProjectController();
         projectCont.updateProject(project);

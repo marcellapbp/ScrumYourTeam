@@ -30,14 +30,15 @@ public class SprintDAO
     //it inserts a register to Sprint table
     public void addSprint(Sprint sprint) throws SQLException 
     {
-        //call sprint_insert( <project_id_project>, <starting_date>, <ending_date>)
+        //call sprint_insert( <project_id_project>,<sprint_number>, <starting_date>, <ending_date>)
         String sql = "call sprint_insert(?,?,?);";
 
         try (PreparedStatement psmt = conn.prepareStatement(sql)) 
         {
             psmt.setInt(1, sprint.getProject().getIdProject());
-            psmt.setDate(2, Date.valueOf(sprint.getStartingDate()));
-            psmt.setDate(3, Date.valueOf(sprint.getEndingDate()));
+            psmt.setInt(2,sprint.getSprintNumber());
+            psmt.setDate(3, Date.valueOf(sprint.getStartingDate()));
+            psmt.setDate(4, Date.valueOf(sprint.getEndingDate()));
 
             psmt.execute();
         } catch (SQLException ex) {
@@ -64,6 +65,7 @@ public class SprintDAO
             {
                 Sprint sprint = new Sprint();
                 sprint.setIdSprint(rs.getInt("id_sprint"));
+                sprint.setSprintNumber(rs.getInt("sprint_number"));
                 sprint.setStartingDate(rs.getDate("starting_date").toLocalDate());
                 sprint.setEndingDate(rs.getDate("ending_date").toLocalDate());
                 SprintList.add(sprint);

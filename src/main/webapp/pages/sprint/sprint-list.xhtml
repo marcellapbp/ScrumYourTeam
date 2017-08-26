@@ -29,6 +29,11 @@
                     <f:facet name="header">
                          <h:outputLabel value="Sprints"/>
                     </f:facet>
+                    <p:column sortBy="#{sprint.sprintNumber}" 
+                              filterBy="#{sprint.sprintNumber}"
+                              headerText="Número da Sprint">
+                        <h:outputLabel value="#{sprint.sprintNumber}"/>
+                    </p:column>
                     <p:column sortBy="#{sprint.startingDate}" 
                               filterBy="#{sprint.startingDate}"
                               headerText="Início da Sprint">
@@ -50,6 +55,8 @@
                        resizable="false" draggable="false" modal="true" appendTo="@(body)" >
                 <h:form id="newSprintForm"> 
                     <h:panelGrid columns="2">
+                        <h:outputLabel value="Número da Sprint:"/>
+                        <p:inputText type="text" id="sprintNumber"/>
                         <h:outputLabel value="Início da Sprint:"/>
                         <p:inputText type="text" id="startingDate"/>
                         <h:outputLabel value="Fim da Sprint:"/>
@@ -57,7 +64,7 @@
                     </h:panelGrid>
                     <h:panelGrid columns="2">
                         <p:commandButton value="Salvar" 
-                                         actionListener="#{SprintBean.SprintAdd()}" 
+                                         actionListener="#{sprintBean.SprintAdd()}" 
                                          onclick="PF('dialogNewSprint').hide();"
                                          update=":sprintListForm:dataTable"/>
                         <p:commandButton value="Cancelar" onclick="PF('dialogNewSprint').hide();"/>

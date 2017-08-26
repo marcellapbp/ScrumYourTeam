@@ -61,9 +61,11 @@ public class SprintBean
         
         sprint = new Sprint();
         
+        String sprintNumber = request.getParameter("newSprintForm:sprintNumber");
         String startingDate = request.getParameter("newSprintForm:startingDate");
         String endingDate = request.getParameter("newSprintForm:endingDate");
-        
+
+        sprint.setSprintNumber(Integer.parseInt(sprintNumber));
         sprint.setStartingDate(LocalDate.parse(startingDate));
         sprint.setEndingDate(LocalDate.parse(endingDate));
         sprint.setProject(new Project());

@@ -48,7 +48,7 @@ public class MemberDAO
                 member.getProject().setIdProject(rs.getInt("project_id_project"));
                 member.getProject().setNameProject(rs.getString("name_project"));
                 member.getProject().setDescription(rs.getString("description"));
-                member.getProject().setStartingDate(rs.getDate("starting_date"));
+                member.getProject().setStartingDate(rs.getDate("starting_date").toLocalDate());
                 member.getProject().setLengthInSprint(rs.getInt("project_length_in_sprint"));
                 member.getProject().setSprintLength(rs.getInt("sprint_length"));
                 member.getProject().setProjectStatus(rs.getString("project_status"));

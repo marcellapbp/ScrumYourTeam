@@ -1,7 +1,7 @@
 package br.com.scrumyourteam.domain;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 /**
  * Date: 11/04/2017
@@ -13,7 +13,7 @@ public class Project
     private int IdProject;
     private String NameProject;
     private String Description;
-    private Date StartingDate;
+    private LocalDate StartingDate;
     private int LengthInSprint;
     private int SprintLength;
     private String ProjectStatus;
@@ -43,13 +43,15 @@ public class Project
         this.Description = Description;
     }
 
-    public String getStartingDate() {
-        SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
-        
-        return date.format(StartingDate);
+    public java.sql.Date getStartingDate() {
+        return Date.valueOf(StartingDate);
+    }
+    
+    public LocalDate getStartingDateLocalDate() {
+        return StartingDate;
     }
 
-    public void setStartingDate(Date StartingDate) {
+    public void setStartingDate(LocalDate StartingDate) {
         this.StartingDate = StartingDate;
     }
 

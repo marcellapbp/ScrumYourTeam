@@ -11,6 +11,7 @@ public class Sprint
 {
     private int IdSprint;
     private Project project;
+    private int SprintNumber;
     private LocalDate StartingDate;
     private LocalDate EndingDate;
 
@@ -44,6 +45,14 @@ public class Sprint
 
     public void setEndingDate(LocalDate EndingDate) {
         this.EndingDate = EndingDate;
+    }
+
+    public int getSprintNumber() {
+        return SprintNumber;
+    }
+
+    public void setSprintNumber(int SprintNumber) {
+        this.SprintNumber = SprintNumber;
     }
     
 }
