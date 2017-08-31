@@ -9,68 +9,68 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     template="/templates/workspace-model.xhtml">
    
-        <ui:define name="westMenu">
-            <ui:include src="/includes/panelmenu.xhtml"></ui:include>
-        </ui:define>
-    
-        <ui:define name="menuBar">
-            <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
-        </ui:define>
-    
-        <ui:define name="content">
-            <h:form id="sprintListForm">
-                <!--it loads content from getSprintList in SprintBean-->
-                <p:dataTable id="dataTable"
-                             emptyMessage="Nenhuma Sprint encontrada." 
-                             value="#{sprintBean.sprintList}" 
-                             var="sprint"
-                             paginator="true"
-                             rows="20">
-                    <f:facet name="header">
-                         <h:outputLabel value="Sprints"/>
-                    </f:facet>
-                    <p:column sortBy="#{sprint.sprintNumber}" 
-                              filterBy="#{sprint.sprintNumber}"
-                              headerText="Número da Sprint">
-                        <h:outputLabel value="#{sprint.sprintNumber}"/>
-                    </p:column>
-                    <p:column sortBy="#{sprint.startingDate}" 
-                              filterBy="#{sprint.startingDate}"
-                              headerText="Início da Sprint">
-                        <h:outputLabel value="#{sprint.startingDate}"/>
-                    </p:column>
-                     <p:column sortBy="#{sprint.endingDate}" 
-                              filterBy="#{sprint.endingDate}"
-                              headerText="Fim da Sprint">
-                        <h:outputLabel value="#{sprint.endingDate}"/>
-                    </p:column>
-                    
-                    <f:facet name="footer">
-                        <p:commandButton value="Novo" onclick="PF('dialogNewSprint').show();" />
-                    </f:facet>
-                </p:dataTable>
+    <ui:define name="westMenu">
+        <ui:include src="/includes/panelmenu.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="menuBar">
+        <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="sprintListForm">
+            <!--it loads content from getSprintList in SprintBean-->
+            <p:dataTable id="dataTable"
+                         emptyMessage="Nenhuma Sprint encontrada." 
+                         value="#{sprintBean.sprintList}" 
+                         var="sprint"
+                         paginator="true"
+                         rows="20">
+                <f:facet name="header">
+                     <h:outputLabel value="Sprints"/>
+                </f:facet>
+                <p:column sortBy="#{sprint.sprintNumber}" 
+                          filterBy="#{sprint.sprintNumber}"
+                          headerText="Número da Sprint">
+                    <h:outputLabel value="#{sprint.sprintNumber}"/>
+                </p:column>
+                <p:column sortBy="#{sprint.startingDate}" 
+                          filterBy="#{sprint.startingDate}"
+                          headerText="Início da Sprint">
+                    <h:outputLabel value="#{sprint.startingDate}"/>
+                </p:column>
+                 <p:column sortBy="#{sprint.endingDate}" 
+                          filterBy="#{sprint.endingDate}"
+                          headerText="Fim da Sprint">
+                    <h:outputLabel value="#{sprint.endingDate}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Novo" onclick="PF('dialogNewSprint').show();" />
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog  widgetVar="dialogNewSprint" closable="false"
+                   resizable="false" draggable="false" modal="true" appendTo="@(body)" >
+            <h:form id="newSprintForm"> 
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Número da Sprint:"/>
+                    <p:inputText type="text" id="sprintNumber"/>
+                    <h:outputLabel value="Início da Sprint:"/>
+                    <p:inputText type="text" id="startingDate"/>
+                    <h:outputLabel value="Fim da Sprint:"/>
+                    <p:inputText type="text" id="endingDate"/>
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Salvar" 
+                                     actionListener="#{sprintBean.SprintAdd()}" 
+                                     onclick="PF('dialogNewSprint').hide();"
+                                     update=":sprintListForm:dataTable"/>
+                    <p:commandButton value="Cancelar" onclick="PF('dialogNewSprint').hide();"/>
+                </h:panelGrid>
             </h:form>
-            
-            <p:dialog  widgetVar="dialogNewSprint" closable="false"
-                       resizable="false" draggable="false" modal="true" appendTo="@(body)" >
-                <h:form id="newSprintForm"> 
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Número da Sprint:"/>
-                        <p:inputText type="text" id="sprintNumber"/>
-                        <h:outputLabel value="Início da Sprint:"/>
-                        <p:inputText type="text" id="startingDate"/>
-                        <h:outputLabel value="Fim da Sprint:"/>
-                        <p:inputText type="text" id="endingDate"/>
-                    </h:panelGrid>
-                    <h:panelGrid columns="2">
-                        <p:commandButton value="Salvar" 
-                                         actionListener="#{sprintBean.SprintAdd()}" 
-                                         onclick="PF('dialogNewSprint').hide();"
-                                         update=":sprintListForm:dataTable"/>
-                        <p:commandButton value="Cancelar" onclick="PF('dialogNewSprint').hide();"/>
-                    </h:panelGrid>
-                </h:form>
-            </p:dialog>
-        </ui:define>
+        </p:dialog>
+    </ui:define>
 </ui:composition>
 

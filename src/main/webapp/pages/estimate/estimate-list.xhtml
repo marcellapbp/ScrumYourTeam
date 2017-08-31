@@ -9,59 +9,59 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     template="/templates/workspace-model.xhtml">
    
-        <ui:define name="westMenu">
-            <ui:include src="/includes/panelmenu.xhtml"></ui:include>
-        </ui:define>
-    
-        <ui:define name="menuBar">
-            <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
-        </ui:define>
-    
-        <ui:define name="content">
-            <h:form id="estimateListForm">
-                <!--it loads content from getEstimateList in EstimateBean-->
-                <p:dataTable id="dataTable"
-                             emptyMessage="Nenhuma estimativa encontrada." 
-                             value="#{estimateBean.estimateList}" 
-                             var="estimate"
-                             paginator="true"
-                             rows="20">
-                    <f:facet name="header">
-                         <h:outputLabel value="Estimativas"/>
-                    </f:facet>
-                    <p:column sortBy="#{estimate.nameEstimate}" 
-                              filterBy="#{estimate.nameEstimate}"
-                              headerText="Nome Estimativa">
-                        <h:outputLabel value="#{estimate.nameEstimate}"/>
-                    </p:column>
-                    <p:column sortBy="#{estimate.estimateValue}"
-                              filterBy="#{estimate.estimateValue}"
-                              headerText="Valor">
-                        <h:outputLabel value="#{estimate.estimateValue}"/>
-                    </p:column>
-                    <f:facet name="footer">
-                        <p:commandButton value="Novo" onclick="PF('dialogNewEstimate').show();" />
-                    </f:facet>
-                </p:dataTable>
+    <ui:define name="westMenu">
+        <ui:include src="/includes/panelmenu.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="menuBar">
+        <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="estimateListForm">
+            <!--it loads content from getEstimateList in EstimateBean-->
+            <p:dataTable id="dataTable"
+                         emptyMessage="Nenhuma estimativa encontrada." 
+                         value="#{estimateBean.estimateList}" 
+                         var="estimate"
+                         paginator="true"
+                         rows="20">
+                <f:facet name="header">
+                     <h:outputLabel value="Estimativas"/>
+                </f:facet>
+                <p:column sortBy="#{estimate.nameEstimate}" 
+                          filterBy="#{estimate.nameEstimate}"
+                          headerText="Nome Estimativa">
+                    <h:outputLabel value="#{estimate.nameEstimate}"/>
+                </p:column>
+                <p:column sortBy="#{estimate.estimateValue}"
+                          filterBy="#{estimate.estimateValue}"
+                          headerText="Valor">
+                    <h:outputLabel value="#{estimate.estimateValue}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton value="Novo" onclick="PF('dialogAddEstimate').show();" />
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog  widgetVar="dialogAddEstimate" closable="false"
+                   resizable="false" draggable="false" modal="true" appendTo="@(body)" >
+            <h:form id="newEstimateForm"> 
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Nome Estimativa:"/>
+                    <p:inputText type="text" id="nameEstimate"/>
+                    <h:outputLabel value="Valor Estimativa"/>
+                    <p:inputText type="text" id="estimateValue"/>
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Salvar" 
+                                     actionListener="#{estimateBean.estimateAdd()}" 
+                                     onclick="PF('dialogAddEstimate').hide();"
+                                     update=":estimateListForm:dataTable"/>
+                    <p:commandButton value="Cancelar" onclick="PF('dialogAddEstimate').hide();"/>
+                </h:panelGrid>
             </h:form>
-            
-            <p:dialog  widgetVar="dialogNewEstimate" closable="false"
-                       resizable="false" draggable="false" modal="true" appendTo="@(body)" >
-                <h:form id="newEstimateForm"> 
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Nome Estimativa:"/>
-                        <p:inputText type="text" id="nameEstimate"/>
-                        <h:outputLabel value="Valor Estimativa"/>
-                        <p:inputText type="text" id="estimateValue"/>
-                    </h:panelGrid>
-                    <h:panelGrid columns="2">
-                        <p:commandButton value="Salvar" 
-                                         actionListener="#{estimateBean.estimateAdd()}" 
-                                         onclick="PF('dialogNewEstimate').hide();"
-                                         update=":estimateListForm:dataTable"/>
-                        <p:commandButton value="Cancelar" onclick="PF('dialogNewEstimate').hide();"/>
-                    </h:panelGrid>
-                </h:form>
-            </p:dialog>
-        </ui:define>
+        </p:dialog>
+    </ui:define>
 </ui:composition>

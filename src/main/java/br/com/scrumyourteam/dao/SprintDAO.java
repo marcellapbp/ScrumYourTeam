@@ -31,7 +31,7 @@ public class SprintDAO
     public void addSprint(Sprint sprint) throws SQLException 
     {
         //call sprint_insert( <project_id_project>,<sprint_number>, <starting_date>, <ending_date>)
-        String sql = "call sprint_insert(?,?,?);";
+        String sql = "call sprint_insert(?,?,?,?);";
 
         try (PreparedStatement psmt = conn.prepareStatement(sql)) 
         {

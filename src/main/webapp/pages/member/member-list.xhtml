@@ -10,61 +10,61 @@
     template="/templates/workspace-model.xhtml"
     >
    
-        <ui:define name="westMenu">
-            <ui:include src="/includes/panelmenu.xhtml"></ui:include>
-        </ui:define>
-    
-        <ui:define name="menuBar">
-            <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
-        </ui:define>
-    
-        <ui:define name="content">
-            <h:form id="MemberListForm">
-                <!--it loads content from getMemberList in MemberBean-->
-                <p:dataTable id="dataTable"
-                             emptyMessage="Nenhum Membro encontrado." 
-                             value="#{memberBean.memberList}" 
-                             var="member"
-                             paginator="true"
-                             rows="20">
-                    <f:facet name="header">
-                         <h:outputLabel value="Membros"/>
-                    </f:facet>
-                    <p:column 
-                              filterBy="#{member.user.nameUser}"
-                              sortBy="#{member.user.nameUser}"
-                              headerText="Nome Usuário">
-                        <h:outputLabel value="#{member.user.nameUser}"/>
-                    </p:column>
-                    <p:column 
-                              filterBy="#{member.role.nameRole}"
-                              sortBy="#{member.role.nameRole}"
-                              headerText="Nome Papel">
-                        <h:outputLabel value="#{member.role.nameRole}"/>
-                    </p:column>
-                    <f:facet name=  "footer">
-                        <p:commandButton value="Novo" onclick="PF('dialogNewMember').show();" />
-                    </f:facet>
-                </p:dataTable>
+    <ui:define name="westMenu">
+        <ui:include src="/includes/panelmenu.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="menuBar">
+        <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="MemberListForm">
+            <!--it loads content from getMemberList in MemberBean-->
+            <p:dataTable id="dataTable"
+                         emptyMessage="Nenhum Membro encontrado." 
+                         value="#{memberBean.memberList}" 
+                         var="member"
+                         paginator="true"
+                         rows="20">
+                <f:facet name="header">
+                     <h:outputLabel value="Membros"/>
+                </f:facet>
+                <p:column 
+                          filterBy="#{member.user.nameUser}"
+                          sortBy="#{member.user.nameUser}"
+                          headerText="Nome Usuário">
+                    <h:outputLabel value="#{member.user.nameUser}"/>
+                </p:column>
+                <p:column 
+                          filterBy="#{member.role.nameRole}"
+                          sortBy="#{member.role.nameRole}"
+                          headerText="Nome Papel">
+                    <h:outputLabel value="#{member.role.nameRole}"/>
+                </p:column>
+                <f:facet name=  "footer">
+                    <p:commandButton value="Novo" onclick="PF('dialogAddMember').show();" />
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog  widgetVar="dialogAddMember" closable="false"
+                   resizable="false" draggable="false" modal="true" appendTo="@(body)"  >
+            <h:form id="newMemberForm">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="ID Usuário:"/>
+                    <p:inputText type="text" id="idUser"/>
+                    <h:outputLabel value="ID Papel:"/>
+                    <p:inputText type="text" id="idRole"/>
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Salvar"
+                                     actionListener="#{memberBean.memberAdd()}" 
+                                     onclick="PF('dialogAddMember').hide();"
+                                     update="MemberListForm:dataTable"/>
+                    <p:commandButton value="Cancelar" onclick="PF('dialogAddMember').hide();"/>
+                </h:panelGrid>
             </h:form>
-            
-            <p:dialog  widgetVar="dialogNewMember" closable="false"
-                       resizable="false" draggable="false" modal="true" appendTo="@(body)"  >
-                <h:form id="newMemberForm">
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="ID Usuário:"/>
-                        <p:inputText type="text" id="idUser"/>
-                        <h:outputLabel value="ID Papel:"/>
-                        <p:inputText type="text" id="idRole"/>
-                    </h:panelGrid>
-                    <h:panelGrid columns="2">
-                        <p:commandButton value="Salvar"
-                                         actionListener="#{memberBean.memberAdd()}" 
-                                         onclick="PF('dialogNewMember').hide();"
-                                         update="MemberListForm:dataTable"/>
-                        <p:commandButton value="Cancelar" onclick="PF('dialogNewMember').hide();"/>
-                    </h:panelGrid>
-                </h:form>
-            </p:dialog>
-        </ui:define>
+        </p:dialog>
+    </ui:define>
 </ui:composition>

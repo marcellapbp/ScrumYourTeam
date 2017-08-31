@@ -9,71 +9,71 @@
     template="/templates/workspace-model.xhtml"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
    
-        <ui:define name="westMenu">
-            <ui:include src="/includes/panelmenu.xhtml"></ui:include>
-        </ui:define>
-    
-        <ui:define name="menuBar">
-            <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
-        </ui:define>
-    
-        <ui:define name="content">
-            <h:form id="currentProject">
-                <p:panel id="basic" header="Detalhes do Projeto" style="margin-bottom:20px">
-                    <br/>
-                    <p:outputLabel for="nameProject" value="Projeto:" />
-                    <br/>
-                    <p:inputText type="text" size="100" id="nameProject" value="#{projectBean.project.nameProject}"/><br/>
-                    <br/>
+    <ui:define name="westMenu">
+        <ui:include src="/includes/panelmenu.xhtml"></ui:include>
+    </ui:define>
 
-                    <p:outputLabel for="description" value="Descrição:" />
-                    <br/>
-                    <p:inputTextarea rows="6" cols="60" id="description" value="#{projectBean.project.description}"/>
-                    <br/><br/>
+    <ui:define name="menuBar">
+        <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+    </ui:define>
 
-                    <p:outputLabel for="button" value="Início do Projeto:" />
-                    <br/>
-                    <p:calendar id="button" value="#{projectBean.project.startingDate}" showOn="button" pattern="dd/MM/yyyy" locale="pt_BR" />
-                    <br/><br/>
+    <ui:define name="content">
+        <h:form id="currentProject">
+            <p:panel id="basic" header="Detalhes do Projeto" style="margin-bottom:20px">
+                <br/>
+                <p:outputLabel for="nameProject" value="Projeto:" />
+                <br/>
+                <p:inputText type="text" size="100" id="nameProject" value="#{projectBean.project.nameProject}"/><br/>
+                <br/>
 
-                    <p:outputLabel for="projectLengthInSprint" value="Estimativa Qtde de Sprints:" />
-                    <br/> 
-                    <p:inputText type="number" id="projectLengthInSprint" value="#{projectBean.project.lengthInSprint}"/><br/>
-                    <br/> 
+                <p:outputLabel for="description" value="Descrição:" />
+                <br/>
+                <p:inputTextarea rows="6" cols="60" id="description" value="#{projectBean.project.description}"/>
+                <br/><br/>
 
-                    <p:outputLabel for="sprintLength" value="Tamanho da Sprint (em dias):" />
-                    <br/>
-                    <p:inputText type="number" id="sprintLength" value="#{projectBean.project.sprintLength}"/><br/>
-                    <br/>
+                <p:outputLabel for="button" value="Início do Projeto:" />
+                <br/>
+                <p:calendar id="button" value="#{projectBean.project.startingDate}" showOn="button" pattern="dd/MM/yyyy" locale="pt_BR" />
+                <br/><br/>
 
-                    <p:outputLabel for="projectStatus" value="Status do Projeto:" />
-                    <br/>
-                    <p:selectOneMenu id="projectStatus" value="#{projectBean.project.projectStatus}" style="width:125px">
-                         <f:selectItem itemLabel="Selecione..." itemValue="" />
-                         <f:selectItem itemLabel="A Fazer" itemValue="A Fazer" />
-                         <f:selectItem itemLabel="Fazendo" itemValue="Fazendo" />
-                         <f:selectItem itemLabel="Feito" itemValue="Feito" />
-                         <f:selectItem itemLabel="Impedimento" itemValue="Impedimento" />
-                    </p:selectOneMenu>
-                    <br/><br/>
+                <p:outputLabel for="projectLengthInSprint" value="Estimativa Qtde de Sprints:" />
+                <br/> 
+                <p:inputText type="number" id="projectLengthInSprint" value="#{projectBean.project.lengthInSprint}"/><br/>
+                <br/> 
 
-                    <p:outputLabel for="weekdaySprint" value="Início Sprint:" />
-                    <br/>
-                    <p:selectOneMenu id="weekdaySprint" value="#{projectBean.project.weekdaySprint}" style="width:125px">
-                         <f:selectItem itemLabel="Selecione..." itemValue="" />
-                         <f:selectItem itemLabel="Domingo" itemValue="Domingo" />
-                         <f:selectItem itemLabel="Segunda" itemValue="Segunda" />
-                         <f:selectItem itemLabel="Terça" itemValue="Terça" />
-                         <f:selectItem itemLabel="Quarta" itemValue="Quarta" />
-                         <f:selectItem itemLabel="Quinta" itemValue="Quinta" />
-                         <f:selectItem itemLabel="Sexta" itemValue="Sexta" />
-                         <f:selectItem itemLabel="Sábado" itemValue="Sábado" />
-                    </p:selectOneMenu>
-                    <br/>
-                    <br/>
+                <p:outputLabel for="sprintLength" value="Tamanho da Sprint (em dias):" />
+                <br/>
+                <p:inputText type="number" id="sprintLength" value="#{projectBean.project.sprintLength}"/><br/>
+                <br/>
 
-                    <p:commandButton type="submit" actionListener="#{projectBean.updateProject()}" value="Salvar" ajax="false"/>
-                </p:panel>
-            </h:form>
-        </ui:define>
+                <p:outputLabel for="projectStatus" value="Status do Projeto:" />
+                <br/>
+                <p:selectOneMenu id="projectStatus" value="#{projectBean.project.projectStatus}" style="width:125px">
+                     <f:selectItem itemLabel="Selecione..." itemValue="" />
+                     <f:selectItem itemLabel="A Fazer" itemValue="A Fazer" />
+                     <f:selectItem itemLabel="Fazendo" itemValue="Fazendo" />
+                     <f:selectItem itemLabel="Feito" itemValue="Feito" />
+                     <f:selectItem itemLabel="Impedimento" itemValue="Impedimento" />
+                </p:selectOneMenu>
+                <br/><br/>
+
+                <p:outputLabel for="weekdaySprint" value="Início Sprint:" />
+                <br/>
+                <p:selectOneMenu id="weekdaySprint" value="#{projectBean.project.weekdaySprint}" style="width:125px">
+                     <f:selectItem itemLabel="Selecione..." itemValue="" />
+                     <f:selectItem itemLabel="Domingo" itemValue="Domingo" />
+                     <f:selectItem itemLabel="Segunda" itemValue="Segunda" />
+                     <f:selectItem itemLabel="Terça" itemValue="Terça" />
+                     <f:selectItem itemLabel="Quarta" itemValue="Quarta" />
+                     <f:selectItem itemLabel="Quinta" itemValue="Quinta" />
+                     <f:selectItem itemLabel="Sexta" itemValue="Sexta" />
+                     <f:selectItem itemLabel="Sábado" itemValue="Sábado" />
+                </p:selectOneMenu>
+                <br/>
+                <br/>
+
+                <p:commandButton type="submit" actionListener="#{projectBean.updateProject()}" value="Salvar" ajax="false"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
 </ui:composition>

@@ -10,61 +10,61 @@
     template="/templates/workspace-model.xhtml"
     >
    
-        <ui:define name="westMenu">
-            <ui:include src="/includes/panelmenu.xhtml"></ui:include>
-        </ui:define>
-    
-        <ui:define name="menuBar">
-            <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
-        </ui:define>
-    
-        <ui:define name="content">
-            <h:form id="priorityListForm">
-                <!--it loads content from getPriorityList in PriorityBean-->
-                <p:dataTable id="dataTable"
-                             emptyMessage="Nenhuma prioridade encontrada." 
-                             value="#{priorityBean.priorityList}" 
-                             var="priority"
-                             paginator="true"
-                             rows="20">
-                    <f:facet name="header">
-                         <h:outputLabel value="Prioridades"/>
-                    </f:facet>
-                    <p:column 
-                              filterBy="#{priority.namePriority}"
-                              sortBy="#{priority.namePriority}"
-                              headerText="Nome Prioridade">
-                        <h:outputLabel value="#{priority.namePriority}"/>
-                    </p:column>
-                    <p:column 
-                              filterBy="#{priority.priorityValue}"
-                              sortBy="#{priority.priorityValue}"
-                              headerText="Valor">
-                        <h:outputLabel value="#{priority.priorityValue}"/>
-                    </p:column>
-                    <f:facet name=  "footer">
-                        <p:commandButton value="Novo" onclick="PF('dialogNewPriority').show();" />
-                    </f:facet>
-                </p:dataTable>
+    <ui:define name="westMenu">
+        <ui:include src="/includes/panelmenu.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="menuBar">
+        <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="priorityListForm">
+            <!--it loads content from getPriorityList in PriorityBean-->
+            <p:dataTable id="dataTable"
+                         emptyMessage="Nenhuma prioridade encontrada." 
+                         value="#{priorityBean.priorityList}" 
+                         var="priority"
+                         paginator="true"
+                         rows="20">
+                <f:facet name="header">
+                     <h:outputLabel value="Prioridades"/>
+                </f:facet>
+                <p:column 
+                          filterBy="#{priority.namePriority}"
+                          sortBy="#{priority.namePriority}"
+                          headerText="Nome Prioridade">
+                    <h:outputLabel value="#{priority.namePriority}"/>
+                </p:column>
+                <p:column 
+                          filterBy="#{priority.priorityValue}"
+                          sortBy="#{priority.priorityValue}"
+                          headerText="Valor">
+                    <h:outputLabel value="#{priority.priorityValue}"/>
+                </p:column>
+                <f:facet name=  "footer">
+                    <p:commandButton value="Novo" onclick="PF('dialogAddPriority').show();" />
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog  widgetVar="dialogAddPriority" closable="false"
+                   resizable="false" draggable="false" modal="true" appendTo="@(body)"  >
+            <h:form id="newPriorityForm">
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Nome Prioridade:"/>
+                    <p:inputText type="text" id="namePriority"/>
+                    <h:outputLabel value="Valor Prioridade:"/>
+                    <p:inputText type="text" id="priorityValue"/>
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Salvar"
+                                     actionListener="#{priorityBean.priorityAdd()}" 
+                                     onclick="PF('dialogAddPriority').hide();"
+                                     update=":priorityListForm:dataTable"/>
+                    <p:commandButton value="Cancelar" onclick="PF('dialogAddPriority').hide();"/>
+                </h:panelGrid>
             </h:form>
-            
-            <p:dialog  widgetVar="dialogNewPriority" closable="false"
-                       resizable="false" draggable="false" modal="true" appendTo="@(body)"  >
-                <h:form id="newPriorityForm">
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Nome Prioridade:"/>
-                        <p:inputText type="text" id="namePriority"/>
-                        <h:outputLabel value="Valor Prioridade:"/>
-                        <p:inputText type="text" id="priorityValue"/>
-                    </h:panelGrid>
-                    <h:panelGrid columns="2">
-                        <p:commandButton value="Salvar"
-                                         actionListener="#{priorityBean.priorityAdd()}" 
-                                         onclick="PF('dialogNewPriority').hide();"
-                                         update=":priorityListForm:dataTable"/>
-                        <p:commandButton value="Cancelar" onclick="PF('dialogNewPriority').hide();"/>
-                    </h:panelGrid>
-                </h:form>
-            </p:dialog>
-        </ui:define>
+        </p:dialog>
+    </ui:define>
 </ui:composition>
