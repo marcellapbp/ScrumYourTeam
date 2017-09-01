@@ -89,7 +89,7 @@ public class MinuteDAO
                 minute.getSprint().setEndingDate(rs.getDate("ending_date").toLocalDate());
                 
                 minute.setDescription(rs.getString("description"));
-                
+                minute.setPostingDate(rs.getDate("posting_date").toLocalDate());
                 MinuteList.add(minute);
             }
             return MinuteList;

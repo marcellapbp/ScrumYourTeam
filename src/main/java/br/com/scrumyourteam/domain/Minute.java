@@ -1,11 +1,14 @@
 package br.com.scrumyourteam.domain;
 
+import java.time.LocalDate;
+
 public class Minute 
 {
     private Project Project;
     private Meeting Meeting;
     private Sprint Sprint;
     private String Description;
+    private LocalDate PostingDate;
 
     public Project getProject() {
         return Project;
@@ -37,6 +40,14 @@ public class Minute
 
     public void setDescription(String Description) {
         this.Description = Description;
+    }
+
+    public LocalDate getPostingDate() {
+        return PostingDate;
+    }
+
+    public void setPostingDate(LocalDate PostingDate) {
+        this.PostingDate = PostingDate;
     }
     
 }

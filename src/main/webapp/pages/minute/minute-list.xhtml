@@ -29,20 +29,25 @@
                 <f:facet name="header">
                      <h:outputLabel value="Atas de Reunião"/>
                 </f:facet>
-                <p:column sortBy="#{minute.<colocar numero sprint>}" 
-                          filterBy="#{minute.<colocar numero sprint>}"
+                <p:column sortBy="#{minute.sprint.sprintNumber}" 
+                          filterBy="#{minute.sprint.sprintNumber}"
                           headerText="Número da Sprint">
-                    <h:outputLabel value="#{minute.<colocar numero sprint>}"/>
+                    <h:outputLabel value="#{minute.sprint.sprintNumber}"/>
                 </p:column>
-                <p:column sortBy="#{minute.<colocar reunião ou separar em mais de uma tabela>}" 
-                          filterBy="#{minute.<colocar reunião ou separar em mais de uma tabela>}"
+                <p:column sortBy="#{minute.meeting.nameMeeting}" 
+                          filterBy="#{minute.meeting.nameMeeting}"
                           headerText="Tipo de Reunião">
-                    <h:outputLabel value="#{minute.<colocar reunião ou separar em mais de uma tabela>}"/>
+                    <h:outputLabel value="#{minute.meeting.nameMeeting}"/>
                 </p:column>
-                 <p:column sortBy="#{minute.<colocar ata>}" 
-                          filterBy="#{minute.<colocar ata>}"
+                <p:column sortBy="#{minute.description}" 
+                          filterBy="#{minute.description}"
                           headerText="Ata de Reunião">
-                    <h:outputLabel value="#{minute.<colocar ata>}"/>
+                    <h:outputLabel value="#{minute.description}"/>
+                </p:column>
+                <p:column sortBy="#{minute.postingDate}" 
+                          filterBy="#{minute.postingDate}"
+                          headerText="Data de Registro">
+                    <h:outputLabel value="#{minute.postingDate}"/>
                 </p:column>
 
                 <f:facet name="footer">
@@ -64,7 +69,7 @@
                 </h:panelGrid>
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar" 
-                                     actionListener="#{minuteBean.MinuteAdd()}" 
+                                     actionListener="#{minuteBean.minuteAdd()}" 
                                      onclick="PF('dialogAddMinute').hide();"
                                      update=":minuteListForm:dataTable"/>
                     <p:commandButton value="Cancelar" onclick="PF('dialogAddMinute').hide();"/>
