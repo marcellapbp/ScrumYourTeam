@@ -1,5 +1,6 @@
 package br.com.scrumyourteam.domain;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Minute 
@@ -42,9 +43,14 @@ public class Minute
         this.Description = Description;
     }
 
-    public LocalDate getPostingDate() {
+    public java.sql.Date getPostingDate() {
+        return Date.valueOf(PostingDate);
+    }
+    
+    public LocalDate getPostingDateLocalDate() {
         return PostingDate;
     }
+
 
     public void setPostingDate(LocalDate PostingDate) {
         this.PostingDate = PostingDate;

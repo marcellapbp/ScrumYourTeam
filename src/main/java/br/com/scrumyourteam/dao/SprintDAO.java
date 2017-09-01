@@ -36,9 +36,9 @@ public class SprintDAO
         try (PreparedStatement psmt = conn.prepareStatement(sql)) 
         {
             psmt.setInt(1, sprint.getProject().getIdProject());
-            psmt.setInt(2,sprint.getSprintNumber());
-            psmt.setDate(3, Date.valueOf(sprint.getStartingDate()));
-            psmt.setDate(4, Date.valueOf(sprint.getEndingDate()));
+            psmt.setInt(2, sprint.getSprintNumber());
+            psmt.setDate(3,sprint.getStartingDate());
+            psmt.setDate(4,sprint.getEndingDate());
 
             psmt.execute();
         } catch (SQLException ex) {

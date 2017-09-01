@@ -47,7 +47,7 @@
                 <p:column sortBy="#{minute.postingDate}" 
                           filterBy="#{minute.postingDate}"
                           headerText="Data de Registro">
-                    <h:outputLabel value="#{minute.postingDate}"/>
+                <p:calendar id="postingDate" value="#{minute.postingDate}" showOn="mask" pattern="dd/MM/yyyy" locale="pt_BR" />
                 </p:column>
 
                 <f:facet name="footer">
