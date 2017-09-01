@@ -18,7 +18,7 @@ import java.util.List;
 
 public class SprintDAO 
 {
-        private Connection conn;
+    private Connection conn;
     
     //set a connection every SprintDAO instance
     public SprintDAO()

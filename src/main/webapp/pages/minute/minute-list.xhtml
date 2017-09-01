@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/templates/workspace-model.xhtml">
+   
+    <ui:define name="westMenu">
+        <ui:include src="/includes/panelmenu.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="menuBar">
+        <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="minuteListForm">
+            <!--it loads content from getMinuteList in MinuteBean-->
+            <p:dataTable id="dataTable"
+                         emptyMessage="Nenhuma Ata encontrada." 
+                         value="#{minuteBean.minuteList}" 
+                         var="minute"
+                         paginator="true"
+                         rows="20">
+                <f:facet name="header">
+                     <h:outputLabel value="Atas de Reunião"/>
+                </f:facet>
+                <p:column sortBy="#{minute.<colocar numero sprint>}" 
+                          filterBy="#{minute.<colocar numero sprint>}"
+                          headerText="Número da Sprint">
+                    <h:outputLabel value="#{minute.<colocar numero sprint>}"/>
+                </p:column>
+                <p:column sortBy="#{minute.<colocar reunião ou separar em mais de uma tabela>}" 
+                          filterBy="#{minute.<colocar reunião ou separar em mais de uma tabela>}"
+                          headerText="Tipo de Reunião">
+                    <h:outputLabel value="#{minute.<colocar reunião ou separar em mais de uma tabela>}"/>
+                </p:column>
+                 <p:column sortBy="#{minute.<colocar ata>}" 
+                          filterBy="#{minute.<colocar ata>}"
+                          headerText="Ata de Reunião">
+                    <h:outputLabel value="#{minute.<colocar ata>}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Novo" onclick="PF('dialogAddMinute').show();" />
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+
+        <p:dialog  widgetVar="dialogAddMinute" closable="false"
+                   resizable="false" draggable="false" modal="true" appendTo="@(body)" >
+            <h:form id="addSprintForm"> 
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Número da Sprint:"/>
+                    <p:inputText type="text" id="sprintNumber"/>
+                    <h:outputLabel value="Tipo de Reunião:"/>
+                    <p:inputText type="text" id="meetingName"/>
+                    <h:outputLabel value="Ata de Reunião:"/>
+                    <p:inputText type="text" id="minuteDescription"/>
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Salvar" 
+                                     actionListener="#{minuteBean.MinuteAdd()}" 
+                                     onclick="PF('dialogAddMinute').hide();"
+                                     update=":minuteListForm:dataTable"/>
+                    <p:commandButton value="Cancelar" onclick="PF('dialogAddMinute').hide();"/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
+

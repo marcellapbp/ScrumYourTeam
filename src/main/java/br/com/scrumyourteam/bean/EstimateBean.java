@@ -40,10 +40,6 @@ public class EstimateBean
     
     
     //create Estimate list 
-    /**
-     *
-     * @return
-     */
     public ListDataModel<br.com.scrumyourteam.domain.Estimate> getEstimateListFromBase()
     {
         try 

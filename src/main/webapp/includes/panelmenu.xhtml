@@ -13,7 +13,7 @@
                 <p:menuitem value="Kanban"              disabled="#{projectBean.projectSelected}"/>
                 <p:menuitem value="Product Backlog"     disabled="#{projectBean.projectSelected}"/>
                 <p:menuitem value="Sprint Backlog"      disabled="#{projectBean.projectSelected}"/>
-                <p:menuitem value="Atas de Reunião"     disabled="#{projectBean.projectSelected}"/>   
+                <p:menuitem value="Atas de Reunião"  actionListener="#{minuteBean.goMinutesList}"  disabled="#{projectBean.projectSelected}"/>   
                 <p:menuitem value="Detalhes Projeto" actionListener="#{projectBean.currentProject}" disabled="#{projectBean.projectSelected}"/>   
             </p:submenu>
 
