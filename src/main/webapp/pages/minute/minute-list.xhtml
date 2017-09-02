@@ -7,7 +7,8 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
-    template="/templates/workspace-model.xhtml">
+    template="/templates/workspace-model.xhtml"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
    
     <ui:define name="westMenu">
         <ui:include src="/includes/panelmenu.xhtml"></ui:include>
@@ -58,14 +59,27 @@
 
         <p:dialog  widgetVar="dialogAddMinute" closable="false"
                    resizable="false" draggable="false" modal="true" appendTo="@(body)" >
-            <h:form id="addSprintForm"> 
+            <h:form id="addMinuteForm"> 
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="Número da Sprint:"/>
-                    <p:inputText type="text" id="sprintNumber"/>
-                    <h:outputLabel value="Tipo de Reunião:"/>
-                    <p:inputText type="text" id="meetingName"/>
-                    <h:outputLabel value="Ata de Reunião:"/>
-                    <p:inputText type="text" id="minuteDescription"/>
+                    <h:outputLabel for="selectMenuSprint" value="Número da Sprint:"/>
+                    <p:selectOneMenu id="selectMenuSprint" >
+                        <f:selectItem itemLabel="Selecione..." itemValue=""/>
+                        <f:selectItems value="#{sprintBean.arraySprintList}"
+                                       var="sprint"
+                                       itemLabel="#{sprint.sprintNumber}"
+                                       itemValue="#{sprint.idSprint}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel for="selectMenuMeeting" value="Tipo de Reunião:"/>
+                    <p:selectOneMenu id="selectMenuMeeting" >
+                        <f:selectItem itemLabel="Selecione..." itemValue=""/>
+                        <f:selectItems value="#{meetingBean.arrayMeetingList}"
+                                       var="meeting"
+                                       itemLabel="#{meeting.nameMeeting}"
+                                       itemValue="#{meeting.idMeeting}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel for="minuteDescription" value="Ata de Reunião:"/>
+                    <p:inputTextarea rows="6" cols="60" id="minuteDescription"/>
                 </h:panelGrid>
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar" 

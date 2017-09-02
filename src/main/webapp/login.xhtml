@@ -16,9 +16,9 @@
         <ui:define name="content">
             <center>
             <h:form id="loginForm">
-                
-                <br/><p:inputText binding="#{login}" type="text" id="login" placeholder="Nome do Usuário"/><br/>
-                <br/><p:inputText binding="#{password}" type="password" id="password" placeholder="Sua Senha"/><br/>
+                <p:focus for="login" />
+                <br/><p:inputText binding="#{login}" type="text" id="login" placeholder="Nome do Usuário" required="true" requiredMessage="Campo Obrigatório!" /><br/>
+                <br/><p:inputText binding="#{password}" type="password" id="password" placeholder="Sua Senha" required="true" requiredMessage="Campo Obrigatório!" /><br/>
                 <br/><p:commandButton type="submit" value="Entrar" actionListener="#{userBean.login}" ajax="false">
                     
                 </p:commandButton><br/>

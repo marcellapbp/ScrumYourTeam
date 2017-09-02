@@ -1,5 +1,6 @@
 package br.com.scrumyourteam.bean;
 
+import java.util.List;
 import br.com.scrumyourteam.controller.SprintController;
 import br.com.scrumyourteam.domain.Project;
 import br.com.scrumyourteam.domain.Sprint;
@@ -83,5 +84,13 @@ public class SprintBean
     //because there is no more objects in the memory
     public ListDataModel<Sprint> getSprintList() {
         return getSprintListFromBase();
+    }
+    
+    //It brings all project sprints to fill the add Minute form
+    public List<Sprint> getArraySprintList() throws SQLException
+    {
+        int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
+        control = new SprintController();
+        return (control.getSprintList(idProject));
     }
 }

@@ -2,9 +2,12 @@
 package br.com.scrumyourteam.bean;
 
 import br.com.scrumyourteam.controller.MeetingController;
+import br.com.scrumyourteam.controller.SprintController;
 import br.com.scrumyourteam.domain.Meeting;
+import br.com.scrumyourteam.domain.Sprint;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -83,4 +86,11 @@ public class MeetingBean
         return this.MeetingList;
     }
 
+    //It brings all project Meetings to fill the add Minute form
+    public List<Meeting> getArrayMeetingList() throws SQLException
+    {
+        int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
+        control = new MeetingController();
+        return (control.getMeetingList(idProject));
+    }
 }

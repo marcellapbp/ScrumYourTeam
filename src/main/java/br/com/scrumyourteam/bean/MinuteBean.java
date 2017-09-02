@@ -1,12 +1,13 @@
 package br.com.scrumyourteam.bean;
 
 import br.com.scrumyourteam.controller.MinuteController;
+import br.com.scrumyourteam.domain.Meeting;
 import br.com.scrumyourteam.domain.Minute;
 import br.com.scrumyourteam.domain.Project;
 import br.com.scrumyourteam.domain.Sprint;
-import br.com.scrumyourteam.domain.Meeting;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -64,16 +65,17 @@ public class MinuteBean {
         
         minute = new Minute();
         
-        String sprintNumber = request.getParameter("addMinuteForm:sprintNumber");
-        String meetingName = request.getParameter("addMinuteForm:meetingName");
+        String sprintNumber = request.getParameter("addMinuteForm:selectMenuSprint");
+        String meetingName = request.getParameter("addMinuteForm:selectMenuMeeting");
         String minuteDescription = request.getParameter("addMinuteForm:minuteDescription");
         
         minute.setMeeting(new Meeting());
-        minute.getMeeting().setIdMeeting((int) context.currentExternalContext().getSessionMap().get("idProject"));
+        minute.getMeeting().setIdMeeting(Integer.parseInt(meetingName));
         minute.setProject(new Project());
         minute.getProject().setIdProject((int) context.currentExternalContext().getSessionMap().get("idProject"));
         minute.setSprint(new Sprint());
-        minute.getSprint().setIdSprint((int) context.currentExternalContext().getSessionMap().get("idProject"));
+        minute.getSprint().setIdSprint(Integer.parseInt(sprintNumber));
+        minute.setDescription(minuteDescription);
         
         
          control = new MinuteController();
@@ -89,4 +91,5 @@ public class MinuteBean {
     public ListDataModel<Minute> getMinuteList() {
         return getMinuteListFromBase();
     }
+    
 }
