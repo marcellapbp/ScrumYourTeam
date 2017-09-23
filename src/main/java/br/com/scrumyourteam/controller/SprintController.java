@@ -29,4 +29,10 @@ public class SprintController
 
     }
     
+    public Sprint getLastSprint (int idProject) throws SQLException 
+    {
+        dao = new SprintDAO();
+        return dao.getLastSprint(idProject);
+    }
+           
 }

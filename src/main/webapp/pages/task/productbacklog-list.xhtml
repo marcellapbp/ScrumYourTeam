@@ -7,8 +7,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
-    template="/templates/workspace-model.xhtml"
-    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    template="/templates/workspace-model.xhtml">
    
     <ui:define name="westMenu">
         <ui:include src="/includes/panelmenu.xhtml"></ui:include>
@@ -19,47 +18,36 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form id="minuteListForm">
-            <!--it loads content from getMinuteList in MinuteBean-->
+        <h:form id="productBacklogListForm">
+            <!--it loads content from getProductBacklogList in taskBean-->
             <p:dataTable id="dataTable"
-                         emptyMessage="Nenhuma Ata encontrada." 
-                         value="#{minuteBean.minuteList}" 
-                         var="minute"
+                         emptyMessage="Nenhuma Tarefa encontrada." 
+                         value="#{taskBean.productBacklogList}" 
+                         var="task"
                          paginator="true"
                          rows="20">
                 <f:facet name="header">
-                     <h:outputLabel value="Atas de Reunião"/>
+                     <h:outputLabel value="Product Backlog"/>
                 </f:facet>
-                <p:column sortBy="#{minute.sprint.sprintNumber}" 
-                          filterBy="#{minute.sprint.sprintNumber}"
-                          headerText="Número da Sprint">
-                    <h:outputLabel value="#{minute.sprint.sprintNumber}"/>
+                <p:column sortBy="#{task.nameTask}" 
+                          filterBy="#{task.nameTask}"
+                          headerText="Nome da Tarefa">
+                    <h:outputLabel value="#{task.nameTask}"/>
                 </p:column>
-                <p:column sortBy="#{minute.meeting.nameMeeting}" 
-                          filterBy="#{minute.meeting.nameMeeting}"
-                          headerText="Tipo de Reunião">
-                    <h:outputLabel value="#{minute.meeting.nameMeeting}"/>
+                <p:column sortBy="#{task.priority.priorityValue}" 
+                          filterBy="#{task.priority.namePriority}"
+                          headerText="Nome da Prioridade">
+                    <h:outputLabel value="#{task.priority.namePriority}"/>
                 </p:column>
-                <p:column sortBy="#{minute.description}" 
-                          filterBy="#{minute.description}"
-                          headerText="Ata de Reunião">
-                    <h:outputLabel value="#{minute.description}"/>
-                </p:column>
-                <p:column sortBy="#{minute.postingDate}" 
-                          filterBy="#{minute.postingDate}"
-                          headerText="Data de Registro">
-                <p:calendar id="postingDate" value="#{minute.postingDate}" showOn="mask" pattern="dd/MM/yyyy" locale="pt_BR" />
-                </p:column>
-
                 <f:facet name="footer">
-                    <p:commandButton value="Novo" onclick="PF('dialogAddMinute').show();" />
+                    <p:commandButton value="Novo" onclick="PF('dialogAddTask').show();" />
                 </f:facet>
             </p:dataTable>
         </h:form>
 
-        <p:dialog  widgetVar="dialogAddMinute" closable="false"
+        <p:dialog  widgetVar="dialogAddTask" closable="false"
                    resizable="false" draggable="false" modal="true" appendTo="@(body)" >
-            <h:form id="addMinuteForm"> 
+            <h:form id="addTaskForm"> <!--CORRIGIR-->
                 <h:panelGrid columns="2">
                     <h:outputLabel for="selectMenuSprint" value="Número da Sprint:"/>
                     <p:selectOneMenu id="selectMenuSprint" >
@@ -84,9 +72,9 @@
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar" 
                                      actionListener="#{minuteBean.minuteAdd()}" 
-                                     onclick="PF('dialogAddMinute').hide();"
-                                     update=":minuteListForm:dataTable"/>
-                    <p:commandButton value="Cancelar" onclick="PF('dialogAddMinute').hide();"/>
+                                     onclick="PF('dialogAddTask').hide();"
+                                     update=":productBacklogListForm:dataTable"/>
+                    <p:commandButton value="Cancelar" onclick="PF('dialogAddTask').hide();"/>
                 </h:panelGrid>
             </h:form>
         </p:dialog>

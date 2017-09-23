@@ -78,6 +78,30 @@ public class SprintDAO
         }
     }
     
+    
+    public Sprint getLastSprint (int idProject) throws SQLException
+    {
+        //call sprint_select_last_sprint(<id_project>);
+        String sql = "call sprint_select_last_sprint(?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
+            psmt.setInt(1, idProject);
+            ResultSet rs = psmt.executeQuery();
+            
+            Sprint sprint = new Sprint();
+            while(rs.next())
+            {
+                sprint.setIdSprint(rs.getInt("id_sprint"));
+            }
+            return sprint;
+            
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute getLastSprint in SprintDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+    }
 
     
 }

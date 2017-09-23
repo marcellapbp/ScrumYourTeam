@@ -43,6 +43,7 @@ public class MeetingDAO
                 Meeting meeting = new Meeting();
                 meeting.setProject(new Project());
                 meeting.getProject().setIdProject(rs.getInt("project_id_project"));
+                meeting.setIdMeeting(rs.getInt("id_meeting"));
                 meeting.setNameMeeting(rs.getString("name_meeting"));
                 //meeting.setMeetingTime...
                 meeting.setFlagNotification(rs.getBoolean("flag_notification"));
