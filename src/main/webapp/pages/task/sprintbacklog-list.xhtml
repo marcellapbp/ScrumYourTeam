@@ -18,7 +18,7 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form id="sprintBacklogListForm">
+         <h:form id="sprintBacklogListForm">
             <!--it loads content from getSprintBacklogList in taskBean-->
             <p:dataTable id="dataTable"
                          emptyMessage="Nenhuma Tarefa encontrada." 
@@ -32,7 +32,7 @@
                 <p:column sortBy="#{task.nameTask}" 
                           filterBy="#{task.nameTask}"
                           headerText="Nome da Tarefa">
-                    <h:outputLabel value="#{task.nameTask}"/>
+                    <h:commandLink value="#{task.nameTask}"/>
                 </p:column>
                 <p:column sortBy="#{task.priority.priorityValue}" 
                           filterBy="#{task.priority.namePriority}"
@@ -40,6 +40,7 @@
                     <h:outputLabel value="#{task.priority.namePriority}"/>
                 </p:column>
                 <f:facet name="footer">
+                    <p:commandButton value="Selecionar Sprint" onclick="PF('dialogSelectSprint').show();" />
                     <p:commandButton value="Novo" onclick="PF('dialogAddTask').show();" />
                 </f:facet>
             </p:dataTable>
@@ -75,6 +76,32 @@
                                      onclick="PF('dialogAddTask').hide();"
                                      update=":sprintBacklogListForm:dataTable"/>
                     <p:commandButton value="Cancelar" onclick="PF('dialogAddTask').hide();"/>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+        <p:dialog  widgetVar="dialogSelectSprint" closable="false"
+                   resizable="false" draggable="false" modal="true" appendTo="@(body)" >
+            <h:form id="selectSprintForm">
+                <h:panelGrid id="painel" columns="2">
+                    <h:outputLabel for="selectSprint" value="Número da Sprint:"/>
+                    
+                    <p:selectOneMenu id="selectSprint"  value="#{taskBean.sprint.idSprint}">
+                        <f:selectItem itemLabel="Selecione..." itemValue=""/>
+                        <f:selectItems value="#{sprintBean.arraySprintList}"
+                                       var="sprint"
+                                       itemLabel="#{sprint.sprintNumber}"
+                                       itemValue="#{sprint.idSprint}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <p:commandButton value="Selecionar" 
+                                     actionListener="#{taskBean.resetDataTable()}" 
+                                     onclick="PF('dialogSelectSprint').hide();"
+                                     update=":sprintBacklogListForm:dataTable"  
+                                     />
+                    <p:commandButton value="Cancelar" 
+                                     onclick="PF('dialogSelectSprint').hide();"
+                                     />
                 </h:panelGrid>
             </h:form>
         </p:dialog>

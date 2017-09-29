@@ -2,6 +2,8 @@
 package br.com.scrumyourteam.bean;
 
 import br.com.scrumyourteam.controller.TaskController;
+import br.com.scrumyourteam.domain.Project;
+import br.com.scrumyourteam.domain.Sprint;
 import br.com.scrumyourteam.domain.Task;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,13 +26,15 @@ public class TaskBean
     private HttpServletRequest request;
     private SessionContext context;
     private TaskController control;
-    private TaskBean task;
-
+    private Sprint sprint = new Sprint();
+    
     
     public TaskBean() 
     {
          this.context = new SessionContext();
     }
+    
+    
     
     //go to page with a ProductBack list 
     public void goProductBacklogList() throws IOException 
@@ -78,14 +82,19 @@ public class TaskBean
     {
         try 
         {
-            int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
-            
             context = new SessionContext();
             request = (HttpServletRequest)context.currentExternalContext().getRequest();
-            int idSprint = Integer.parseInt(request.getParameter("TaskForm:idSprint"));
-                    
+            
+            
+            //int idSprint = Integer.parseInt(request.getParameter("selectSprintForm:selectSprint_label"));
+            System.out.println("TESTE "+ sprint.getIdSprint());
+            sprint.setIdSprint(sprint.getIdSprint());
+            sprint.setProject(new Project());
+            sprint.getProject().setIdProject((int) context.currentExternalContext().getSessionMap().get("idProject"));
+             //throw new RuntimeException("Error to execute getNewSprintBacklogList in TaskBean: " + sprint.getIdSprint());
             control = new TaskController();
-            return new ListDataModel<>(control.getSprintBacklogList(idProject,idSprint));
+
+            return new ListDataModel<>(control.getSprintBacklogList(sprint.getProject().getIdProject(),sprint.getIdSprint()));
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute getNewSprintBacklogList in TaskBean: " + ex);
         }
@@ -102,4 +111,27 @@ public class TaskBean
     public ListDataModel<Task> getNewSprintBacklogList() {
         return getNewSprintBacklogListFromBase();
     }
+    
+    public void resetDataTable()
+    {
+        getNewSprintBacklogList();
+    }
+
+    /**
+     * @return the sprint
+     */
+    public Sprint getSprint() {
+        return sprint;
+    }
+
+    /**
+     * @param sprint the sprint to set
+     */
+    public void setSprint(Sprint sprint) {
+        this.sprint = sprint;
+    }
+    
+    
 }
+
+

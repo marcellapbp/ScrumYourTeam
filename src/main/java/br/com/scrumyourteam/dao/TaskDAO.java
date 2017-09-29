@@ -85,6 +85,7 @@ public class TaskDAO
       //it selects Sprint Backlog list
     public List<Task> getSprintBacklogList (int idProject, int idSprint) throws SQLException
     {
+        System.out.println("PASSOU AQUI");
         //call task_sprint_select_list(<id_project>,<id_sprint>);
         String sql = "call task_sprint_select_list(?,?);";
 

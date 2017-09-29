@@ -32,7 +32,7 @@
                 <p:column sortBy="#{task.nameTask}" 
                           filterBy="#{task.nameTask}"
                           headerText="Nome da Tarefa">
-                    <h:outputLabel value="#{task.nameTask}"/>
+                    <h:commandLink value="#{task.nameTask}"/>
                 </p:column>
                 <p:column sortBy="#{task.priority.priorityValue}" 
                           filterBy="#{task.priority.namePriority}"

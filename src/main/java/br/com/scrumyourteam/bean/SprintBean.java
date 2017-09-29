@@ -60,21 +60,21 @@ public class SprintBean
         context = new SessionContext();
         request = (HttpServletRequest)context.currentExternalContext().getRequest();
         
-        sprint = new Sprint();
+        setSprint(new Sprint());
         
         String sprintNumber = request.getParameter("newSprintForm:sprintNumber");
         String startingDate = request.getParameter("newSprintForm:startingDate");
         String endingDate = request.getParameter("newSprintForm:endingDate");
 
-        sprint.setSprintNumber(Integer.parseInt(sprintNumber));
-        sprint.setStartingDate(LocalDate.parse(startingDate));
-        sprint.setEndingDate(LocalDate.parse(endingDate));
-        sprint.setProject(new Project());
-        sprint.getProject().setIdProject((int) context.currentExternalContext().getSessionMap().get("idProject"));
+        getSprint().setSprintNumber(Integer.parseInt(sprintNumber));
+        getSprint().setStartingDate(LocalDate.parse(startingDate));
+        getSprint().setEndingDate(LocalDate.parse(endingDate));
+        getSprint().setProject(new Project());
+        getSprint().getProject().setIdProject((int) context.currentExternalContext().getSessionMap().get("idProject"));
         
         
          control = new SprintController();
-         control.sprintAdd(sprint);
+         control.sprintAdd(getSprint());
          
          getSprintList();
     }
@@ -92,5 +92,19 @@ public class SprintBean
         int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
         control = new SprintController();
         return (control.getSprintList(idProject));
+    }
+
+    /**
+     * @return the sprint
+     */
+    public Sprint getSprint() {
+        return sprint;
+    }
+
+    /**
+     * @param sprint the sprint to set
+     */
+    public void setSprint(Sprint sprint) {
+        this.sprint = sprint;
     }
 }

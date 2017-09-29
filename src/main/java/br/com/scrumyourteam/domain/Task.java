@@ -80,5 +80,9 @@ public class Task
     public void setDoneDefinition(String DoneDefinition) {
         this.DoneDefinition = DoneDefinition;
     }
-    
+
+    @Override
+    public String toString() {
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdTask());
+    }    
 }
