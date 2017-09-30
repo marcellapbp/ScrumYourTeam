@@ -7,6 +7,7 @@ import br.com.scrumyourteam.domain.Sprint;
 import br.com.scrumyourteam.domain.Task;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -50,6 +51,19 @@ public class TaskBean
                 .redirect("/ScrumYourTeam/faces/pages/task/sprintbacklog-list.xhtml");
     }
     
+    //go to page with a Kanban list 
+    public void goKanbanList() throws IOException 
+    {
+        context.currentExternalContext()
+                .redirect("/ScrumYourTeam/faces/pages/task/kanban.xhtml");
+    }
+    
+    //go to page with a Burndown Chart
+    public void goBurndownChart() throws IOException 
+    {
+        context.currentExternalContext()
+                .redirect("/ScrumYourTeam/faces/pages/task/burndown-chart.xhtml");
+    }
     
      //create Product Backlog list 
     public ListDataModel<br.com.scrumyourteam.domain.Task> getProductBacklogListFromBase()
@@ -76,7 +90,7 @@ public class TaskBean
             throw new RuntimeException("Error to execute getSprintBacklogList in TaskBean: " + ex);
         }
     }
-    
+        
      //create Sprint Backlog list 
     public ListDataModel<br.com.scrumyourteam.domain.Task> getNewSprintBacklogListFromBase()
     {
@@ -112,21 +126,22 @@ public class TaskBean
         return getNewSprintBacklogListFromBase();
     }
     
-    public void resetDataTable()
+    public ListDataModel<Task> resetDataTable()
+    {
+        ArrayList<Task> TaskList = new ArrayList<>();
+        TaskList.add(new Task());
+        return new ListDataModel<>(TaskList);
+    }
+    
+    public void populateDataTable()
     {
         getNewSprintBacklogList();
     }
 
-    /**
-     * @return the sprint
-     */
     public Sprint getSprint() {
         return sprint;
     }
 
-    /**
-     * @param sprint the sprint to set
-     */
     public void setSprint(Sprint sprint) {
         this.sprint = sprint;
     }

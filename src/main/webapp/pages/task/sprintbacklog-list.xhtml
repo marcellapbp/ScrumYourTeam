@@ -79,8 +79,12 @@
                 </h:panelGrid>
             </h:form>
         </p:dialog>
-        <p:dialog  widgetVar="dialogSelectSprint" closable="false"
-                   resizable="false" draggable="false" modal="true" appendTo="@(body)" >
+        <p:dialog  widgetVar="dialogSelectSprint" 
+                   closable="false"
+                   resizable="false" 
+                   draggable="false" 
+                   modal="true" 
+                   appendTo="@(body)" >
             <h:form id="selectSprintForm">
                 <h:panelGrid id="painel" columns="2">
                     <h:outputLabel for="selectSprint" value="Número da Sprint:"/>
@@ -97,7 +101,8 @@
                     <p:commandButton value="Selecionar" 
                                      actionListener="#{taskBean.resetDataTable()}" 
                                      onclick="PF('dialogSelectSprint').hide();"
-                                     update=":sprintBacklogListForm:dataTable"  
+                                     update=":sprintBacklogListForm:dataTable"
+                                     ajax="false" 
                                      />
                     <p:commandButton value="Cancelar" 
                                      onclick="PF('dialogSelectSprint').hide();"

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    template="/templates/workspace-model.xhtml">
+   
+    <ui:define name="westMenu">
+        <ui:include src="/includes/panelmenu.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="menuBar">
+        <ui:include src="/includes/menubar-workspace.xhtml"></ui:include>
+    </ui:define>
+
+    <ui:define name="content">
+        <p:panel id="basic" header="Gráfico de Burndown" style="margin-bottom:20px">
+            <p:tabView>
+                <p:tab title="Equipe">
+                </p:tab>
+                <p:tab title="Individual">
+                </p:tab>
+            </p:tabView>
+        </p:panel>
+    </ui:define>
+</ui:composition>

@@ -9,12 +9,12 @@
     <h:form>
         <p:panelMenu>
             <p:submenu label="Projeto Atual" style="width:150px">
-                <p:menuitem value="Gráfico de Burndown" disabled="#{projectBean.projectSelected}"/>
-                <p:menuitem value="Kanban"              disabled="#{projectBean.projectSelected}"/>
-                <p:menuitem value="Product Backlog"  actionListener="#{taskBean.goProductBacklogList}"  disabled="#{projectBean.projectSelected}"/>
-                <p:menuitem value="Sprint Backlog"   actionListener="#{taskBean.goSprintBacklogList}"   disabled="#{projectBean.projectSelected}"/>
-                <p:menuitem value="Atas de Reunião"  actionListener="#{minuteBean.goMinuteList}"        disabled="#{projectBean.projectSelected}"/>   
-                <p:menuitem value="Detalhes Projeto" actionListener="#{projectBean.currentProject}"     disabled="#{projectBean.projectSelected}"/>   
+                <p:menuitem value="Gráfico de Burndown" actionListener="#{taskBean.goBurndownChart()}"     disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Kanban"              actionListener="#{taskBean.goKanbanList}"          disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Product Backlog"     actionListener="#{taskBean.goProductBacklogList}"  disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Sprint Backlog"      actionListener="#{taskBean.goSprintBacklogList}"   disabled="#{projectBean.projectSelected}"/>
+                <p:menuitem value="Atas de Reunião"     actionListener="#{minuteBean.goMinuteList}"        disabled="#{projectBean.projectSelected}"/>   
+                <p:menuitem value="Detalhes Projeto"    actionListener="#{projectBean.currentProject}"     disabled="#{projectBean.projectSelected}"/>   
             </p:submenu>
 
             <p:submenu label="Projetos">
