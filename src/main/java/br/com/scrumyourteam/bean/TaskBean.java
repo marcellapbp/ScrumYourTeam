@@ -7,7 +7,6 @@ import br.com.scrumyourteam.domain.Sprint;
 import br.com.scrumyourteam.domain.Task;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -35,7 +34,7 @@ public class TaskBean
          this.context = new SessionContext();
     }
     
-    
+    //Go Pages
     
     //go to page with a ProductBack list 
     public void goProductBacklogList() throws IOException 
@@ -65,7 +64,10 @@ public class TaskBean
                 .redirect("/ScrumYourTeam/faces/pages/task/burndown-chart.xhtml");
     }
     
-     //create Product Backlog list 
+    
+    //CREATE LISTS
+    
+    //create Product Backlog list 
     public ListDataModel<br.com.scrumyourteam.domain.Task> getProductBacklogListFromBase()
     {
         try 
@@ -114,6 +116,22 @@ public class TaskBean
         }
     }
     
+    
+     //create Sprint Backlog list 
+    public ListDataModel<br.com.scrumyourteam.domain.Task> getSprintBacklogListByStatusFromBase(String taskStatus)
+    {
+        try 
+        {
+            int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
+            control = new TaskController();
+            return new ListDataModel<>(control.getSprintBacklogListByStatus(idProject, taskStatus));
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute getSprintBacklogList in TaskBean: " + ex);
+        }
+    }
+    
+    //LIST GETTERS
+    
     public ListDataModel<Task> getProductBacklogList() {
         return getProductBacklogListFromBase();
     }
@@ -124,7 +142,13 @@ public class TaskBean
 
     public ListDataModel<Task> getNewSprintBacklogList() {
         return getNewSprintBacklogListFromBase();
+    } 
+    
+    public ListDataModel<Task> getSprintBacklogListByStatus(String taskStatus) {
+        return getSprintBacklogListByStatusFromBase(taskStatus);
     }
+    
+     
     
     public String resetDataTable()
     {

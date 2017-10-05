@@ -42,4 +42,14 @@ public class TaskController
         return dao.getSprintBacklogList(idProject, sprint.getIdSprint());
     }
     
+    //it selects the last Sprint Backlog list
+    public List<Task> getSprintBacklogListByStatus (int idProject, String taskStatus) throws SQLException 
+    {
+        dao = new TaskDAO();
+        controlSprint = new SprintController();
+        sprint = controlSprint.getLastSprint(idProject);
+        return dao.getSprintBacklogListByStatus(idProject, sprint.getIdSprint(),taskStatus);
+    }
+    
+    
 }

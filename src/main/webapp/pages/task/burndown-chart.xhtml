@@ -6,7 +6,6 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
     template="/templates/workspace-model.xhtml">
    
     <ui:define name="westMenu">
@@ -21,9 +20,10 @@
         <p:panel id="basic" header="Gráfico de Burndown" style="margin-bottom:20px">
             <p:tabView>
                 <p:tab title="Equipe">
-                    <p:chart type="line" model="#{chartView.lineModel1}" style="height:300px;"/>
+                    <p:chart type="line" model="#{chartView.teamChart}" style="height:300px;"/>
                 </p:tab>
                 <p:tab title="Individual">
+                    <p:chart type="line" model="#{chartView.individualChart}" style="height:300px;"/>
                 </p:tab>
             </p:tabView>
         </p:panel>

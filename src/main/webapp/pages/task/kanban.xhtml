@@ -23,7 +23,7 @@
                 <p:tab title="A Fazer">
                     <p:dataGrid id="dataGridToDo"
                          emptyMessage="Nenhuma Tarefa encontrada." 
-                         value="#{taskBean.sprintBacklogList}" 
+                         value="#{taskBean.getSprintBacklogListByStatus('A Fazer')}" 
                          var="task"
                          >
                         
@@ -37,7 +37,7 @@
                 <p:tab title="Fazendo">
                     <p:dataGrid id="dataGridDoing"
                          emptyMessage="Nenhuma Tarefa encontrada." 
-                         value="#{taskBean.sprintBacklogList}" 
+                         value="#{taskBean.getSprintBacklogListByStatus('Fazendo')}" 
                          var="task">
                         
                         <p:panel header="#{task.nameTask}" style="border-style: solid">
@@ -50,7 +50,7 @@
                 <p:tab title="Impedimento">
                     <p:dataGrid id="dataGridImpediment"
                          emptyMessage="Nenhuma Tarefa encontrada." 
-                         value="#{taskBean.sprintBacklogList}" 
+                         value="#{taskBean.getSprintBacklogListByStatus('Impedimento')}" 
                          var="task">
                         
                         <p:panel header="#{task.nameTask}" style="border-style: solid">
@@ -63,7 +63,7 @@
                 <p:tab title="Feito">
                     <p:dataGrid id="dataGridDone"
                          emptyMessage="Nenhuma Tarefa encontrada." 
-                         value="#{taskBean.sprintBacklogList}" 
+                         value="#{taskBean.getSprintBacklogListByStatus('Feito')}" 
                          var="task">
                         
                         <p:panel header="#{task.nameTask}" style="border-style: solid">

@@ -139,4 +139,60 @@ public class TaskDAO
     }
     
     
+     public List<Task> getSprintBacklogListByStatus (int idProject, int idSprint, String taskStatus) throws SQLException
+    {
+        //call task_sprint_select_list_by_status(<id_project>,<id_sprint>,<task_status>);
+        String sql = "call task_sprint_select_list_by_status(?,?,?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
+            psmt.setInt(1, idProject);
+            psmt.setInt(2, idSprint);
+            psmt.setString(3, taskStatus);
+            ResultSet rs = psmt.executeQuery();
+            
+            ArrayList<Task> TaskList = new ArrayList<>();
+            while(rs.next())
+            {
+                Task task = new Task();
+                task.setProject(new Project());
+                task.getProject().setIdProject(rs.getInt("project_id_project"));
+                task.getProject().setNameProject(rs.getString("name_project"));
+                task.getProject().setStartingDate(rs.getDate("starting_date").toLocalDate());
+                task.getProject().setLengthInSprint(rs.getInt("project_length_in_sprint"));
+                task.getProject().setSprintLength(rs.getInt("sprint_length"));
+                task.getProject().setProjectStatus(rs.getString("project_status"));
+                task.getProject().setWeekdaySprint(rs.getString("weekday_sprint"));
+                
+                task.setPriority(new Priority());
+                task.getPriority().setIdPriority(rs.getInt("priority_id_priority"));
+                task.getPriority().setProject(task.getProject());
+                task.getPriority().setNamePriority(rs.getString("name_priority"));
+                task.getPriority().setPriorityValue(rs.getInt("priority_value"));
+                
+                task.setEstimate(new Estimate());
+                task.getEstimate().setIdEstimate(rs.getInt("estimate_id_estimate"));
+                task.getEstimate().setProject(task.getProject());
+                task.getEstimate().setNameEstimate(rs.getString("name_estimate"));
+                task.getEstimate().setEstimateValue(rs.getInt("estimate_value"));
+                
+                task.setIdTask(rs.getInt("id_task"));
+                task.setNameTask(rs.getString("name_task"));
+                task.setDescription(rs.getString("description"));
+                task.setDoneDefinition(rs.getString("done_definition"));
+                
+                task.setTask(new Task());
+                task.getTask().setIdTask(rs.getInt("task_id_task"));
+                
+                TaskList.add(task);
+            }
+            return TaskList;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute getSprintBacklogListByStatus in TaskDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+    }
+    
+    
 }
