@@ -126,11 +126,9 @@ public class TaskBean
         return getNewSprintBacklogListFromBase();
     }
     
-    public ListDataModel<Task> resetDataTable()
+    public String resetDataTable()
     {
-        ArrayList<Task> TaskList = new ArrayList<>();
-        TaskList.add(new Task());
-        return new ListDataModel<>(TaskList);
+        return "";
     }
     
     public void populateDataTable()

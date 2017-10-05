@@ -21,12 +21,56 @@
         <p:panel id="basic" header="Kanban" style="margin-bottom:20px">
             <p:tabView>
                 <p:tab title="A Fazer">
+                    <p:dataGrid id="dataGridToDo"
+                         emptyMessage="Nenhuma Tarefa encontrada." 
+                         value="#{taskBean.sprintBacklogList}" 
+                         var="task"
+                         >
+                        
+                        <p:panel header="#{task.nameTask}" style="border-style: solid" >
+                            <h:outputLabel value="Descrição: #{task.description}"/><br/>
+                            <h:outputLabel value="Definição de pronto: #{task.doneDefinition}"/>
+                        </p:panel>
+                    </p:dataGrid>
                 </p:tab>
+                
                 <p:tab title="Fazendo">
+                    <p:dataGrid id="dataGridDoing"
+                         emptyMessage="Nenhuma Tarefa encontrada." 
+                         value="#{taskBean.sprintBacklogList}" 
+                         var="task">
+                        
+                        <p:panel header="#{task.nameTask}" style="border-style: solid">
+                            <h:outputLabel value="Descrição: #{task.description}"/><br/>
+                            <h:outputLabel value="Definição de pronto: #{task.doneDefinition}"/>
+                        </p:panel>
+                    </p:dataGrid>
                 </p:tab>
+                
                 <p:tab title="Impedimento">
+                    <p:dataGrid id="dataGridImpediment"
+                         emptyMessage="Nenhuma Tarefa encontrada." 
+                         value="#{taskBean.sprintBacklogList}" 
+                         var="task">
+                        
+                        <p:panel header="#{task.nameTask}" style="border-style: solid">
+                            <h:outputLabel value="Descrição: #{task.description}"/><br/>
+                            <h:outputLabel value="Definição de pronto: #{task.doneDefinition}"/>
+                        </p:panel>
+                    </p:dataGrid>
                 </p:tab>
+                
                 <p:tab title="Feito">
+                    <p:dataGrid id="dataGridDone"
+                         emptyMessage="Nenhuma Tarefa encontrada." 
+                         value="#{taskBean.sprintBacklogList}" 
+                         var="task">
+                        
+                        <p:panel header="#{task.nameTask}" style="border-style: solid">
+                            <h:outputLabel value="Descrição: #{task.description}"/><br/>
+                            <h:outputLabel value="Definição de pronto: #{task.doneDefinition}"/>
+                        </p:panel>
+                    </p:dataGrid>
                 </p:tab>
             </p:tabView>
         </p:panel>

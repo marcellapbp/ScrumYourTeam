@@ -102,6 +102,7 @@
                                      actionListener="#{taskBean.resetDataTable()}" 
                                      onclick="PF('dialogSelectSprint').hide();"
                                      update=":sprintBacklogListForm:dataTable"
+                                     oncomplete="#{taskBean.populateDataTable()}"
                                      ajax="false" 
                                      />
                     <p:commandButton value="Cancelar" 

@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     private final String url = "jdbc:mysql://localhost/ScrumYourTeam";
     private final String user = "root";
-    private final String password = "";
+    private final String password = "root";
     private final String timeZoneParam = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     
     public Connection getConnection()
