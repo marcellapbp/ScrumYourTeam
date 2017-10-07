@@ -2,6 +2,7 @@
 package br.com.scrumyourteam.controller;
 
 import br.com.scrumyourteam.dao.TaskDAO;
+import br.com.scrumyourteam.domain.ChartInformation;
 import br.com.scrumyourteam.domain.Sprint;
 import br.com.scrumyourteam.domain.Task;
 import java.sql.SQLException;
@@ -51,5 +52,13 @@ public class TaskController
         return dao.getSprintBacklogListByStatus(idProject, sprint.getIdSprint(),taskStatus);
     }
     
+    //it selects the last Sprint Backlog list
+    public ChartInformation getChartInformation (int idProject) throws SQLException 
+    {
+        dao = new TaskDAO();
+        controlSprint = new SprintController();
+        sprint = controlSprint.getLastSprint(idProject);
+        return dao.getChartInformation(idProject, sprint.getIdSprint());
+    }
     
 }

@@ -5,6 +5,7 @@ import br.com.scrumyourteam.domain.Estimate;
 import br.com.scrumyourteam.domain.Priority;
 import br.com.scrumyourteam.domain.Project;
 import br.com.scrumyourteam.domain.Task;
+import br.com.scrumyourteam.domain.ChartInformation;
 import br.com.scrumyourteam.persistence.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -194,5 +195,30 @@ public class TaskDAO
         }
     }
     
+     public ChartInformation getChartInformation (int idProject, int idSprint) throws SQLException
+    {
+        //call chart_information_select(<id_project>,<id_sprint>);
+        String sql = "call chart_information_select(?,?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
+            psmt.setInt(1, idProject);
+            psmt.setInt(2, idSprint);
+            ResultSet rs = psmt.executeQuery();
+
+            ChartInformation chartInfo = new ChartInformation();
+            while(rs.next())
+            {
+                chartInfo.setTotalEstimate(rs.getInt("total_estimate"));
+                chartInfo.setStartingDate(rs.getDate("starting_date").toLocalDate());
+                chartInfo.setEndingDate(rs.getDate("ending_date").toLocalDate());
+            }
+            return chartInfo;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute getChartInformation in TaskDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+    }
     
 }
