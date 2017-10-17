@@ -6,6 +6,7 @@ import br.com.scrumyourteam.domain.Priority;
 import br.com.scrumyourteam.domain.Project;
 import br.com.scrumyourteam.domain.Task;
 import br.com.scrumyourteam.domain.ChartInformation;
+import br.com.scrumyourteam.domain.ChartPoints;
 import br.com.scrumyourteam.persistence.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -195,7 +196,7 @@ public class TaskDAO
         }
     }
     
-     public ChartInformation getChartInformation (int idProject, int idSprint) throws SQLException
+    public ChartInformation getChartInformation (int idProject, int idSprint) throws SQLException
     {
         //call chart_information_select(<id_project>,<id_sprint>);
         String sql = "call chart_information_select(?,?);";
@@ -212,6 +213,7 @@ public class TaskDAO
                 chartInfo.setTotalEstimate(rs.getInt("total_estimate"));
                 chartInfo.setStartingDate(rs.getDate("starting_date").toLocalDate());
                 chartInfo.setEndingDate(rs.getDate("ending_date").toLocalDate());
+                chartInfo.setSetDateDiffTotal(rs.getInt("date_diff_total"));
             }
             return chartInfo;
         } catch (SQLException ex) {
@@ -221,4 +223,32 @@ public class TaskDAO
         }
     }
     
+    
+    public List<ChartPoints> getChartPoints (int idProject, int idSprint) throws SQLException
+    {
+        //call chart_information_select(<id_project>,<id_sprint>);
+        String sql = "call chart_points_select(?,?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
+            psmt.setInt(1, idProject);
+            psmt.setInt(2, idSprint);
+            ResultSet rs = psmt.executeQuery();
+
+            ArrayList<ChartPoints> listChart = new ArrayList<>();
+            while(rs.next())
+            {
+                ChartPoints chartPoints = new ChartPoints();
+                chartPoints.setDatePoint(rs.getDate("date_point").toLocalDate());
+                chartPoints.setNumberPoint(rs.getInt("number_point"));
+                chartPoints.setEstimatePoint(rs.getInt("estimate_point"));
+                listChart.add(chartPoints);
+            }
+            return listChart;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute getChartPoints in TaskDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+    }
 }

@@ -7,6 +7,7 @@ public class ChartInformation
     private int totalEstimate;
     private LocalDate startingDate;
     private LocalDate endingDate;
+    private int setDateDiffTotal;
 
     public int getTotalEstimate() {
         return totalEstimate;
@@ -30,6 +31,14 @@ public class ChartInformation
 
     public void setEndingDate(LocalDate endingDate) {
         this.endingDate = endingDate;
+    }
+
+    public int getSetDateDiffTotal() {
+        return setDateDiffTotal;
+    }
+
+    public void setSetDateDiffTotal(int setDateDiffTotal) {
+        this.setDateDiffTotal = setDateDiffTotal;
     }
     
 }
