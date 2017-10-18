@@ -251,4 +251,62 @@ public class TaskDAO
             conn.close();
         }
     }
+    
+    public ChartInformation getChartInformationIndividual (int idProject, int idSprint, int idUser) throws SQLException
+    {
+        //call chart_information_select_individual(<id_project>,<id_sprint>,<id_user>);
+        String sql = "call chart_information_select_individual(?,?,?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
+            psmt.setInt(1, idProject);
+            psmt.setInt(2, idSprint);
+            psmt.setInt(3, idUser);
+            ResultSet rs = psmt.executeQuery();
+
+            ChartInformation chartInfo = new ChartInformation();
+            while(rs.next())
+            {
+                chartInfo.setTotalEstimate(rs.getInt("total_estimate"));
+                chartInfo.setStartingDate(rs.getDate("starting_date").toLocalDate());
+                chartInfo.setEndingDate(rs.getDate("ending_date").toLocalDate());
+                chartInfo.setSetDateDiffTotal(rs.getInt("date_diff_total"));
+            }
+            return chartInfo;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute getChartInformationIndividual in TaskDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+    }
+    
+    
+    public List<ChartPoints> getChartPointsIndividual (int idProject, int idSprint, int idUser) throws SQLException
+    {
+        //call chart_information_select_individual(<id_project>,<id_sprint>,<id_user>);
+        String sql = "call chart_points_select_individual(?,?,?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
+            psmt.setInt(1, idProject);
+            psmt.setInt(2, idSprint);
+            psmt.setInt(3, idUser);
+            ResultSet rs = psmt.executeQuery();
+
+            ArrayList<ChartPoints> listChart = new ArrayList<>();
+            while(rs.next())
+            {
+                ChartPoints chartPoints = new ChartPoints();
+                chartPoints.setDatePoint(rs.getDate("date_point").toLocalDate());
+                chartPoints.setNumberPoint(rs.getInt("number_point"));
+                chartPoints.setEstimatePoint(rs.getInt("estimate_point"));
+                listChart.add(chartPoints);
+            }
+            return listChart;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute getChartPointsIndividual in TaskDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+    }
 }

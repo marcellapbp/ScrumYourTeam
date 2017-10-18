@@ -71,4 +71,23 @@ public class TaskController
         sprint = controlSprint.getLastSprint(idProject);
         return dao.getChartPoints(idProject, sprint.getIdSprint());
     }
+    
+        //it selects some information from the Individual to put on the chart
+    public ChartInformation getChartInformationIndividual (int idProject, int idUser) throws SQLException 
+    {
+        dao = new TaskDAO();
+        controlSprint = new SprintController();
+        sprint = controlSprint.getLastSprint(idProject);
+        return dao.getChartInformationIndividual(idProject, sprint.getIdSprint(), idUser);
+    }
+    
+    
+    //it selects the points from the Individual to put on the chart
+    public List<ChartPoints> getChartPointsIndividual (int idProject, int idUser) throws SQLException 
+    {
+        dao = new TaskDAO();
+        controlSprint = new SprintController();
+        sprint = controlSprint.getLastSprint(idProject);
+        return dao.getChartPointsIndividual(idProject, sprint.getIdSprint(), idUser);
+    }
 }
