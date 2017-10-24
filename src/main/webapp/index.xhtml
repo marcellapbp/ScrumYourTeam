@@ -4,9 +4,39 @@
 <ui:composition 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://java.sun.com/jsf/facelets"
-    template="/templates/index-model.xhtml">
+    template="/templates/index-model.xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    >
    
         <ui:define name="menu">
             <ui:include src="/includes/menubar.xhtml"></ui:include>
         </ui:define>
+            
+        <ui:define name="content">
+            <p:scrollPanel mode="native" style="position: relative; height: 100%; width: 100%;">
+                <center>
+                    <h1>ScrumYourTeam</h1>
+                    <h2>Ágil, simples, flexível e completo</h2>
+                </center>
+
+                
+                <p:panel>
+                    <center>
+                        <h3>Gráfico de Burndown para o time e individual</h3>
+                        <p:graphicImage url="/images/burndown-chart.PNG"></p:graphicImage>
+                    </center>
+                </p:panel>
+
+                <p:panel>
+                    <center>
+                        <h3>Utilize o Kanban e acompanhe o andamento das tarefas</h3>
+                        <p:graphicImage url="/images/kanban.PNG"></p:graphicImage>
+                    </center>
+
+                </p:panel>
+         </p:scrollPanel>               
+        </ui:define>
+        
+            
 </ui:composition>
