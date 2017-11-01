@@ -42,9 +42,15 @@
                           headerText="Valor">
                     <h:outputLabel value="#{priority.priorityValue}"/>
                 </p:column>
+                <p:column style="width: 30px">
+                     <p:graphicImage  url="/images/lapis3.png"></p:graphicImage>
+                </p:column>
+                <p:column style="width: 30px">
+                     <p:graphicImage  url="/images/x.png"></p:graphicImage>
+                </p:column>
                 <f:facet name=  "footer">
                     <p:commandButton value="Novo" onclick="PF('dialogAddPriority').show();" />
-                </f:facet>
+                </f:facet>  
             </p:dataTable>
         </h:form>
 

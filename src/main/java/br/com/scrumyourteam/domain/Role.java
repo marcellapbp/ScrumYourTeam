@@ -35,5 +35,4 @@ public class Role
     public void setProject(Project project) {
         this.project = project;
     }
-
 }

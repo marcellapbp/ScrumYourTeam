@@ -4,6 +4,7 @@ package br.com.scrumyourteam.bean;
 import br.com.scrumyourteam.controller.MeetingController;
 import br.com.scrumyourteam.controller.SprintController;
 import br.com.scrumyourteam.domain.Meeting;
+import br.com.scrumyourteam.domain.Project;
 import br.com.scrumyourteam.domain.Sprint;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -60,24 +61,22 @@ public class MeetingBean
     //it sends to MeetingController
     public void MeetingAdd() throws SQLException, IOException 
     {
-//        context = new SessionContext();
-//        request = (HttpServletRequest)context.currentExternalContext().getRequest();
-//        
-//        meeting = new Meeting();
-//        
-//        String nameMeeting = request.getParameter("newMeetingForm:nameMeeting");
-//        int meetingValue = Integer.parseInt(request.getParameter("newMeetingForm:meetingValue"));
-//        
-//        meeting.setNameMeeting(nameMeeting);
-//        meeting.setMeetingValue(meetingValue);
-//        meeting.setProject(new Project());
-//        meeting.getProject().setIdProject((int) context.currentExternalContext().getSessionMap().get("idProject"));
-//        
-//        
-//         control = new MeetingController();
-//         control.meetingAdd(meeting);
-//         
-//         getMeetingListFromBase();
+        context = new SessionContext();
+        request = (HttpServletRequest)context.currentExternalContext().getRequest();
+        
+        meeting = new Meeting();
+        
+        String nameMeeting = request.getParameter("newMeetingForm:nameMeeting");
+        
+        meeting.setNameMeeting(nameMeeting);
+        meeting.setProject(new Project());
+        meeting.getProject().setIdProject((int) context.currentExternalContext().getSessionMap().get("idProject"));
+        
+        
+         control = new MeetingController();
+         control.MeetingAdd(meeting);
+         
+         getMeetingListFromBase();
     }
     
 

@@ -32,12 +32,18 @@
                 <p:column sortBy="#{task.nameTask}" 
                           filterBy="#{task.nameTask}"
                           headerText="Nome da Tarefa">
-                    <h:commandLink value="#{task.nameTask}"/>
+                    <h:commandLink value="#{task.nameTask}" />
                 </p:column>
                 <p:column sortBy="#{task.priority.priorityValue}" 
                           filterBy="#{task.priority.namePriority}"
                           headerText="Nome da Prioridade">
                     <h:outputLabel value="#{task.priority.namePriority}"/>
+                </p:column>
+                <p:column style="width: 30px">
+                     <p:graphicImage  url="/images/lapis3.png"></p:graphicImage>
+                </p:column>
+                <p:column style="width: 30px">
+                     <p:graphicImage  url="/images/x.png"></p:graphicImage>
                 </p:column>
                 <f:facet name="footer">
                     <p:commandButton value="Novo" onclick="PF('dialogAddTask').show();" />
@@ -47,31 +53,37 @@
 
         <p:dialog  widgetVar="dialogAddTask" closable="false"
                    resizable="false" draggable="false" modal="true" appendTo="@(body)" >
-            <h:form id="addTaskForm"> <!--CORRIGIR-->
+            <h:form id="addTaskForm"> 
                 <h:panelGrid columns="2">
-                    <h:outputLabel for="selectMenuSprint" value="Número da Sprint:"/>
-                    <p:selectOneMenu id="selectMenuSprint" >
+                    <h:outputLabel for="nameTask" value="Nome da Tarefa: "/>
+                    <p:inputText type="text" id="nameTask" value="#{taskBean.task.nameTask}"/>
+                    
+                    <h:outputLabel for="description" value="Descrição: "/>
+                    <p:inputTextarea rows="6" cols="60" id="description"/>
+                    
+                    <h:outputLabel for="selectPriority" value="Prioridade:"/>
+                    <p:selectOneMenu id="selectPriority" value="#{taskBean.task.priority.idPriority}">
                         <f:selectItem itemLabel="Selecione..." itemValue=""/>
-                        <f:selectItems value="#{sprintBean.arraySprintList}"
-                                       var="sprint"
-                                       itemLabel="#{sprint.idSprint}"
-                                       itemValue="#{sprint.idSprint}"/>
+                        <f:selectItems value="#{priorityBean.arrayPrioritytList}"
+                                       var="priority"
+                                       itemLabel="#{priority.namePriority}"
+                                       itemValue="#{priority.idPriority}"/>
                     </p:selectOneMenu>
-                    <h:outputLabel for="selectMenuMeeting" value="Tipo de Reunião:"/>
-                    <p:selectOneMenu id="selectMenuMeeting" >
+                    <h:outputLabel for="selectEstimate" value="Estimativa:"/>
+                    <p:selectOneMenu id="selectEstimate" value="#{taskBean.task.estimate.idEstimate}">
                         <f:selectItem itemLabel="Selecione..." itemValue=""/>
-                        <f:selectItems value="#{meetingBean.arrayMeetingList}"
-                                       var="meeting"
-                                       itemLabel="#{meeting.idMeeting}"
-                                       itemValue="#{meeting.idMeeting}"/>
+                        <f:selectItems value="#{estimateBean.arrayEstimatetList}"
+                                       var="estimate"
+                                       itemLabel="#{estimate.nameEstimate}"
+                                       itemValue="#{estimate.idEstimate}"/>
                     </p:selectOneMenu>
                     
-                    <h:outputLabel for="minuteDescription" value="Ata de Reunião:"/>
-                    <p:inputTextarea rows="6" cols="60" id="minuteDescription"/>
+                    <h:outputLabel for="doneDefinition" value="Definição de Pronto: "/>
+                    <p:inputTextarea rows="6" cols="60" id="doneDefinition"/>
                 </h:panelGrid>
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar" 
-                                     actionListener="#{minuteBean.minuteAdd()}" 
+                                     actionListener="#{taskBean.taskAdd()}" 
                                      onclick="PF('dialogAddTask').hide();"
                                      update=":productBacklogListForm:dataTable"/>
                     <p:commandButton value="Cancelar" onclick="PF('dialogAddTask').hide();"/>

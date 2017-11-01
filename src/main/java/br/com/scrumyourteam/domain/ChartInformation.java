@@ -40,5 +40,4 @@ public class ChartInformation
     public void setSetDateDiffTotal(int setDateDiffTotal) {
         this.setDateDiffTotal = setDateDiffTotal;
     }
-    
 }

@@ -2,11 +2,14 @@
 package br.com.scrumyourteam.bean;
 
 import br.com.scrumyourteam.controller.TaskController;
+import br.com.scrumyourteam.domain.Estimate;
+import br.com.scrumyourteam.domain.Priority;
 import br.com.scrumyourteam.domain.Project;
 import br.com.scrumyourteam.domain.Sprint;
 import br.com.scrumyourteam.domain.Task;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -27,6 +30,7 @@ public class TaskBean
     private SessionContext context;
     private TaskController control;
     private Sprint sprint = new Sprint();
+    private Task task = new Task();
     
     
     public TaskBean() 
@@ -102,8 +106,6 @@ public class TaskBean
             request = (HttpServletRequest)context.currentExternalContext().getRequest();
             
             
-            //int idSprint = Integer.parseInt(request.getParameter("selectSprintForm:selectSprint_label"));
-            System.out.println("TESTE "+ sprint.getIdSprint());
             sprint.setIdSprint(sprint.getIdSprint());
             sprint.setProject(new Project());
             sprint.getProject().setIdProject((int) context.currentExternalContext().getSessionMap().get("idProject"));
@@ -169,6 +171,60 @@ public class TaskBean
     }
     
     
+    //it takes data from productbacklog-list.xhtml dialog using the session
+    //it sends to TaskController
+    public void taskAdd() throws SQLException, IOException 
+    {
+        context = new SessionContext();
+        request = (HttpServletRequest)context.currentExternalContext().getRequest();
+        int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
+
+        task = new Task();
+
+        
+        String nameTask = request.getParameter("addTaskForm:nameTask");
+        String description = request.getParameter("addTaskForm:description");
+        String idPriority = request.getParameter("dialogAddTask:addTaskForm:selectPriority");
+        String idEstimate = request.getParameter("dialogAddTask:addTaskForm:selectEstimate");
+        String doneDefinition = request.getParameter("dialogAddTask:addTaskForm:doneDefinition");
+        
+        task.setProject(new Project());
+        task.getProject().setIdProject(idProject);
+        task.setNameTask(nameTask);
+        task.setDescription(description);
+        task.setPriority(new Priority());
+        task.getPriority().setIdPriority(Integer.parseInt(idPriority));
+        task.setEstimate(new Estimate());
+        task.getEstimate().setIdEstimate(Integer.parseInt(idEstimate));
+        task.setDoneDefinition(doneDefinition);
+        
+        System.out.println("TESTE "+ task.getNameTask());
+        control = new TaskController();
+        control.TaskAdd(task);
+         
+        getProductBacklogList();
+    }
+
+    public Task getTask() {
+        task.setPriority(new Priority());
+        task.setEstimate(new Estimate());
+        return task;
+    }
+    
+    //It brings all project sprints to fill the add Minute form
+    public List<Task> getArrayTaskList() throws SQLException
+    {
+        int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
+        control = new TaskController();
+        return (control.getProductBacklogList(idProject));
+    }
+    
+    //it takes data from sprintbacklog-list.xhtml dialog using the session
+    //it sends to TaskController
+    public void responsibleAdd() throws SQLException, IOException 
+    {    
+        
+    }
 }
 
 

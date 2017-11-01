@@ -62,5 +62,4 @@ public class Sprint
     public void setSprintNumber(int SprintNumber) {
         this.SprintNumber = SprintNumber;
     }
-    
 }

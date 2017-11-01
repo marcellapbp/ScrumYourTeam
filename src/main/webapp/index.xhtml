@@ -7,7 +7,8 @@
     template="/templates/index-model.xhtml"
     xmlns:p="http://primefaces.org/ui"
     xmlns:h="http://java.sun.com/jsf/html"
-    >
+        
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
    
         <ui:define name="menu">
             <ui:include src="/includes/menubar.xhtml"></ui:include>
@@ -35,6 +36,26 @@
                     </center>
 
                 </p:panel>
+                
+                <p:panel>
+                    <center>
+                        <h3>Um menu repleto de opções...</h3>
+                        <p:graphicImage url="/images/menu.PNG"></p:graphicImage>
+                        
+                    </center>
+
+                </p:panel>
+                <p:panel>
+                    <center>
+                    <h3>Controle as sprints do seu projeto                                              </h3>
+                    <h3>Configure as estimativas e prioridades para atribuir a suas tarefas             </h3>
+                    <h3>Veja quem são os membros da sua equipe e quais papéis eles desenpenham          </h3>
+                    <h3>Tenha a flexibilidade de cadastrar as reuniões das quais sua equipe participa   </h3>
+                    <h3>Usufrua da facilidade de identificar o status de suas tarefas com o kanban      </h3>
+                    <h3>E o seu próprio status e da sua equipe através do Gráfico de Burndown           </h3>
+                    </center>
+                </p:panel>
+                
          </p:scrollPanel>               
         </ui:define>
         

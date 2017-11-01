@@ -5,6 +5,7 @@ import br.com.scrumyourteam.domain.Meeting;
 import br.com.scrumyourteam.domain.Project;
 import br.com.scrumyourteam.persistence.ConnectionFactory;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,6 +58,26 @@ public class MeetingDAO
         }
     }
 
+    //it inserts a register to Meeting table
+    public void addMeeting(Meeting meeting) throws SQLException 
+    {
+        //call meeting_insert(<name_meeting>, <meeting_time>,<flag_notification>,<project_id_project>)
+        String sql = "call meeting_insert(?,?,?,?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
+            psmt.setString(1, meeting.getNameMeeting());
+            psmt.setDate(2, Date.valueOf("1900-01-01"));
+            psmt.setInt(3, 0);
+            psmt.setInt(4, meeting.getProject().getIdProject());
+
+            psmt.execute();
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute addMeeting in MeetingDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+    }
 
     
     

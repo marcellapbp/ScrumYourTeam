@@ -99,7 +99,7 @@ public class ProjectDAO
             psmt.setInt(1, project.getIdProject());
             psmt.setString(2, project.getNameProject());
             psmt.setString(3, project.getDescription());
-            psmt.setDate(4, Date.valueOf(project.getStartingDateLocalDate()));
+            psmt.setDate(4, project.getStartingDate());
             psmt.setInt(5, project.getLengthInSprint());
             psmt.setInt(6, project.getSprintLength());
             psmt.setString(7, project.getProjectStatus());

@@ -32,5 +32,4 @@ public class ChartPoints
     public void setEstimatePoint(int EstimatePoint) {
         this.EstimatePoint = EstimatePoint;
     }
-    
 }

@@ -32,15 +32,21 @@
                 <p:column sortBy="#{task.nameTask}" 
                           filterBy="#{task.nameTask}"
                           headerText="Nome da Tarefa">
-                    <h:commandLink value="#{task.nameTask}"/>
+                    <h:commandLink value="#{task.nameTask}" />
                 </p:column>
                 <p:column sortBy="#{task.priority.priorityValue}" 
                           filterBy="#{task.priority.namePriority}"
                           headerText="Nome da Prioridade">
                     <h:outputLabel value="#{task.priority.namePriority}"/>
                 </p:column>
+                <p:column style="width: 30px">
+                     <p:graphicImage  url="/images/lapis3.png"></p:graphicImage>
+                </p:column>
+                <p:column style="width: 30px">
+                     <p:graphicImage  url="/images/x.png"></p:graphicImage>
+                </p:column>
                 <f:facet name="footer">
-                    <p:commandButton value="Selecionar Sprint" onclick="PF('dialogSelectSprint').show();" />
+                    <!--<p:commandButton value="Selecionar Sprint" onclick="PF('dialogSelectSprint').show();" />-->
                     <p:commandButton value="Novo" onclick="PF('dialogAddTask').show();" />
                 </f:facet>
             </p:dataTable>
@@ -48,31 +54,38 @@
 
         <p:dialog  widgetVar="dialogAddTask" closable="false"
                    resizable="false" draggable="false" modal="true" appendTo="@(body)" >
-            <h:form id="addTaskForm"> <!--CORRIGIR-->
+            <h:form id="addTaskForm">
                 <h:panelGrid columns="2">
-                    <h:outputLabel for="selectMenuSprint" value="Número da Sprint:"/>
-                    <p:selectOneMenu id="selectMenuSprint" >
+                    <h:outputLabel for="selectTask" value="Nome Tarefa:"/>
+                    <p:selectOneMenu id="selectTask" >
                         <f:selectItem itemLabel="Selecione..." itemValue=""/>
-                        <f:selectItems value="#{sprintBean.arraySprintList}"
-                                       var="sprint"
-                                       itemLabel="#{sprint.idSprint}"
-                                       itemValue="#{sprint.idSprint}"/>
+                        <f:selectItems value="#{taskBean.arrayTaskList}"
+                                       var="task"
+                                       itemLabel="#{task.nameTask}"
+                                       itemValue="#{task.idTask}"/>
                     </p:selectOneMenu>
-                    <h:outputLabel for="selectMenuMeeting" value="Tipo de Reunião:"/>
+                    <h:outputLabel for="selectTaskStatus" value="Novo Status:"/>
                     <p:selectOneMenu id="selectMenuMeeting" >
                         <f:selectItem itemLabel="Selecione..." itemValue=""/>
-                        <f:selectItems value="#{meetingBean.arrayMeetingList}"
-                                       var="meeting"
-                                       itemLabel="#{meeting.idMeeting}"
-                                       itemValue="#{meeting.idMeeting}"/>
+                        <f:selectItem itemLabel="A Fazer"      itemValue="A Fazer"/>
+                        <f:selectItem itemLabel="Fazendo"      itemValue="Fazendo"/>
+                        <f:selectItem itemLabel="Feito"        itemValue="Feito"/>
+                        <f:selectItem itemLabel="Impedimento"  itemValue="Impedimento"/>
                     </p:selectOneMenu>
                     
-                    <h:outputLabel for="minuteDescription" value="Ata de Reunião:"/>
-                    <p:inputTextarea rows="6" cols="60" id="minuteDescription"/>
+                    <h:outputLabel for="selectMember" value="Membro Responsável:"/>
+                    <p:selectOneMenu id="selectMember" >
+                        <f:selectItem itemLabel="Selecione..." itemValue=""/>
+                        <f:selectItems value="#{memberBean.arrayMemberList}"
+                                       var="member"
+                                       itemLabel="#{member.user.nameUser}"
+                                       itemValue="#{member.user.idUser}"/>
+                    </p:selectOneMenu>
+                    
                 </h:panelGrid>
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar" 
-                                     actionListener="#{minuteBean.minuteAdd()}" 
+                                     actionListener="#{taskBean.responsibleAdd()}" 
                                      onclick="PF('dialogAddTask').hide();"
                                      update=":sprintBacklogListForm:dataTable"/>
                     <p:commandButton value="Cancelar" onclick="PF('dialogAddTask').hide();"/>

@@ -5,6 +5,7 @@ import br.com.scrumyourteam.domain.Priority;
 import br.com.scrumyourteam.domain.Project;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -80,5 +81,11 @@ public class PriorityBean
     public ListDataModel<Priority> getPriorityList() {
         this.PriorityList= getPriorityListFromBase();
         return this.PriorityList;
+    }
+    
+    public List<Priority> getArrayPrioritytList() throws SQLException {
+        int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
+        control = new PriorityController();
+        return control.getPriorityList(idProject);
     }
 }

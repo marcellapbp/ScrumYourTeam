@@ -6,6 +6,7 @@ import br.com.scrumyourteam.controller.MemberController;
 import br.com.scrumyourteam.domain.Member;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -84,5 +85,12 @@ public class MemberBean
         this.MemberList= getMemberListFromBase();
         return this.MemberList;
     }
-   
+    
+    
+    public List<Member> getArrayMemberList() throws SQLException
+    {
+        int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
+        control = new MemberController();
+        return (control.getMemberList(idProject));
+    }
 }

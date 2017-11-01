@@ -309,4 +309,30 @@ public class TaskDAO
             conn.close();
         }
     }
+    
+    //it inserts a register to Task table
+    public void addTask(Task task) throws SQLException 
+    {
+        //call Task_insert(<project_id_project>, <priority_id_priority>, <estimate_id_estimate>,<name_task>, <task_id_task>, <description>, <done_definition>)
+        String sql = "call Task_insert(?,?,?,?,?,?,?);";
+
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
+            psmt.setInt(1, task.getProject().getIdProject());
+            psmt.setInt(2, task.getPriority().getIdPriority());
+            psmt.setInt(3, task.getEstimate().getIdEstimate());
+            psmt.setString(4, task.getNameTask());
+            psmt.setString(5, null);
+            psmt.setString(6, task.getDescription());
+            psmt.setString(7, task.getDoneDefinition());
+
+            psmt.execute();
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute addTask in TaskDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+        
+    }
+
 }

@@ -90,7 +90,7 @@ public class ProjectBean
         project.setDescription(request.getParameter("currentProject:description"));
         project.setLengthInSprint(Integer.parseInt(request.getParameter("currentProject:projectLengthInSprint")));
         project.setSprintLength(Integer.parseInt(request.getParameter("currentProject:sprintLength")));
-        project.setStartingDate(LocalDate.parse(request.getParameter("currentProject:button"),DateTimeFormatter.ISO_DATE));
+        project.setStartingDate(LocalDate.parse(request.getParameter("currentProject:button")));
         project.setProjectStatus(request.getParameter("currentProject:projectStatus"));
         project.setWeekdaySprint(request.getParameter("currentProject:weekdaySprint"));
         
@@ -99,6 +99,28 @@ public class ProjectBean
         
         context.currentExternalContext().redirect("/ScrumYourTeam/faces/workspace.xhtml");
     }
+    
+    //it goes to page where you can create a new project
+    public void createProject() throws IOException
+    {   
+        context.currentExternalContext()
+                .redirect("/ScrumYourTeam/faces/pages/project/new.xhtml");
+    }
+    
+    //it takes the new project object to insert on database
+    public void setNewProject()
+    {}
+    
+    //it goes to page where you can search for project
+    public void searchProject() throws IOException
+    {
+        context.currentExternalContext()
+                .redirect("/ScrumYourTeam/faces/pages/project/search.xhtml");
+    }
+    
+    //it searches a project on database by name
+    public void getProjectByName()
+    {}
     
     //getters setters
     public ListDataModel<Project> getProjectList() {

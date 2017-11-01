@@ -36,7 +36,12 @@
                           headerText="Nome Reunião">
                     <h:outputLabel value="#{meeting.nameMeeting}"/>
                 </p:column>
-
+                <p:column style="width: 30px">
+                     <p:graphicImage  url="/images/lapis3.png"></p:graphicImage>
+                </p:column>
+                <p:column style="width: 30px">
+                     <p:graphicImage  url="/images/x.png"></p:graphicImage>
+                </p:column>
                 <f:facet name=  "footer">
                     <p:commandButton value="Novo" onclick="PF('dialogAddMeeting').show();" />
                 </f:facet>
@@ -49,12 +54,10 @@
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Nome Reunião:"/>
                     <p:inputText type="text" id="nameMeeting"/>
-                    <h:outputLabel value="Notificação:"/>
-                    <p:inputText type="text" id="flagNotification"/>
                 </h:panelGrid>
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar"
-                                     actionListener="#{meetingBean.meetingAdd()}" 
+                                     actionListener="#{meetingBean.MeetingAdd()}" 
                                      onclick="PF('dialogAddMeeting').hide();"
                                      update=":MeetingListForm:dataTable"/>
                     <p:commandButton value="Cancelar" onclick="PF('dialogAddMeeting').hide();"/>

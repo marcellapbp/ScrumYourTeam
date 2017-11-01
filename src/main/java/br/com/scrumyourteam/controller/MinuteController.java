@@ -28,7 +28,6 @@ public class MinuteController
     {
         dao = new MinuteDAO();
         dao.addMinute(minute);
-
     }
     
 }

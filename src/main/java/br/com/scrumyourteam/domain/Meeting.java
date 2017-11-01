@@ -44,6 +44,4 @@ public class Meeting
     public void setFlagNotification(boolean FlagNotification) {
         this.FlagNotification = FlagNotification;
     }
-    
-    
 }

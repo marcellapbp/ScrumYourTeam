@@ -21,6 +21,11 @@ public class MeetingController
         dao = new MeetingDAO();
         return dao.getMeetingList(idProject);
     }
-
+    
+    public void MeetingAdd(Meeting meeting) throws SQLException 
+    {
+        dao = new MeetingDAO();
+        dao.addMeeting(meeting);
+    }
     
 }

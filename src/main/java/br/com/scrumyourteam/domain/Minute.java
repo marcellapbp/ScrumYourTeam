@@ -51,9 +51,7 @@ public class Minute
         return PostingDate;
     }
 
-
     public void setPostingDate(LocalDate PostingDate) {
         this.PostingDate = PostingDate;
     }
-    
 }

@@ -1,7 +1,9 @@
 package br.com.scrumyourteam.domain;
 
 import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 /**
  * Date: 11/04/2017
@@ -47,6 +49,10 @@ public class Project
         return Date.valueOf(StartingDate);
     }
     
+    public java.util.Date getStartingDate2() {
+        return  java.util.Date.from(StartingDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    }
+    
     public LocalDate getStartingDateLocalDate() {
         return StartingDate;
     }
@@ -86,5 +92,4 @@ public class Project
     public void setWeekdaySprint(String WeekdaySprint) {
         this.WeekdaySprint = WeekdaySprint;
     }
-    
 }

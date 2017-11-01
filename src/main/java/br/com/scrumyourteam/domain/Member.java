@@ -36,5 +36,4 @@ public class Member
     public void setRole(Role Role) {
         this.Role = Role;
     }
-    
 }

@@ -18,37 +18,37 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form id="currentProject">
-            <p:panel id="basic" header="Detalhes do Projeto" style="margin-bottom:20px">
+        <h:form id="newProject">
+            <p:panel id="basic" header="Novo Projeto" style="margin-bottom:20px">
                 <br/>
                 <p:outputLabel for="nameProject" value="Projeto:" />
                 <br/>
-                <p:inputText type="text" size="100" id="nameProject" value="#{projectBean.project.nameProject}"/><br/>
+                <p:inputText type="text" size="100" id="nameProject"/><br/>
                 <br/>
 
                 <p:outputLabel for="description" value="Descrição:" />
                 <br/>
-                <p:inputTextarea rows="6" cols="60" id="description" value="#{projectBean.project.description}"/>
+                <p:inputTextarea rows="6" cols="60" id="description"/>
                 <br/><br/>
 
                 <p:outputLabel for="button" value="Início do Projeto:" />
                 <br/>
-                <p:calendar id="button" value="#{projectBean.project.startingDate2}" showOn="button" pattern="dd/MM/yyyy"  locale="pt_BR" />
+                <p:calendar id="button" showOn="button" pattern="dd/MM/yyyy" locale="pt_BR" />
                 <br/><br/>
 
                 <p:outputLabel for="projectLengthInSprint" value="Estimativa Qtde de Sprints:" />
                 <br/> 
-                <p:inputText type="number" id="projectLengthInSprint" value="#{projectBean.project.lengthInSprint}"/><br/>
+                <p:inputText type="number" id="projectLengthInSprint"/><br/>
                 <br/> 
 
                 <p:outputLabel for="sprintLength" value="Tamanho da Sprint (em dias):" />
                 <br/>
-                <p:inputText type="number" id="sprintLength" value="#{projectBean.project.sprintLength}"/><br/>
+                <p:inputText type="number" id="sprintLength"/><br/>
                 <br/>
 
                 <p:outputLabel for="projectStatus" value="Status do Projeto:" />
                 <br/>
-                <p:selectOneMenu id="projectStatus" value="#{projectBean.project.projectStatus}" style="width:125px">
+                <p:selectOneMenu id="projectStatus" style="width:125px">
                      <f:selectItem itemLabel="Selecione..." itemValue="" />
                      <f:selectItem itemLabel="A Fazer" itemValue="A Fazer" />
                      <f:selectItem itemLabel="Fazendo" itemValue="Fazendo" />
@@ -59,7 +59,7 @@
 
                 <p:outputLabel for="weekdaySprint" value="Início Sprint:" />
                 <br/>
-                <p:selectOneMenu id="weekdaySprint" value="#{projectBean.project.weekdaySprint}" style="width:125px">
+                <p:selectOneMenu id="weekdaySprint" style="width:125px">
                      <f:selectItem itemLabel="Selecione..." itemValue="" />
                      <f:selectItem itemLabel="Domingo" itemValue="Domingo" />
                      <f:selectItem itemLabel="Segunda" itemValue="Segunda" />
@@ -72,7 +72,7 @@
                 <br/>
                 <br/>
 
-                <p:commandButton type="submit" actionListener="#{projectBean.updateProject()}" value="Salvar" ajax="false"/>
+                <p:commandButton type="submit" actionListener="#{projectBean.setNewProject()}" value="Criar" ajax="false"/>
             </p:panel>
         </h:form>
     </ui:define>

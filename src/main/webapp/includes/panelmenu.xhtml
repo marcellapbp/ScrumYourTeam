@@ -18,9 +18,9 @@
             </p:submenu>
 
             <p:submenu label="Projetos">
-                <p:menuitem value="Meus Projetos" actionListener="#{projectBean.goMyProjects}" ajax="false"/>
-                <p:menuitem value="Pesquisar"/>
-                <p:menuitem value="Novo"/>
+                <p:menuitem value="Meus Projetos" actionListener="#{projectBean.goMyProjects}"    ajax="false"/>
+                <p:menuitem value="Pesquisar"     actionListener="#{projectBean.searchProject()}" ajax="false"/>
+                <p:menuitem value="Novo"          actionListener="#{projectBean.createProject()}" ajax="false"/>
             </p:submenu>
 
             <p:submenu label="Configurações">

@@ -90,4 +90,11 @@ public class TaskController
         sprint = controlSprint.getLastSprint(idProject);
         return dao.getChartPointsIndividual(idProject, sprint.getIdSprint(), idUser);
     }
+    
+    public void TaskAdd(Task task) throws SQLException 
+    {
+        dao = new TaskDAO();
+        dao.addTask(task);
+    }
+
 }
