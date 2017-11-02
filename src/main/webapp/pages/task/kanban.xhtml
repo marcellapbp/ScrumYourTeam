@@ -24,15 +24,18 @@
                     <p:dataGrid id="dataGridToDo"
                          emptyMessage="Nenhuma Tarefa encontrada." 
                          value="#{taskBean.getSprintBacklogListByStatus('A Fazer')}" 
-                         var="task"
+                         var="taskresp"
                          >
                         
-                        <p:panel header="#{task.nameTask}" style="border-style: solid" >
+                        <p:panel header="#{taskresp.task.nameTask}" style="border-style: solid" >
                             <strong><h:outputLabel value="Descrição"/></strong><br/>
-                            <h:outputLabel value="Descrição: #{task.description}"/><br/>
+                            <h:outputLabel value="Descrição: #{taskresp.task.description}"/><br/>
                             <br/>
                             <strong><h:outputLabel value="Definição de pronto "/></strong><br/>
-                            <h:outputLabel value="#{task.doneDefinition}"/>
+                            <h:outputLabel value="#{taskresp.task.doneDefinition}"/><br/>
+                            <br/>
+                            <strong><h:outputLabel value="Responsável "/></strong><br/>
+                            <h:outputLabel value="#{taskresp.member.user.nameUser}"/>
                         </p:panel>
                     </p:dataGrid>
                 </p:tab>
@@ -41,14 +44,17 @@
                     <p:dataGrid id="dataGridDoing"
                          emptyMessage="Nenhuma Tarefa encontrada." 
                          value="#{taskBean.getSprintBacklogListByStatus('Fazendo')}" 
-                         var="task">
+                         var="taskresp">
                         
-                        <p:panel header="#{task.nameTask}" style="border-style: solid">
+                        <p:panel header="#{taskresp.task.nameTask}" style="border-style: solid">
                             <strong><h:outputLabel value="Descrição"/></strong><br/>
-                            <h:outputLabel value="Descrição: #{task.description}"/><br/>
+                            <h:outputLabel value="Descrição: #{taskresp.task.description}"/><br/>
                             <br/>
                             <strong><h:outputLabel value="Definição de pronto "/></strong><br/>
-                            <h:outputLabel value="#{task.doneDefinition}"/>
+                            <h:outputLabel value="#{taskresp.task.doneDefinition}"/><br/>
+                            <br/>
+                            <strong><h:outputLabel value="Responsável "/></strong><br/>
+                            <h:outputLabel value="#{taskresp.member.user.nameUser}"/>
                         </p:panel>
                     </p:dataGrid>
                 </p:tab>
@@ -57,14 +63,17 @@
                     <p:dataGrid id="dataGridImpediment"
                          emptyMessage="Nenhuma Tarefa encontrada." 
                          value="#{taskBean.getSprintBacklogListByStatus('Impedimento')}" 
-                         var="task">
+                         var="taskresp">
                         
-                        <p:panel header="#{task.nameTask}" style="border-style: solid">
+                        <p:panel header="#{taskresp.task.nameTask}" style="border-style: solid">
                             <strong><h:outputLabel value="Descrição"/></strong><br/>
-                            <h:outputLabel value="Descrição: #{task.description}"/><br/>
+                            <h:outputLabel value="Descrição: #{taskresp.task.description}"/><br/>
                             <br/>
                             <strong><h:outputLabel value="Definição de pronto "/></strong><br/>
-                            <h:outputLabel value="#{task.doneDefinition}"/>
+                            <h:outputLabel value="#{taskresp.task.doneDefinition}"/><br/>
+                            <br/>
+                            <strong><h:outputLabel value="Responsável "/></strong><br/>
+                            <h:outputLabel value="#{taskresp.member.user.nameUser}"/>
                         </p:panel>
                     </p:dataGrid>
                 </p:tab>
@@ -73,14 +82,17 @@
                     <p:dataGrid id="dataGridDone"
                          emptyMessage="Nenhuma Tarefa encontrada." 
                          value="#{taskBean.getSprintBacklogListByStatus('Feito')}" 
-                         var="task">
+                         var="taskresp">
                         
-                        <p:panel header="#{task.nameTask}" style="border-style: solid">
+                        <p:panel header="#{taskresp.task.nameTask}" style="border-style: solid">
                             <strong><h:outputLabel value="Descrição"/></strong><br/>
-                            <h:outputLabel value="Descrição: #{task.description}"/><br/>
+                            <h:outputLabel value="Descrição: #{taskresp.task.description}"/><br/>
                             <br/>
                             <strong><h:outputLabel value="Definição de pronto "/></strong><br/>
-                            <h:outputLabel value="#{task.doneDefinition}"/>
+                            <h:outputLabel value="#{taskresp.task.doneDefinition}"/><br/>
+                            <br/>
+                            <strong><h:outputLabel value="Responsável "/></strong><br/>
+                            <h:outputLabel value="#{taskresp.member.user.nameUser}"/>
                         </p:panel>
                     </p:dataGrid>
                 </p:tab>

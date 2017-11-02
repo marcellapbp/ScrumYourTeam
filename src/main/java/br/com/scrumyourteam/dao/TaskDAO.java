@@ -7,6 +7,9 @@ import br.com.scrumyourteam.domain.Project;
 import br.com.scrumyourteam.domain.Task;
 import br.com.scrumyourteam.domain.ChartInformation;
 import br.com.scrumyourteam.domain.ChartPoints;
+import br.com.scrumyourteam.domain.Member;
+import br.com.scrumyourteam.domain.TaskResponsible;
+import br.com.scrumyourteam.domain.User;
 import br.com.scrumyourteam.persistence.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -141,7 +144,7 @@ public class TaskDAO
     }
     
     
-     public List<Task> getSprintBacklogListByStatus (int idProject, int idSprint, String taskStatus) throws SQLException
+     public List<TaskResponsible> getSprintBacklogListByStatus (int idProject, int idSprint, String taskStatus) throws SQLException
     {
         //call task_sprint_select_list_by_status(<id_project>,<id_sprint>,<task_status>);
         String sql = "call task_sprint_select_list_by_status(?,?,?);";
@@ -153,7 +156,7 @@ public class TaskDAO
             psmt.setString(3, taskStatus);
             ResultSet rs = psmt.executeQuery();
             
-            ArrayList<Task> TaskList = new ArrayList<>();
+            ArrayList<TaskResponsible> TaskRespList = new ArrayList<>();
             while(rs.next())
             {
                 Task task = new Task();
@@ -185,10 +188,20 @@ public class TaskDAO
                 
                 task.setTask(new Task());
                 task.getTask().setIdTask(rs.getInt("task_id_task"));
+     
                 
-                TaskList.add(task);
+                TaskResponsible taskresp = new TaskResponsible();
+                taskresp.setTask(task);
+                
+                taskresp.setMember(new Member());
+                taskresp.getMember().setUser(new User());
+                taskresp.getMember().getUser().setIdUser(rs.getInt("id_user"));
+                taskresp.getMember().getUser().setLogin(rs.getString("login"));
+                taskresp.getMember().getUser().setNameUser(rs.getString("name_user"));
+                
+                TaskRespList.add(taskresp);
             }
-            return TaskList;
+            return TaskRespList;
         } catch (SQLException ex) {
             throw new RuntimeException("Error to execute getSprintBacklogListByStatus in TaskDAO: " + ex);
         }finally{

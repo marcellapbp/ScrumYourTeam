@@ -6,6 +6,7 @@ import br.com.scrumyourteam.domain.ChartInformation;
 import br.com.scrumyourteam.domain.ChartPoints;
 import br.com.scrumyourteam.domain.Sprint;
 import br.com.scrumyourteam.domain.Task;
+import br.com.scrumyourteam.domain.TaskResponsible;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class TaskController
     }
     
     //it selects the last Sprint Backlog list
-    public List<Task> getSprintBacklogListByStatus (int idProject, String taskStatus) throws SQLException 
+    public List<TaskResponsible> getSprintBacklogListByStatus (int idProject, String taskStatus) throws SQLException 
     {
         dao = new TaskDAO();
         controlSprint = new SprintController();

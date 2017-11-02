@@ -7,6 +7,7 @@ import br.com.scrumyourteam.domain.Priority;
 import br.com.scrumyourteam.domain.Project;
 import br.com.scrumyourteam.domain.Sprint;
 import br.com.scrumyourteam.domain.Task;
+import br.com.scrumyourteam.domain.TaskResponsible;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -120,7 +121,7 @@ public class TaskBean
     
     
      //create Sprint Backlog list 
-    public ListDataModel<br.com.scrumyourteam.domain.Task> getSprintBacklogListByStatusFromBase(String taskStatus)
+    public ListDataModel<br.com.scrumyourteam.domain.TaskResponsible> getSprintBacklogListByStatusFromBase(String taskStatus)
     {
         try 
         {
@@ -146,7 +147,7 @@ public class TaskBean
         return getNewSprintBacklogListFromBase();
     } 
     
-    public ListDataModel<Task> getSprintBacklogListByStatus(String taskStatus) {
+    public ListDataModel<TaskResponsible> getSprintBacklogListByStatus(String taskStatus) {
         return getSprintBacklogListByStatusFromBase(taskStatus);
     }
     
