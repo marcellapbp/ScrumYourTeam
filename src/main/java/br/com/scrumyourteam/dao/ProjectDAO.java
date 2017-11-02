@@ -86,6 +86,39 @@ public class ProjectDAO
         }
     }
 
+    //it selects a single register in the Project table by its name
+    public List<Project> getProjectByName(Project project) throws SQLException 
+    {
+        //call project_select_by_name(<name_project>)
+        String sql = "call project_select_by_name(?);";
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) 
+        {
+            psmt.setString(1, project.getNameProject());
+
+            ResultSet rs = psmt.executeQuery();
+            
+            ArrayList<Project> projectList = new ArrayList<>();
+            while(rs.next())
+            {
+                Project projectSearch = new Project();
+                projectSearch.setIdProject(rs.getInt("id_project"));
+                projectSearch.setNameProject(rs.getString("name_project"));
+                projectSearch.setDescription(rs.getString("description"));
+                projectSearch.setStartingDate(rs.getDate("starting_date").toLocalDate());
+                projectSearch.setLengthInSprint(rs.getInt("project_length_in_sprint"));
+                projectSearch.setSprintLength(rs.getInt("sprint_length"));
+                projectSearch.setProjectStatus(rs.getString("project_status"));
+                projectSearch.setWeekdaySprint(rs.getString("weekday_sprint"));
+                projectList.add(projectSearch);
+            }
+            return projectList;
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error to execute getProjectByName in ProjectDAO: " + ex);
+        }finally{
+            conn.close();
+        }
+    }
+    
     //it updates a existent register to Project table
     public void updateProject(Project project) throws SQLException 
     {

@@ -5,7 +5,8 @@ import br.com.scrumyourteam.domain.Project;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
@@ -28,6 +29,7 @@ public class ProjectBean
     private HttpServletRequest request;
     private ProjectController projectCont;
     private Project project;
+    private List<Project> projectsFound = new ArrayList<>();
     private ProjectController control;
     
     public ProjectBean()
@@ -119,8 +121,23 @@ public class ProjectBean
     }
     
     //it searches a project on database by name
-    public void getProjectByName()
-    {}
+    public void getProjectByName() throws SQLException, IOException
+    {
+        context = new SessionContext();
+        request = (HttpServletRequest)context.currentExternalContext().getRequest();
+        
+        project = new Project();
+        String nameProject = request.getParameter("searchProject:nameProject");
+        
+        project.setNameProject(nameProject);
+        
+        control = new ProjectController();
+        projectsFound = control.getProjectByName(project);
+
+        context.currentExternalContext()
+                .redirect("/ScrumYourTeam/faces/pages/project/search-result.xhtml");
+
+    }
     
     //getters setters
     public ListDataModel<Project> getProjectList() {
@@ -136,6 +153,10 @@ public class ProjectBean
         //before idProject to be setted is null, after is int, then below used Integer
         Integer proj = (Integer) context.currentExternalContext().getSessionMap().get("idProject");
         return (proj == null);
+    }
+
+    public List<Project> getProjectFound() {
+        return projectsFound;
     }
 
     

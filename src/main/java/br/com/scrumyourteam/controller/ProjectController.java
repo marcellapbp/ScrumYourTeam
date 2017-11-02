@@ -35,4 +35,11 @@ public class ProjectController
         dao.updateProject(project);
     }
     
+    //it selects a single register in the Project table
+    public List<Project> getProjectByName(Project project) throws SQLException 
+    {
+        dao = new ProjectDAO();
+        return dao.getProjectByName(project);
+    }
+
 }
