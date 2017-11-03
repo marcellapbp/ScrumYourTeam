@@ -94,16 +94,10 @@ public class SprintBean
         return (control.getSprintList(idProject));
     }
 
-    /**
-     * @return the sprint
-     */
     public Sprint getSprint() {
         return sprint;
     }
 
-    /**
-     * @param sprint the sprint to set
-     */
     public void setSprint(Sprint sprint) {
         this.sprint = sprint;
     }

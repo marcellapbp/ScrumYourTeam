@@ -71,7 +71,7 @@
                         <f:selectItem itemLabel="Selecione..." itemValue=""/>
                         <f:selectItems value="#{sprintBean.arraySprintList}"
                                        var="sprint"
-                                       itemLabel="#{sprint.idSprint}"
+                                       itemLabel="#{sprint.sprintNumber}"
                                        itemValue="#{sprint.idSprint}"/>
                     </p:selectOneMenu>
                     <h:outputLabel for="selectMenuMeeting" value="Tipo de Reunião:"/>
@@ -79,7 +79,7 @@
                         <f:selectItem itemLabel="Selecione..." itemValue=""/>
                         <f:selectItems value="#{meetingBean.arrayMeetingList}"
                                        var="meeting"
-                                       itemLabel="#{meeting.idMeeting}"
+                                       itemLabel="#{meeting.nameMeeting}"
                                        itemValue="#{meeting.idMeeting}"/>
                     </p:selectOneMenu>
                     

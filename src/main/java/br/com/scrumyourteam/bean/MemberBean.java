@@ -23,8 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @SessionScoped
 public class MemberBean 
 {
-
-     private HttpServletRequest request;
+    private HttpServletRequest request;
     private SessionContext context;
     private MemberController control;
     private Member member;
@@ -92,5 +91,9 @@ public class MemberBean
         int idProject = (int) context.currentExternalContext().getSessionMap().get("idProject");
         control = new MemberController();
         return (control.getMemberList(idProject));
+    }
+
+    public Member getMember() {
+        return member;
     }
 }

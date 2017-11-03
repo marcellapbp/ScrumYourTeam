@@ -21,15 +21,6 @@ public class MemberController
     {
         dao = new MemberDAO();
         MemberList = dao.getMemberList(idProject);
-        
-//        for (Member member : MemberList) 
-//        {
-//            UserController user = new UserController();
-//            user.getUser(member.getUser().getIdUser());
-//            RoleController role = new RoleController();
-//            role.getRole(member.getRole().getIdRole(), member.getProject().getIdProject());
-//            
-//        }
         return MemberList;
     }
 

@@ -58,10 +58,22 @@
                    resizable="false" draggable="false" modal="true" appendTo="@(body)"  >
             <h:form id="newMemberForm">
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="ID Usuário:"/>
-                    <p:inputText type="text" id="idUser"/>
-                    <h:outputLabel value="ID Papel:"/>
-                    <p:inputText type="text" id="idRole"/>
+                    <h:outputLabel for="selectUser" value="Nome membro:"/>
+                    <p:selectOneMenu id="selectUser">
+                        <f:selectItem itemLabel="Selecione..." itemValue=""/>
+                        <f:selectItems value="#{memberBean.arrayMemberList}"
+                                       var="member"
+                                       itemLabel="#{member.user.nameUser}"
+                                       itemValue="#{member.user.idUser}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel for="selectRole" value="Papel:"/>
+                    <p:selectOneMenu id="selectRole">
+                        <f:selectItem itemLabel="Selecione..." itemValue=""/>
+                        <f:selectItems value="#{memberBean.arrayMemberList}"
+                                       var="member"
+                                       itemLabel="#{member.role.nameRole}"
+                                       itemValue="#{member.role.idRole}"/>
+                    </p:selectOneMenu>
                 </h:panelGrid>
                 <h:panelGrid columns="2">
                     <p:commandButton value="Salvar"
